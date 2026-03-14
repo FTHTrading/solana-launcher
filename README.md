@@ -104,8 +104,8 @@
 │                                  │  /admin               Treasury           │
 ├──────────────────────────────────┴──────────────────────────────────────────┤
 │                      API Routes (Node.js server only)                       │
-│  POST /api/upload      IPFS image + metadata upload  (rate-limited, JWT)    │
-│  GET  /api/metadata    On-chain Metaplex reader      (rate-limited)         │
+│  POST /api/upload      IPFS image upload to Pinata   (rate-limited, JWT)    │
+│  POST /api/metadata    JSON metadata upload to IPFS  (rate-limited, JWT)    │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -740,37 +740,36 @@ Uploads token image and metadata JSON to IPFS via Pinata.
 
 ---
 
-### `GET /api/metadata?mint=<address>`
+### `POST /api/metadata`
 
-Reads on-chain Metaplex metadata for any token mint.
+Uploads token metadata JSON to IPFS via Pinata. Called server-side so the `PINATA_JWT` secret never reaches the browser.
 
-**Rate limit:** 10 requests / minute / IP
+**Rate limit:** 10 uploads / minute / IP
 
-| Query Param | Required | Notes |
+**Request body** (`application/json`):
+
+| Field | Required | Notes |
 |---|---|---|
-| `mint` | ✅ | Base58 SPL mint address (44 chars) |
+| `name` | ✅ | Token full name |
+| `symbol` | ✅ | Ticker symbol |
+| `image` | ✅ | IPFS URI returned by `POST /api/upload` |
+| `description` | ❌ | Free-form token description |
+| `website` | ❌ | Project URL |
+| `twitter` | ❌ | Twitter/X handle |
+| `discord` | ❌ | Discord invite URL |
 
 **Success response** `200`:
 ```json
-{
-  "name": "My Token",
-  "symbol": "MTK",
-  "uri": "https://ipfs.io/ipfs/QmMeta...",
-  "image": "https://ipfs.io/ipfs/QmImg...",
-  "mintAuthority": "7xKj...",
-  "freezeAuthority": null,
-  "supply": "1000000000000000000",
-  "decimals": 9
-}
+{ "uri": "https://ipfs.io/ipfs/QmMeta..." }
 ```
 
 **Error responses:**
 
 | Status | Body | Cause |
 |---|---|---|
-| `400` | `{"error":"invalid_mint_address"}` | Not a valid base58 address |
-| `404` | `{"error":"metadata_not_found"}` | No Metaplex metadata on this mint |
-| `429` | `{"error":"rate_limit_exceeded"}` | Rate limit hit |
+| `400` | `{"error":"Missing required metadata fields: name, symbol, image"}` | Incomplete payload |
+| `429` | `{"error":"Too many requests. Please wait a moment."}` | Rate limit hit |
+| `500` | `{"error":"Metadata upload failed: ..."}` | Pinata API error or missing `PINATA_JWT` |
 
 ---
 
