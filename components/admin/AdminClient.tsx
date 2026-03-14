@@ -2,10 +2,11 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
+import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import {
   Wallet, TrendingUp, ExternalLink,
-  RefreshCw,
+  RefreshCw, Eye,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -23,6 +24,8 @@ interface TreasuryStats {
 }
 
 export function AdminClient() {
+  const { connected, publicKey } = useWallet();
+  const isDemo = !connected || !publicKey;
   const [stats, setStats] = useState<TreasuryStats | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -73,7 +76,9 @@ export function AdminClient() {
           <p className="text-sm text-muted-foreground mt-0.5">
             Treasury wallet:{' '}
             <span className="font-mono">{truncateAddress(TREASURY_WALLET)}</span>
-            <Badge variant="success" className="ml-2">Authorized</Badge>
+            {isDemo
+              ? <Badge variant="devnet" className="ml-2"><Eye className="h-3 w-3 mr-1" />Demo</Badge>
+              : <Badge variant="success" className="ml-2">Authorized</Badge>}
           </p>
         </div>
         <Button
@@ -86,6 +91,16 @@ export function AdminClient() {
           Refresh
         </Button>
       </div>
+
+      {isDemo && (
+        <div className="rounded-lg border border-brand-500/30 bg-brand-500/5 p-4 text-sm text-brand-600 dark:text-brand-400 flex items-center gap-2">
+          <Eye className="h-4 w-4 flex-shrink-0" />
+          <span>
+            <strong>Demo mode</strong> — You are viewing the admin treasury dashboard without a connected wallet.
+            All data shown is live on-chain. Connect your admin wallet to manage operations.
+          </span>
+        </div>
+      )}
 
       {error && (
         <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive">

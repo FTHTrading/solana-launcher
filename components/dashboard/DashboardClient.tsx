@@ -23,10 +23,42 @@ import { SolBalanceCheck } from '@/components/wallet/SolBalanceCheck';
 // In v1 the dashboard is wallet-state driven.
 // Token history is read from the on-chain state.
 //
-// TODO: For persistent launch history, hook
-// this up to the /api/launches endpoint backed
-// by the database layer (Prisma / Supabase).
+// In demo mode (no wallet connected), three
+// showcase tokens are rendered so clients see
+// a fully populated dashboard on first visit.
 // =============================================
+
+/** Showcase tokens displayed when no wallet is connected */
+const SHOWCASE_TOKENS: TokenAccount[] = [
+  {
+    mintAddress: 'SLNCHxmGRbEhMYvMu8F22RqDyqdFmNbee3GVExZsGe5',
+    tokenAccountAddress: 'DemoATA1111111111111111111111111111111111111',
+    name: 'Solana Launcher Sample',
+    symbol: 'LAUNCH',
+    imageUri: '/images/brand/logo-primary.png',
+    uiAmount: 1_000_000,
+    decimals: 9,
+    balance: '1000000000000000',
+  },
+  {
+    mintAddress: '7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU',
+    tokenAccountAddress: 'DemoATA2222222222222222222222222222222222222',
+    name: 'Meme Classic Token',
+    symbol: 'MEME',
+    uiAmount: 420_000_000,
+    decimals: 6,
+    balance: '420000000000000',
+  },
+  {
+    mintAddress: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+    tokenAccountAddress: 'DemoATA3333333333333333333333333333333333333',
+    name: 'Community Governance',
+    symbol: 'GOV',
+    uiAmount: 10_000,
+    decimals: 9,
+    balance: '10000000000000',
+  },
+];
 
 export function DashboardClient() {
   const { connected, publicKey } = useWallet();
@@ -174,18 +206,29 @@ export function DashboardClient() {
       {/* Token portfolio — live on-chain */}
       <div>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-base font-semibold">Your Tokens</h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={loadTokens}
-            disabled={loadingTokens}
-            className="h-7 px-2"
-          >
-            <RefreshCw className={`h-3.5 w-3.5 mr-1 ${loadingTokens ? 'animate-spin' : ''}`} />
-            Refresh
-          </Button>
+          <h2 className="text-base font-semibold">
+            {isDemo ? 'Showcase Tokens' : 'Your Tokens'}
+          </h2>
+          {!isDemo && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={loadTokens}
+              disabled={loadingTokens}
+              className="h-7 px-2"
+            >
+              <RefreshCw className={`h-3.5 w-3.5 mr-1 ${loadingTokens ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+          )}
         </div>
+
+        {/* Demo showcase info */}
+        {isDemo && (
+          <p className="text-xs text-muted-foreground mb-3">
+            These example tokens demonstrate the dashboard experience. Connect a wallet to see your real portfolio.
+          </p>
+        )}
 
         {tokenError && (
           <Card className="border-destructive/30">
@@ -209,7 +252,7 @@ export function DashboardClient() {
           </div>
         )}
 
-        {!tokenError && !loadingTokens && tokens.length === 0 && (
+        {!tokenError && !loadingTokens && tokens.length === 0 && !isDemo && (
           <Card>
             <CardContent className="pt-6 pb-10 text-center space-y-3">
               <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center mx-auto">
@@ -226,9 +269,10 @@ export function DashboardClient() {
           </Card>
         )}
 
-        {!tokenError && !loadingTokens && tokens.length > 0 && (
+        {/* Render showcase tokens in demo mode OR real tokens when connected */}
+        {!tokenError && !loadingTokens && (isDemo ? SHOWCASE_TOKENS : tokens).length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {tokens.map((token) => (
+            {(isDemo ? SHOWCASE_TOKENS : tokens).map((token) => (
               <Card key={token.mintAddress} className="hover:shadow-md transition-all">
                 <CardContent className="pt-5">
                   <div className="flex items-start gap-3">

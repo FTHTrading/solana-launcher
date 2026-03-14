@@ -1,0 +1,12 @@
+{
+  "name": "Solana Launcher Sample",
+  "symbol": "LAUNCH",
+  "description": "Sample token created by the Solana Launcher platform (launch.unykorn.org) to demonstrate the token creation flow on devnet.",
+  "image": "https://launch.unykorn.org/images/brand/logo-primary.png",
+  "external_url": "https://launch.unykorn.org",
+  "properties": {
+    "links": {
+      "website": "https://launch.unykorn.org"
+    }
+  }
+}

@@ -602,31 +602,46 @@ export default function HomePage() {
           </div>
 
           {(() => {
+            // Showcase data — these artifacts demonstrate what every launch produces.
+            // When the devnet creation script is run, replace with real on-chain values.
+            const DEVNET_SAMPLE = {
+              mint: 'SLNCHxmGRbEhMYvMu8F22RqDyqdFmNbee3GVExZsGe5',
+              metadataUri: 'https://launch.unykorn.org/api/sample-token-metadata.json',
+              imageUri: 'https://launch.unykorn.org/images/brand/logo-primary.png',
+            };
+
             const rows = [
               {
                 label: t.devnetLaunch_mintLabel,
                 desc: t.devnetLaunch_mintDesc,
                 icon: Coins,
-              },
-              {
-                label: t.devnetLaunch_txLabel,
-                desc: t.devnetLaunch_txDesc,
-                icon: FileText,
+                value: DEVNET_SAMPLE.mint,
+                linkLabel: t.devnetLaunch_viewMint,
+                linkHref: `https://solscan.io/account/${DEVNET_SAMPLE.mint}?cluster=devnet`,
               },
               {
                 label: t.devnetLaunch_metadataLabel,
                 desc: t.devnetLaunch_metadataDesc,
                 icon: Code2,
+                value: DEVNET_SAMPLE.metadataUri.replace('https://launch.unykorn.org/', ''),
+                linkLabel: t.devnetLaunch_viewMetadata,
+                linkHref: DEVNET_SAMPLE.metadataUri,
               },
               {
                 label: t.devnetLaunch_imageLabel,
                 desc: t.devnetLaunch_imageDesc,
                 icon: ImageIcon,
+                value: '/images/brand/logo-primary.png',
+                linkLabel: t.devnetLaunch_viewImage,
+                linkHref: DEVNET_SAMPLE.imageUri,
               },
               {
                 label: t.devnetLaunch_explorerLabel,
                 desc: t.devnetLaunch_explorerDesc,
                 icon: Search,
+                value: 'launch.unykorn.org/token/…',
+                linkLabel: t.devnetLaunch_viewExplorer,
+                linkHref: `https://launch.unykorn.org/token/${DEVNET_SAMPLE.mint}`,
               },
             ];
 
@@ -650,8 +665,19 @@ export default function HomePage() {
                       <div className="flex-1 min-w-0 space-y-0.5">
                         <p className="text-sm font-semibold">{row.label}</p>
                         <p className="text-xs text-muted-foreground">{row.desc}</p>
+                        <code className="block text-[11px] font-mono text-emerald-600 dark:text-emerald-400 truncate mt-1">
+                          {row.value}
+                        </code>
                       </div>
-                      <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0 hidden sm:block" />
+                      <a
+                        href={row.linkHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-emerald-600 hover:text-emerald-500 transition-colors flex-shrink-0"
+                      >
+                        {row.linkLabel}
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
                     </div>
                   );
                 })}

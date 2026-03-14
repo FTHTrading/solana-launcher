@@ -3,9 +3,10 @@
 import type { UseFormReturn } from 'react-hook-form';
 import type { TokenFormData } from '@/lib/validation/token-schemas';
 import type { TransactionState } from '@/types';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { Button } from '@/components/ui/button';
 import { TransactionProgress } from '@/components/ui/transaction-progress';
-import { Rocket } from 'lucide-react';
+import { Rocket, WalletCards } from 'lucide-react';
 
 interface StepLaunchProps {
   form: UseFormReturn<TokenFormData>;
@@ -69,6 +70,7 @@ export function StepLaunch({
   progressStep,
   onLaunch,
 }: StepLaunchProps) {
+  const { connected } = useWallet();
   const values = form.getValues();
   const isRunning =
     txState.status === 'signing' || txState.status === 'confirming';
@@ -133,7 +135,7 @@ export function StepLaunch({
       )}
 
       {/* Launch button */}
-      {!isRunning && (
+      {!isRunning && connected && (
         <Button
           size="xl"
           variant="gradient"
@@ -144,6 +146,18 @@ export function StepLaunch({
           <Rocket className="mr-2 h-5 w-5" />
           Launch Token
         </Button>
+      )}
+
+      {/* Wallet connection prompt */}
+      {!isRunning && !connected && (
+        <div className="rounded-xl border border-brand-500/30 bg-brand-500/5 p-6 text-center space-y-3">
+          <WalletCards className="h-8 w-8 mx-auto text-brand-500" />
+          <p className="font-medium">Connect your wallet to launch</p>
+          <p className="text-sm text-muted-foreground">
+            Your token is ready. Connect a Solana wallet with enough SOL to cover
+            creation fees, then click Launch.
+          </p>
+        </div>
       )}
 
       {isRunning && (

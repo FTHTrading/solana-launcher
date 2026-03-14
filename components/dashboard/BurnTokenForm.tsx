@@ -4,13 +4,14 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { burnTokenSchema, type BurnTokenFormData } from '@/lib/validation/token-schemas';
 import { useBurnToken } from '@/hooks/useBurnToken';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert } from '@/components/ui/alert';
 import { TransactionResultCard } from '@/components/ui/transaction-result-card';
 import { NetworkBanner } from '@/components/wallet/NetworkBanner';
 import { SolBalanceCheck } from '@/components/wallet/SolBalanceCheck';
-import { Flame } from 'lucide-react';
+import { Flame, WalletCards } from 'lucide-react';
 
 // =============================================
 // BURN TOKEN FORM
@@ -22,6 +23,7 @@ import { Flame } from 'lucide-react';
 // =============================================
 
 export function BurnTokenForm() {
+  const { connected } = useWallet();
   const { burn, txState, progressStep, appError, result, reset } = useBurnToken();
 
   const form = useForm<BurnTokenFormData>({
@@ -48,13 +50,23 @@ export function BurnTokenForm() {
   const onSubmit = async (data: BurnTokenFormData) => {
     // Note: v1 requires user to input decimals.
     // TODO: auto-fetch decimals from mint account using getConnection().getParsedAccountInfo()
-    await burn(data.mintAddress, data.amount, 6 /* default decimals */);
+    await burn(data.mintAddress, data.amount, 6);
   };
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
       <NetworkBanner />
       <SolBalanceCheck />
+
+      {!connected && (
+        <div className="rounded-lg border border-brand-500/30 bg-brand-500/5 p-4 text-sm text-brand-600 dark:text-brand-400 flex items-center gap-2">
+          <WalletCards className="h-4 w-4 flex-shrink-0" />
+          <span>
+            <strong>Wallet required</strong> — Connect your wallet to burn tokens.
+            You can preview the form below.
+          </span>
+        </div>
+      )}
 
       {appError && appError.code === 'WALLET_REJECTED' ? (
         <Alert variant="warning" title="Transaction Cancelled">
@@ -106,9 +118,10 @@ export function BurnTokenForm() {
         size="lg"
         className="w-full"
         loading={isRunning}
+        disabled={!connected}
       >
         <Flame className="mr-2 h-4 w-4" />
-        Burn Tokens
+        {connected ? 'Burn Tokens' : 'Connect Wallet to Burn'}
       </Button>
     </form>
   );

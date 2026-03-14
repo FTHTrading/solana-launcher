@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
 import {
   ArrowRightLeft,
   CheckCircle2,
@@ -55,7 +54,6 @@ interface MetaplexMetadata {
 }
 
 export function TokenPageClient({ mintAddress }: TokenPageClientProps) {
-  const { connected: _connected } = useWallet();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [tokenInfo, setTokenInfo] = useState<TokenOnChainInfo | null>(null);

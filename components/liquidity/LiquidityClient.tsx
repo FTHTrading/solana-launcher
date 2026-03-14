@@ -71,11 +71,11 @@ export function LiquidityClient({ initialMint = '' }: LiquidityClientProps) {
       </Card>
 
       {/* Integration status notice */}
-      <Alert variant="warning" title="Current Capabilities">
+      <Alert variant="info" title="Current Capabilities">
         <ul className="text-xs space-y-1 mt-1">
-          <li><strong>Live now:</strong> Pool discovery via Raydium &amp; Meteora APIs, price estimation, existing pool details</li>
-          <li><strong>Deep-link:</strong> Pre-filled links to create pools on Raydium, Meteora, Orca, and trade on Jupiter</li>
-          <li><strong>Pending:</strong> Direct in-app transaction building for pool creation (requires Raydium SDK v2 / Meteora DLMM SDK integration)</li>
+          <li><strong>Pool discovery:</strong> Real-time pool lookup via Raydium &amp; Meteora APIs, price estimation, existing pool details</li>
+          <li><strong>Deep-link integration:</strong> Pre-filled links to create pools on Raydium, Meteora, Orca, and trade on Jupiter</li>
+          <li><strong>Coming soon:</strong> In-app pool creation with full Raydium SDK v2 &amp; Meteora DLMM SDK integration</li>
         </ul>
       </Alert>
 
@@ -213,7 +213,7 @@ function RaydiumAddLiquidity({ mintAddress }: { mintAddress: string }) {
             placeholder="e.g. 500000000"
             value={tokenAmount}
             onChange={(e) => setTokenAmount(e.target.value)}
-            hint="Initial token liquidity (raw units)"
+            hint="Total tokens to provide as initial liquidity"
           />
         </div>
 
