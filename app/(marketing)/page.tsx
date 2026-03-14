@@ -32,6 +32,7 @@ import {
   ClipboardList,
   Search,
   ImageIcon,
+  Calculator,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -1043,6 +1044,13 @@ export default function HomePage() {
           <p className="text-xs text-center text-muted-foreground/70">
             {t.pricing_devnetNote}
           </p>
+          <div className="text-center pt-2">
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/revenue">
+                <Calculator className="mr-2 h-3.5 w-3.5" /> Revenue Projection Calculator →
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -1055,6 +1063,80 @@ export default function HomePage() {
             </h2>
           </div>
           <FaqSection />
+        </div>
+      </section>
+
+      {/* ── Competitor Comparison ── */}
+      <section className="py-20">
+        <div className="container max-w-5xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <Badge variant="info"><TrendingUp className="h-3 w-3 mr-1" /> Market Position</Badge>
+            <h2 className="text-3xl font-bold tracking-tight">How This Compares</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              This is not another tutorial project. Here is how it stacks up against platforms processing millions in daily volume.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="text-left p-4 font-medium">Feature</th>
+                  <th className="p-4 font-medium text-center text-brand-500 bg-brand-500/5 border-x border-brand-500/20">This Platform</th>
+                  <th className="p-4 font-medium text-center">pump.fun</th>
+                  <th className="p-4 font-medium text-center">Smithii</th>
+                  <th className="p-4 font-medium text-center">DIY (Script)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['Full token creation wizard', true, true, true, false],
+                  ['IPFS metadata hosting', true, false, true, false],
+                  ['Metaplex on-chain metadata', true, true, true, false],
+                  ['Custom branding (name, image, links)', true, false, true, true],
+                  ['Authority revocation (mint + freeze)', true, false, true, false],
+                  ['Token burn flow', true, false, false, false],
+                  ['Multi-DEX liquidity routing', true, false, false, false],
+                  ['Post-launch checklist', true, false, false, false],
+                  ['Admin treasury dashboard', true, false, false, false],
+                  ['White-label ready', true, false, false, false],
+                  ['i18n (5 languages + RTL)', true, false, false, false],
+                  ['Legal pages (Kuwait/GCC)', true, false, false, false],
+                  ['Open source / own your code', true, false, false, true],
+                  ['Revenue goes to YOUR wallet', true, false, false, true],
+                  ['Atomic platform fee', true, true, true, false],
+                ].map(([feature, us, pump, smithii, diy], i) => (
+                  <tr key={i} className="border-t border-border/50">
+                    <td className="p-3 text-muted-foreground">{feature as string}</td>
+                    <td className="p-3 text-center bg-brand-500/5 border-x border-brand-500/20">
+                      {us ? <CheckCircle2 className="h-4 w-4 text-emerald-500 mx-auto" /> : <span className="text-muted-foreground">—</span>}
+                    </td>
+                    <td className="p-3 text-center">
+                      {pump ? <CheckCircle2 className="h-4 w-4 text-emerald-500 mx-auto" /> : <span className="text-muted-foreground">—</span>}
+                    </td>
+                    <td className="p-3 text-center">
+                      {smithii ? <CheckCircle2 className="h-4 w-4 text-emerald-500 mx-auto" /> : <span className="text-muted-foreground">—</span>}
+                    </td>
+                    <td className="p-3 text-center">
+                      {diy ? <CheckCircle2 className="h-4 w-4 text-emerald-500 mx-auto" /> : <span className="text-muted-foreground">—</span>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="text-center space-y-3">
+            <p className="text-sm text-muted-foreground">
+              The key difference: with pump.fun or Smithii, <strong>they</strong> keep the revenue.
+              With this platform, <strong>you</strong> own the code, the fees go to <strong>your</strong> treasury, and you control everything.
+            </p>
+            <Button variant="gradient" size="lg" asChild>
+              <Link href="/revenue">
+                <Calculator className="mr-2 h-4 w-4" /> See Revenue Projections →
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 

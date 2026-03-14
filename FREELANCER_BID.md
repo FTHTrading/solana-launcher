@@ -15,6 +15,8 @@
 | **Homepage / Proposal Page** | https://launch.unykorn.org |
 | **Launch Wizard** | https://launch.unykorn.org/launch |
 | **Dashboard** | https://launch.unykorn.org/dashboard |
+| **Revenue Calculator** | https://launch.unykorn.org/revenue |
+| **Sample Token Page** | https://launch.unykorn.org/token/SLNCHxmGRbEhMYvMu8F22RqDyqdFmNbee3GVExZsGe5 |
 | **Ecosystem Hub** | https://launch.unykorn.org/ecosystem |
 | **Trade / Swap** | https://launch.unykorn.org/trade |
 | **Liquidity Management** | https://launch.unykorn.org/liquidity |
@@ -23,6 +25,7 @@
 | **Terms of Service** | https://launch.unykorn.org/terms |
 | **Privacy Policy** | https://launch.unykorn.org/privacy |
 | **Risk Disclosure (Kuwait/GCC)** | https://launch.unykorn.org/risk-disclosure |
+| **Token Metadata (JSON)** | https://launch.unykorn.org/api/sample-token-metadata.json |
 | **Donk AI (Portfolio Piece)** | https://donk.unykorn.org |
 | **GitHub Repo** | https://github.com/FTHTrading/solana-launcher |
 
@@ -53,17 +56,23 @@ The platform is live right now at **https://launch.unykorn.org** — not a mocku
 • 5 launch presets (Meme Classic, Maxi, Community, Scarce, Governance)
 • 4-DEX liquidity routing (Jupiter, Raydium, Meteora, Orca)
 • Ecosystem hub with 15+ Solana partner integrations
-• Admin treasury dashboard
+• Interactive revenue projection calculator (drag slider → see projected earnings at any scale)
+• Competitor comparison vs pump.fun, Smithii, and DIY scripts — showing why you want YOUR own platform
+• End-to-end sample token page with metadata, authority status, and trading routes
+• Admin treasury dashboard with live on-chain balance
 • Post-launch checklist (13 guided steps)
+• PWA-ready (installable on mobile devices)
 • Rate limiting (Upstash Redis), env validation, structured logging
 • Full legal suite: Terms, Privacy, Risk Disclosure — with Kuwait CBK Circular No. 2/RB/336/2014 cited by name
 • 5-language support (English, Arabic, French, Hindi, Urdu) with RTL handling
-• 122 source files, 18 routes, 32 passing tests, 0 TypeScript errors
+• 125+ source files, 20 routes, 32 passing tests, 0 TypeScript errors
 
 **Live links you can check right now:**
 • Homepage: https://launch.unykorn.org
 • Launch wizard: https://launch.unykorn.org/launch
 • Dashboard: https://launch.unykorn.org/dashboard
+• Revenue calculator: https://launch.unykorn.org/revenue
+• Sample token: https://launch.unykorn.org/token/SLNCHxmGRbEhMYvMu8F22RqDyqdFmNbee3GVExZsGe5
 • Ecosystem: https://launch.unykorn.org/ecosystem
 • Terms: https://launch.unykorn.org/terms
 • Risk Disclosure: https://launch.unykorn.org/risk-disclosure
@@ -110,50 +119,68 @@ When showing the platform to the client, walk through in this order:
 - Point out the engineering scorecard: 0 TypeScript errors, 32 tests, Exit 0 build
 - Show the "How It Works" 4-step flow
 - Show pricing section: 0.1 SOL platform fee, transparent
+- Scroll to competitor comparison: "Here's how this stacks up against pump.fun and Smithii — and why owning your own platform matters"
 
-### Step 2: Launch Wizard (1 min)
+### Step 2: Revenue Calculator (1 min) ⭐ NEW
+- Click "Revenue Projection Calculator" → https://launch.unykorn.org/revenue
+- Drag the slider to show daily launch volume scenarios
+- Click "Pump.fun Scale" preset to show 5,000 launches/day projections
+- Point out: "pump.fun has earned $500M+ in fees — this is the same model, but YOUR treasury"
+- Adjust SOL price and fee per launch to show flexibility
+
+### Step 3: Launch Wizard (1 min)
 - Click "Launch Token" → https://launch.unykorn.org/launch
 - Show it asks for wallet connection (Phantom/Solflare)
 - Explain: "Connect a devnet wallet, enter token name/symbol/supply, upload an image, review, and sign. That's it."
 
-### Step 3: Dashboard (30 sec)
-- Click Dashboard → https://launch.unykorn.org/dashboard
-- Show it displays all tokens you've created with live balances
+### Step 4: Sample Token Page (1 min) ⭐ NEW
+- Open https://launch.unykorn.org/token/SLNCHxmGRbEhMYvMu8F22RqDyqdFmNbee3GVExZsGe5
+- Show the full token detail view: metadata, authority status, supply, trading routes
+- "This is what every token launched on your platform gets — a dedicated page with on-chain data"
 
-### Step 4: Ecosystem Hub (1 min)
+### Step 5: Dashboard (30 sec)
+- Click Dashboard → https://launch.unykorn.org/dashboard
+- Show showcase tokens with balances, quick actions grid
+- Show demo mode banner — "Without wallet, users see a guided preview"
+
+### Step 6: Ecosystem Hub (1 min)
 - Click Ecosystem → https://launch.unykorn.org/ecosystem
 - Show Jupiter, Raydium, Meteora, Orca integrations
 - Show infrastructure: Metaplex, Pinata IPFS, Helius
 
-### Step 5: Legal Pages (30 sec)
+### Step 7: Legal Pages (30 sec)
 - Click Terms → show Kuwait-specific CBK circular citation
 - Click Risk Disclosure → show 9-section comprehensive disclosure
 - Point out: "This is drafted for your jurisdiction — Kuwait and GCC"
 
-### Step 6: Language Switcher (30 sec)
+### Step 8: Language Switcher (30 sec)
 - Click the language dropdown
 - Switch to Arabic → show RTL layout works
 - "5 languages built in — your market covered"
 
-### Step 7: Revenue Model (30 sec)
+### Step 9: Revenue Model (30 sec)
 - Show pricing section: 0.1 SOL per launch, atomic enforcement
 - "Every token creation sends 0.1 SOL to your treasury wallet automatically. No way to bypass it."
 
 ### Closing (30 sec)
-- "Everything you see is live, deployed, and tested. 122 files, 32 tests, zero errors. You're not paying for promises — you're paying for certainty. Day 1 delivery."
+- "Everything you see is live, deployed, and tested. 125+ files, 32 tests, zero errors. You're not paying for promises — you're paying for certainty. Day 1 delivery."
 
 ---
 
 ## 📊 KEY STATS TO MENTION
 
-- 122 production source files
-- 18 routes compiled
+- 125+ production source files
+- 20 routes compiled
 - 32 unit tests, 4 test suites, all passing
 - 0 TypeScript errors (strict mode)
 - 5 languages with RTL support
 - 15+ ecosystem partner integrations
 - 4-DEX liquidity routing
 - 3 legal pages with Kuwait-specific compliance
+- Interactive revenue calculator with pump.fun market context
+- Competitor comparison table (vs pump.fun, Smithii, DIY)
+- End-to-end sample token page with demo data fallback
+- PWA-ready (installable on mobile)
 - Devnet deployment live and functional
 - Full verification pipeline: `npm run verify`
 

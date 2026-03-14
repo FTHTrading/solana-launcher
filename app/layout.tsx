@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { WalletContextProvider } from '@/components/wallet/WalletContextProvider';
@@ -8,6 +8,13 @@ import { I18nProvider } from '@/lib/i18n/i18n-context';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-geist-sans' });
 
+export const viewport: Viewport = {
+  themeColor: '#7c3aed',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
   title: {
     default: appConfig.app.name,
@@ -15,7 +22,17 @@ export const metadata: Metadata = {
   },
   description:
     'Create your own Solana SPL token in minutes. No coding required. Simple, transparent, and secure.',
-  keywords: ['Solana', 'SPL Token', 'Token Launcher', 'Meme Coin', 'Web3', 'Crypto'],
+  keywords: ['Solana', 'SPL Token', 'Token Launcher', 'Meme Coin', 'Web3', 'Crypto', 'Token Creator'],
+  manifest: '/manifest.json',
+  icons: [
+    { rel: 'icon', url: '/images/brand/logo-mark.png', type: 'image/png' },
+    { rel: 'apple-touch-icon', url: '/images/brand/logo-primary.png' },
+  ],
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: appConfig.app.name,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -24,11 +41,13 @@ export const metadata: Metadata = {
     title: appConfig.app.name,
     description:
       'Create your own Solana SPL token in minutes. No coding required.',
+    images: [{ url: `${appConfig.app.url}/images/brand/logo-primary.png`, width: 512, height: 512 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: appConfig.app.name,
     description: 'Create your own Solana SPL token in minutes.',
+    images: [`${appConfig.app.url}/images/brand/logo-primary.png`],
   },
 };
 

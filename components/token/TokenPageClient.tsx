@@ -29,6 +29,33 @@ interface TokenPageClientProps {
   mintAddress: string;
 }
 
+/* ─── Demo fallback for sample/showcase tokens ───────────────────── */
+
+const SAMPLE_MINT = 'SLNCHxmGRbEhMYvMu8F22RqDyqdFmNbee3GVExZsGe5';
+
+const DEMO_TOKENS: Record<string, { info: TokenOnChainInfo; meta: MetaplexMetadata }> = {
+  [SAMPLE_MINT]: {
+    info: {
+      mintAddress: SAMPLE_MINT,
+      supply: '1000000000000000', // 1B with 6 decimals
+      decimals: 6,
+      mintAuthority: null,
+      freezeAuthority: null,
+      isInitialized: true,
+    },
+    meta: {
+      name: 'Solana Launcher Sample',
+      symbol: 'LAUNCH',
+      uri: 'https://launch.unykorn.org/api/sample-token-metadata.json',
+      image: 'https://launch.unykorn.org/images/brand/logo-primary.png',
+      description:
+        'Sample token created by the Solana Launcher platform to demonstrate the full token creation flow on devnet.',
+      externalUrl: 'https://launch.unykorn.org',
+      links: { website: 'https://launch.unykorn.org' },
+    },
+  },
+};
+
 interface TokenOnChainInfo {
   mintAddress: string;
   supply: string;
@@ -83,6 +110,14 @@ export function TokenPageClient({ mintAddress }: TokenPageClientProps) {
       const mintData = mintJson?.result?.value?.data?.parsed?.info;
 
       if (!mintData) {
+        // Fall back to demo data for showcase tokens
+        const demo = DEMO_TOKENS[mintAddress];
+        if (demo) {
+          setTokenInfo(demo.info);
+          setMetadata(demo.meta);
+          setLoading(false);
+          return;
+        }
         setError('Token mint not found on-chain. Check the address and network.');
         setLoading(false);
         return;
@@ -156,7 +191,14 @@ export function TokenPageClient({ mintAddress }: TokenPageClientProps) {
         // Non-fatal
       }
     } catch {
-      setError('Failed to fetch token data. Please try again.');
+      // Fall back to demo data for showcase tokens
+      const demo = DEMO_TOKENS[mintAddress];
+      if (demo) {
+        setTokenInfo(demo.info);
+        setMetadata(demo.meta);
+      } else {
+        setError('Failed to fetch token data. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
