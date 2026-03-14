@@ -23,6 +23,63 @@
 
 ---
 
+## Document Map
+
+This is the hub document. The repo contains specialized docs for each concern:
+
+### Getting Started
+
+| Document | Purpose |
+|----------|---------|
+| [README.md](README.md) | Project overview, badges, deployment pipeline diagram |
+| [SETUP.md](SETUP.md) | Local dev setup — clone, install, env vars, first run |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | Vercel deployment, env config, production checklist |
+
+### Architecture & Standards
+
+| Document | Purpose |
+|----------|---------|
+| **SYSTEM_ARCHITECTURE.md** | ← You are here. Full system map, layers, flows, revenue |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Technical architecture — component tree, service layer, data flow |
+| [SYSTEM_STANDARD.md](SYSTEM_STANDARD.md) | Engineering quality gates (truth, structure, security, observability, resilience, documentation) |
+| [SECURITY_NOTES.md](SECURITY_NOTES.md) | Wallet safety, transaction confirmation, env hygiene, rate limiting |
+
+### Roadmap & History
+
+| Document | Purpose |
+|----------|---------|
+| [FUTURE_ROADMAP.md](FUTURE_ROADMAP.md) | Phase 1–4 feature roadmap with completion status |
+| [CHANGELOG.md](CHANGELOG.md) | Version history — v0.1.0 through v0.3.0 |
+
+### Sales & Proposal
+
+| Document | Purpose |
+|----------|---------|
+| [BID_PROPOSAL.md](BID_PROPOSAL.md) | Freelancer bid — requirements matrix, phase roadmap, deliverables |
+| [FREELANCER_BID.md](FREELANCER_BID.md) | Copy-paste bid text, live URLs, demo walkthrough script |
+
+### Audit & Review
+
+| Document | Purpose |
+|----------|---------|
+| [audit/EXECUTIVE_SUMMARY.md](audit/EXECUTIVE_SUMMARY.md) | Audit executive summary |
+| [audit/FULL_AUDIT_REPORT.md](audit/FULL_AUDIT_REPORT.md) | Complete audit report |
+| [audit/SECURITY_REVIEW.md](audit/SECURITY_REVIEW.md) | Security-focused review |
+| [audit/SMART_CONTRACT_REVIEW.md](audit/SMART_CONTRACT_REVIEW.md) | On-chain interaction review |
+| [audit/INFRASTRUCTURE_SCORECARD.md](audit/INFRASTRUCTURE_SCORECARD.md) | Infrastructure health scorecard |
+| [audit/PLATFORM_ASSESSMENT.md](audit/PLATFORM_ASSESSMENT.md) | Platform maturity assessment |
+| [audit/REMEDIATION_ROADMAP.md](audit/REMEDIATION_ROADMAP.md) | Prioritized fix plan |
+| [audit/IMPLEMENTED_FIXES.md](audit/IMPLEMENTED_FIXES.md) | Fixes applied from audit |
+
+### Scripts
+
+| File | Purpose |
+|------|---------|
+| [scripts/create-sample-devnet-token.mjs](scripts/create-sample-devnet-token.mjs) | Devnet proof script — creates a real SPL token for demo |
+| [scripts/verify.sh](scripts/verify.sh) | Full verification pipeline (tsc → lint → test → build) |
+
+---
+
 ## 1. System Overview
 
 The platform is a non-custodial token launch system built on Solana. It enables users to create, configure, brand, and deploy SPL tokens through a guided wizard — then manage, trade, and monitor them through an integrated operations surface.
@@ -473,5 +530,6 @@ The underlying wallet adapter infrastructure remains fully intact. Wallet connec
 ---
 
 *Last updated: March 2026*
-*Commit: 341eb79 — feat: remove wallet gates for demo*
+*Commit: 9d004aa — docs: add professional system architecture write-up*
 *Verify: tsc ✓ · lint ✓ · 32 tests ✓ · 18 routes ✓ · 0 errors*
+*Doc inventory: 15 markdown files + 8 audit reports + 2 scripts*
