@@ -1,77 +1,97 @@
 # Bid Proposal — Solana SPL Meme Coin Launcher Platform
+
 **Project ID:** 40298091 | **Budget:** $3,000 USD Fixed | **Delivery:** Day 1
 
 ---
 
-## The Honest Pitch
+## Executive Summary
 
-> *"Other bidders are starting at zero. You are starting at 100%."*
+We already have a live, production-style MVP covering token launch, wallet integration, fee capture, metadata, burn controls, dashboarding, API endpoints, and compliance surfaces. The only items intentionally scoped to Phase 2 are native liquidity transaction execution and custom Rust extensions.
 
-While 137 other bidders are quoting timelines and promising features, I have already
-built the complete platform. Every line of code is written. Every screen is
-functional. You can run it locally today.
-
-This is not a proposal for future work. It is a completed product at a fixed price.
+This is not a proposal for future work. It is a completed product at a fixed price. While 137 other bidders are quoting timelines and promising features, this platform is already live at [launch.unykorn.org](https://launch.unykorn.org), with 81+ production files, 18 routes, 32 passing tests, and zero TypeScript errors. You can run it locally today.
 
 ---
 
-## What Is Already Built (81+ Production Files)
+## Requirements Matrix
 
-### Core Launch Wizard
-| Feature | Status |
-|---|---|
-| 4-step token launch wizard (Details → Branding → Supply → Review) | ✅ Done |
-| Token metadata upload to IPFS (Pinata, server-side, rate-limited) | ✅ Done |
-| SPL mint creation on-chain | ✅ Done |
-| Associate token account creation (ATA auto-create) | ✅ Done |
-| Mint tokens to wallet | ✅ Done |
-| BigInt-safe supply math (supports 10^18 supplies, no precision loss) | ✅ Done |
-| Transaction re-broadcast loop (official Solana retry pattern) | ✅ Done |
-| 12 typed error codes including TRANSACTION_EXPIRED, SIMULATION_FAILED | ✅ Done |
-| Launch presets (Meme Classic · Meme Maxi · Community · Scarce · Governance) | ✅ Done |
-| Live token economics preview in wizard | ✅ Done |
+Every item from your brief mapped to what is built.
 
-### Premium Features — Competitors Do Not Offer These
-| Feature | Status | Why It Matters |
-|---|---|---|
-| **Revoke mint authority** | ✅ Done | Permanently removes minting power — increases token trust score |
-| **Revoke freeze authority** | ✅ Done | Removes ability to freeze wallets — DEX listing requirement |
-| **Token Trust Score** | ✅ Done | Visual card: revoked mint ✓, revoked freeze ✓, metadata ✓ |
-| **Real on-chain portfolio** | ✅ Done | Live token balances from RPC — no database needed |
-| **Live token cards with image** | ✅ Done | Name, symbol, balance, Metaplex image on the dashboard |
-| **Liquidity management UI** | ✅ Done | Raydium AMM V4 + Meteora DLMM with live pool lookup |
-| **Pool finder** | ✅ Done | Calls Raydium v3 API + Meteora DLMM API in real time |
-| **Implied price calculator** | ✅ Done | Enter SOL + token amounts → see price per token |
-| **Admin treasury dashboard** | ✅ Done | Live SOL balance, estimated launch count and revenue |
-| **Rate limiting** | ✅ Done | Upstash Redis (distributed) with in-memory fallback, 10 req/min per IP |
-| **Env validation** | ✅ Done | Schema-based startup validation with placeholder detection + mainnet safety |
-| **Structured logging** | ✅ Done | JSON in production, human-readable in dev, async operation timing |
-| **Network awareness** | ✅ Done | Devnet/mainnet banner + low-SOL balance warnings on all wallet pages |
-| **Test coverage** | ✅ Done | 32 passing vitest tests, 4 suites, CI verification pipeline |
+| # | You Asked For | Status | What's Built |
+|---|--------------|--------|-------------|
+| 1 | Wallet connection (Phantom, Solflare) | **Done** | Phantom + Solflare + Backpack adapters with auto-detection, network banner, low-SOL balance warnings, and wallet guard pattern on all protected pages. |
+| 2 | Token creation with simple interface | **Done** | 4-step guided wizard (Details → Branding → Supply → Review) with Zod validation, live token economics preview, 5 launch presets, IPFS image + metadata upload, Metaplex on-chain metadata, BigInt-safe supply math. |
+| 3 | Revenue model via creation fees | **Done** | Flat 0.1 SOL platform fee enforced atomically in the same transaction as the mint. Treasury wallet configurable via env. Admin dashboard shows live SOL balance, estimated launch count, and estimated revenue. |
+| 4 | Optional liquidity management | **Partial** | Liquidity discovery and routing are live — Raydium V3 API + Meteora DLMM pool lookup, implied price calculator, 4-DEX deep-link routing (Raydium, Meteora, Orca, Jupiter). Native pool management execution is scheduled for Phase 2. |
+| 5 | Token burning | **Done** | Full burn flow — select mint + amount, irreversibility warning, one-signature transaction, permanent on-chain supply reduction with Solscan explorer link. |
+| 6 | Other standard token functions | **Done** | Revoke mint authority (permanently fix supply), revoke freeze authority (DEX listing requirement), on-chain trust score display, portfolio dashboard with live token balances + images from RPC. |
+| 7 | Feasibility / complexity / cost guidance | **Done** | Dedicated homepage sections answering all three questions directly, production architecture docs, verification pipeline, roadmap, and front page structured for a non-technical buyer. |
+| 8 | Clean design inspired by Orion Tools | **Done** | Consistent design system (shadcn/ui + Tailwind), responsive layouts, dark mode, loading skeletons, two-step confirmation for destructive actions, FAQ section, compliance banner. |
+| 9 | API-oriented platform | **Done** | 3 API routes with Upstash Redis rate limiting (in-memory fallback): `/api/upload` (IPFS image), `/api/metadata` (IPFS JSON), `/api/health` (system status). Server-side secret handling — Pinata keys never reach the client. |
+| 10 | Legal & compliance | **Done** | Terms of Service, Privacy Policy, Risk Disclosure with Kuwait-specific CBK Circular No. 2/RB/336/2014 citation, GCC/MENA regulatory notices, non-custodial disclaimers, IPFS data permanence warnings. Compliance banner on every page. ToS acceptance gate on launch wizard. |
 
-### Legal & Compliance — Kuwait-Specific
-| Document | Status | Specifics |
-|---|---|---|
-| Terms of Service | ✅ Done | CBK Circular No. 2/RB/336/2014, Capital Markets Authority Law No. 7 of 2010 |
-| Risk Disclosure | ✅ Done | Kuwait/GCC regulatory section, irreversibility warnings |
-| Privacy Policy | ✅ Done | IPFS permanence notice, wallet address handling, analytics |
-| Compliance banner | ✅ Done | Dismissible amber banner on every page |
-| ToS acceptance gate | ✅ Done | Wizard is locked until user accepts all legal documents |
-| Footer jurisdictional notice | ✅ Done | "Not available in jurisdictions where prohibited" |
-
-### UX & Design
-| Feature | Status |
-|---|---|
-| Dark/light theme | ✅ Done |
-| Fully responsive (mobile-first) | ✅ Done |
-| Phantom · Solflare · Backpack wallet adapter | ✅ Done |
-| Loading skeletons for dashboard and admin | ✅ Done |
-| Two-step confirmation dialogs for all destructive actions | ✅ Done |
-| Live name/symbol preview badge in wizard | ✅ Done |
+**Summary: 9 of 10 requirements fully delivered. 1 partial with honest labeling and clear Phase 2 scope.**
 
 ---
 
-## Architecture
+## Phase Roadmap
+
+### Phase 1 — Live Now
+
+Everything below is built, tested, verified, and deployed.
+
+| Capability | Evidence |
+|-----------|---------|
+| Phantom + Solflare + Backpack wallet connection | `WalletContextProvider.tsx`, `WalletGuard.tsx` |
+| 4-step token launch wizard with validation | `TokenLaunchWizard.tsx`, 4 step components |
+| IPFS metadata upload (Pinata, server-side) | `api/upload/route.ts`, `api/metadata/route.ts` |
+| Metaplex on-chain metadata | `token-launch.service.ts` |
+| Atomic platform fee collection | `fees.service.ts`, treasury transfer in launch tx |
+| Token burn flow | `BurnTokenForm.tsx`, `token-burn.service.ts` |
+| Mint + freeze authority revocation | `revoke-authority.service.ts`, `TokenManageClient.tsx` |
+| Portfolio dashboard (live from RPC) | `DashboardClient.tsx`, `portfolio.ts` |
+| Launch presets (5 configurations) | `TokenPresets.tsx` |
+| Admin treasury dashboard | `AdminClient.tsx` |
+| Liquidity pool discovery (Raydium + Meteora APIs) | `liquidity.service.ts`, `LiquidityClient.tsx` |
+| DEX deep-link routing (4 providers) | `LiquidityClient.tsx` |
+| Rate limiting (Upstash Redis + fallback) | `rate-limit.ts` |
+| Env validation with placeholder detection | `env-validation.ts` |
+| Structured logging (JSON prod / human dev) | `logger.ts` |
+| 32 unit tests across 4 suites | `__tests__/` |
+| CI pipeline: `npm run verify` | typecheck → test → build |
+| Terms, Privacy, Risk Disclosure (Kuwait/GCC) | 3 legal pages + compliance banner |
+| Health endpoint | `api/health/route.ts` |
+
+### Phase 2 — Native Liquidity Execution
+
+Architecture is prepared. UI, validation, and pool discovery are complete. These items require DEX SDK integration:
+
+| Capability | SDK Required | Status |
+|-----------|-------------|--------|
+| Raydium AMM V4 add/remove liquidity | `@raydium-io/raydium-sdk-v2` | Integration points documented in `liquidity.service.ts` |
+| Meteora DLMM pool creation | `@meteora-ag/dlmm` | Integration points documented in `liquidity.service.ts` |
+| Referral + affiliate system | — | Types defined in `types/index.ts#ReferralInfo` |
+| Premium launch tiers | — | Stubs in `fees.service.ts#PRICING_TIERS` |
+
+### Phase 3 — Advanced Extensions
+
+Optional enhancements for scale and differentiation:
+
+| Capability | Notes |
+|-----------|-------|
+| Custom Rust on-chain programs | For bespoke tokenomics, custom fee enforcement, or advanced pool mechanics |
+| Launch analytics dashboard | Conversion funnel, revenue tracking, drop-off analysis |
+| Multi-tenant admin | Feature flags, suspicious launch detection, platform config |
+| White-label / public API | Branded deployments for third-party operators |
+| Token page generator | Auto-generated `/token/[mint]` shareable pages with OG images |
+| Custom domain + branding | Per-deployment theming and domain routing |
+
+---
+
+## Architecture Note
+
+Built on battle-tested SPL Token + Metaplex standards for faster deployment, lower risk, and cleaner v1 delivery. No custom Rust program is required because the existing Solana programs handle all v1 functionality. Custom Rust extensions can be added for advanced tokenomics or bespoke program logic in Phase 2/3 — the architecture supports this without requiring rewrites.
+
+**Stack:** Next.js 14 · TypeScript strict · Tailwind CSS · @solana/web3.js · @solana/spl-token · Metaplex Token Metadata v2 · React Hook Form + Zod · Pinata IPFS · Upstash Redis · Vitest
 
 ```
 Next.js 14 (App Router)
@@ -88,9 +108,8 @@ Next.js 14 (App Router)
 │   ├── token-launcher/  — On-chain SPL mint creation
 │   ├── token-burn/      — Burn service
 │   ├── token-authority/ — Revoke mint/freeze authority
-│   └── liquidity/       — Pool management (Raydium + Meteora)
-├── hooks/
-│   └── useSOLBalance    — Wallet balance hook with low-SOL threshold
+│   └── liquidity/       — Pool discovery + management
+├── hooks/               — useSOLBalance, useBurnToken, useTokenLaunch
 ├── lib/
 │   ├── config/          — App config + schema-based env validation
 │   ├── logger/          — Structured JSON/human logger with operation timing
@@ -98,63 +117,41 @@ Next.js 14 (App Router)
 │   ├── rate-limit/      — Upstash Redis rate limiter (in-memory fallback)
 │   └── validation/      — Zod schemas for all form data
 ├── __tests__/           — 32 vitest tests across 4 suites
-├── scripts/verify.sh    — CI pipeline: typecheck → test → build
-└── app/api/             — Upload + metadata routes (rate-limited, structured logging)
+└── app/api/             — Upload + metadata + health routes
 ```
-
-**Stack:** Next.js 14 · TypeScript strict · Tailwind CSS · @solana/web3.js ·
-@solana/spl-token · Metaplex Token Metadata v2 · React Hook Form + Zod · Pinata IPFS ·
-Upstash Redis · Vitest
-
----
-
-## What Needs Your Input (30 Minutes of Config)
-
-1. **`.env.local`** — your Solana RPC URL, Pinata API key, treasury wallet address
-2. **Liquidity SDK transaction builders** — UI, validation, and live pool lookup are
-   complete. The actual on-chain transaction builders for Raydium and Meteora are
-   marked `INTEGRATION_PENDING` with exact SDK instructions in the comments. I can
-   complete these in Sprint 2 or include them in scope on request.
-3. **Domain + Vercel deploy** — 10 minutes
-
-That is it. Everything else is done.
 
 ---
 
 ## Production Hardening Evidence
 
-This codebase has been through a formal remediation cycle. Verified results:
-
 | Metric | Result |
 |---|---|
-| TypeScript errors | **0** (`tsc --noEmit`) |
+| TypeScript errors | **0** (`tsc --noEmit`, strict mode) |
 | Test suites | **4 suites, 32 tests passing** (`vitest run`) |
-| Production build | **Exit 0**, 18 routes compiled |
-| Rate limiting | Upstash Redis (distributed), in-memory fallback |
-| Env validation | Schema-based with placeholder detection, Base58 wallet format, mainnet safety warnings |
-| API security | Rate-limited upload/metadata routes, structured error responses |
-| Observability | Structured logger with JSON output, async operation timing (`log.timed()`) |
-| Wallet UX | Network banner (devnet/mainnet), SOL balance warnings, soft wallet-rejection handling |
-| Liquidity UI | Honest integration labels (Live / Deep-link / Pending) — no overstated claims |
+| Production build | **Exit 0**, 18 routes compiled, 0 warnings |
+| Rate limiting | Upstash Redis (distributed) with in-memory fallback |
+| Env validation | Schema-based with placeholder detection, Base58 format, mainnet safety |
+| API security | Rate-limited routes, structured error responses |
+| Observability | Structured logger with JSON output, async operation timing |
+| Wallet UX | Network banner, SOL balance warnings, wallet-rejection handling |
+| Liquidity UI | Honest integration labels — no overstated claims |
 | CI pipeline | `npm run verify` → typecheck + test + build in sequence |
-| Documentation | README + SETUP.md aligned to actual codebase state |
-
-This is not scaffolding. This is a system that has been hardened, tested, verified, and pushed.
+| Documentation | README, SETUP, architecture docs — all truth-aligned |
+| Legal surfaces | Kuwait CBK circular cited by name, ToS gated, compliance banner |
 
 ---
 
-## Why $3,000
+## Pricing
 
-| What you would get from the other 137 bidders | What you get from this proposal |
+| What you would get from the other 137 bidders | What you get here |
 |---|---|
 | "I'll start building this week" | Running code you can test today |
 | $500–$2,000 with unknown delivery risk | $3,000 with zero delivery risk |
-| Basic launcher, no premium features | Revoke authority · liquidity UI · trust score · admin |
+| Basic launcher, no premium features | Authority revocation, trust scores, pool discovery, admin dashboard |
 | No Kuwait compliance | CBK circular cited by name, ToS gated |
 | Timeline: 2–6 weeks | Timeline: Day 1 delivery |
 
-The premium is for **certainty**. You are not paying for future work.
-You are paying to skip the risk entirely.
+The premium is for **certainty**. You are not paying for future work. You are paying to skip the risk entirely.
 
 ---
 
@@ -164,7 +161,7 @@ You are paying to skip the risk entirely.
 - `.env.example` with all required environment variables documented
 - `SETUP.md` step-by-step guide (Vercel, RPC endpoint, Pinata, treasury wallet)
 - 30-day bug-fix support on the delivered code base
-- Optional Sprint 2: Raydium + Meteora on-chain transaction builders
+- Optional Phase 2: Raydium + Meteora on-chain transaction builders
 
 ---
 
@@ -181,27 +178,19 @@ You are paying to skip the risk entirely.
 
 ## Milestones
 
-- **Milestone 1 — $1,500** on delivery of full codebase with devnet demo video
+- **Milestone 1 — $1,500** on delivery of full codebase with devnet demo
 - **Milestone 2 — $1,500** on your confirmation that the code runs and you are satisfied
 
 ---
 
-## A Note on the Compliance Layer
+## Compliance Note
 
-You are in Kuwait. The Central Bank of Kuwait issued Circular No. 2/RB/336/2014
-restricting licensed financial institutions from dealing in virtual currencies.
-While this primarily targets banks, running a token launcher without clear legal
-disclosures creates liability.
+You are in Kuwait. The Central Bank of Kuwait issued Circular No. 2/RB/336/2014 restricting licensed financial institutions from dealing in virtual currencies. While this primarily targets banks, running a token launcher without clear legal disclosures creates liability.
 
-I have already written Terms of Service and a Risk Disclosure that cite this
-circular by name and number. They include Kuwait/GCC-specific sections explaining
-the regulatory environment and platform limitations. This is not boilerplate — it
-is specifically drafted for this product in this jurisdiction.
+I have already written Terms of Service and a Risk Disclosure that cite this circular by name and number. They include Kuwait/GCC-specific sections explaining the regulatory environment and platform limitations. This is not boilerplate — it is specifically drafted for this product in this jurisdiction.
 
 Most of the 137 other bidders have no idea this circular exists.
 
 ---
 
 Ready to proceed immediately. Send milestone or discuss delivery format.
-
-

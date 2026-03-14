@@ -100,7 +100,7 @@ const HARDENING = [
   { metric: 'Logging', value: 'Structured', detail: 'JSON prod / human dev, async timing', variant: 'success' as const },
   { metric: 'Wallet Safety', value: 'Network-aware', detail: 'Devnet/mainnet banner, low-SOL warnings', variant: 'info' as const },
   { metric: 'Docs Alignment', value: 'Truth-aligned', detail: 'README, SETUP, BID_PROPOSAL match implementation', variant: 'success' as const },
-  { metric: 'Liquidity Status', value: 'Honest labels', detail: 'UI/API ready, on-chain SDK planned Phase 2', variant: 'warning' as const },
+  { metric: 'Liquidity Status', value: 'Discovery live', detail: 'Pool lookup + DEX routing live. Native execution Phase 2', variant: 'warning' as const },
 ];
 
 const STEPS = [
@@ -148,11 +148,11 @@ const MVP_ITEMS = [
 const PHASE2_ITEMS = [
   'On-chain Raydium AMM V4 liquidity add/remove',
   'On-chain Meteora DLMM pool creation',
-  'Advanced mint/freeze authority controls',
   'Referral + affiliate system',
   'Premium launch tiers',
   'White-label / API access',
   'Analytics + admin expansion',
+  'Custom Rust extensions for advanced tokenomics',
   'Multi-token management dashboard',
   'Custom domain + branding support',
 ];
@@ -576,8 +576,8 @@ export default function HomePage() {
               },
               {
                 icon: Layers,
-                title: 'Future-Ready Without Overengineering',
-                desc: 'Clean Phase 2 boundary. Architecture supports expansion without requiring rewrites.',
+                title: 'Battle-Tested Foundations',
+                desc: 'Built on SPL Token + Metaplex standards for lower risk and faster delivery. Custom Rust extensions available in Phase 2 — the architecture supports expansion without rewrites.',
               },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="rounded-xl border border-border bg-card p-5 flex gap-4">
