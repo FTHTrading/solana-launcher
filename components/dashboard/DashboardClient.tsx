@@ -54,7 +54,8 @@ export function DashboardClient() {
     if (connected && publicKey) loadTokens();
   }, [connected, publicKey, loadTokens]);
 
-  const walletAddress = publicKey?.toBase58() ?? 'DemoWa11etAddress1111111111111111111111111';
+  const isDemo = !connected || !publicKey;
+  const walletAddress = publicKey?.toBase58() ?? 'DEptrznxyjTCr4GrwNTm2Wtkd5j9BoZRGLZAYenwpoZG';
   const walletUrl = getExplorerAccountUrl(walletAddress);
 
   return (
@@ -63,17 +64,32 @@ export function DashboardClient() {
       <NetworkBanner />
       <SolBalanceCheck />
 
+      {/* Demo mode banner */}
+      {isDemo && (
+        <div className="flex items-center gap-2 rounded-lg border border-brand-500/30 bg-brand-500/5 px-4 py-3 text-sm text-brand-700 dark:text-brand-300">
+          <Rocket className="h-4 w-4 flex-shrink-0" />
+          <span>
+            <strong>Demo Mode</strong> — Connect a Solana wallet to see your live portfolio.
+            All dashboard features are shown below.
+          </span>
+        </div>
+      )}
+
       {/* Wallet summary */}
       <Card>
         <CardContent className="pt-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                Connected Wallet
+                {isDemo ? 'Demo Wallet' : 'Connected Wallet'}
               </p>
-              <p className="font-mono text-sm font-medium">{walletAddress}</p>
+              <p className="font-mono text-sm font-medium">{truncateAddress(walletAddress)}</p>
               <div className="flex items-center gap-2">
-                <Badge variant="success">Connected</Badge>
+                {isDemo ? (
+                  <Badge variant="devnet">Demo</Badge>
+                ) : (
+                  <Badge variant="success">Connected</Badge>
+                )}
                 <Badge variant="devnet">{appConfig.solana.network}</Badge>
               </div>
             </div>

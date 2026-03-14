@@ -92,7 +92,7 @@ export function ManageIndexClient() {
         <p className="text-sm font-medium mb-3">
           Or pick from your wallet{' '}
           <span className="text-muted-foreground font-normal">
-            ({tokens.length} token{tokens.length !== 1 ? 's' : ''} found)
+            ({connected ? `${tokens.length} token${tokens.length !== 1 ? 's' : ''} found` : 'connect to browse'})
           </span>
         </p>
 
@@ -109,8 +109,10 @@ export function ManageIndexClient() {
         {!loadingTokens && tokens.length === 0 && (
           <Card>
             <CardContent className="pt-6 pb-6 text-center text-sm text-muted-foreground">
-              No tokens with non-zero balance found in this wallet.
-              You can still enter a mint address manually above.
+              {connected
+                ? 'No tokens with non-zero balance found in this wallet.'
+                : 'Connect a wallet to browse your tokens here.'}
+              {' '}You can still enter a mint address manually above.
             </CardContent>
           </Card>
         )}
