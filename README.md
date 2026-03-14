@@ -1685,3 +1685,25 @@ Fix:
 <img src="https://img.shields.io/badge/CBK_Aware-Circular_2/RB/336/2014-f59e0b?style=flat-square" />
 
 </div>
+
+---
+
+## 🏛️ System Standard — Burnzy v1
+
+> Scored against [SYSTEM_STANDARD.md](SYSTEM_STANDARD.md). System rating = lowest gate score.
+
+| Gate | Score | Notes |
+|---|:---:|---|
+| **1 · Truth** | 2 | README + SETUP.md aligned to code; liquidity labels honest; no fake "Done" claims |
+| **2 · Structure** | 2 | Single config source; clean module boundaries; TypeScript strict; no dead exports |
+| **3 · Safety** | 2 | Upstash Redis rate limiting; env validation at startup; secrets server-only; input Zod-validated |
+| **4 · Verification** | 2 | 0 TS errors; 32 tests passing; `npm run verify` pipeline; structured logger |
+| **5 · Credibility** | 2 | Docs match running system; SETUP.md produces working app; honest dashboard |
+| **6 · Expansion** | 2 | Modular services; liquidity SDK integration points marked; config-driven fees |
+
+| Metric | Value |
+|---|---|
+| **Total Score** | **12 / 18** |
+| **Readiness Band** | **Beta** |
+| **Critical Blocker** | Raydium + Meteora on-chain transaction builders are `INTEGRATION_PENDING` |
+| **Next Highest-Value Fix** | Complete liquidity SDK integration → Gate 5 (Credibility) → 3, Gate 6 (Expansion) → 3 |
