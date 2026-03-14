@@ -53,6 +53,9 @@ cp .env.example .env.local
 | `NEXT_PUBLIC_APP_URL` | Your production URL (for OG metadata) |
 | `NEXT_PUBLIC_PINATA_GATEWAY` | Custom Pinata gateway URL |
 | `ADMIN_API_SECRET` | Signs admin API requests (`openssl rand -base64 32`) |
+| `UPSTASH_REDIS_REST_URL` | Upstash Redis URL for distributed rate limiting |
+| `UPSTASH_REDIS_REST_TOKEN` | Upstash Redis token (paired with URL above) |
+| `LOG_LEVEL` | Structured logger level: `debug`, `info`, `warn`, `error` |
 
 Full annotated list is in `.env.example`.
 
@@ -95,7 +98,23 @@ For devnet testing only, the default `https://api.devnet.solana.com` is fine.
 
 ---
 
-## 6. Local Development
+## 6. Rate Limiting (Upstash Redis)
+
+For production, rate limiting uses [Upstash Redis](https://console.upstash.com).
+
+1. Create a free Redis database at https://console.upstash.com
+2. Copy the **REST URL** and **REST Token** from the database details page
+3. Add to `.env.local`:
+   ```
+   UPSTASH_REDIS_REST_URL=https://your-db.upstash.io
+   UPSTASH_REDIS_REST_TOKEN=your-token
+   ```
+
+> If these vars are not set, rate limiting falls back to in-memory (fine for local dev, not recommended for production).
+
+---
+
+## 7. Local Development
 
 ```bash
 npm run dev
@@ -108,7 +127,31 @@ Switch Phantom/Solflare to **Devnet** and get free test SOL:
 
 ---
 
-## 7. Deploy to Vercel
+## 8. Verify Before Deploying
+
+Run the full verification pipeline before any deploy:
+
+```bash
+npm run verify
+```
+
+This runs:
+1. `tsc --noEmit` — TypeScript type checking (0 errors expected)
+2. `vitest run` — Unit tests (32 tests across 4 suites)
+3. `next build` — Production build (18 routes)
+
+You can also run each step individually:
+
+```bash
+npm run typecheck     # TypeScript only
+npm test              # Tests only
+npm run build         # Build only
+npm run test:watch    # Tests in watch mode (development)
+```
+
+---
+
+## 9. Deploy to Vercel
 
 ### Option A: GitHub Integration (recommended)
 
@@ -131,7 +174,7 @@ Follow the prompts. Add env vars when asked, or set them in the Vercel dashboard
 
 ---
 
-## 8. Switching to Mainnet
+## 10. Switching to Mainnet
 
 1. Change `NEXT_PUBLIC_SOLANA_NETWORK=mainnet-beta`
 2. Change `NEXT_PUBLIC_SOLANA_RPC_URL` to a production RPC endpoint (see step 5)
@@ -143,7 +186,7 @@ Follow the prompts. Add env vars when asked, or set them in the Vercel dashboard
 
 ---
 
-## 9. Custom Domain
+## 11. Custom Domain
 
 In the Vercel dashboard → project → **Domains** → add your domain.
 
@@ -151,7 +194,7 @@ Then update `NEXT_PUBLIC_APP_URL` to your production domain and redeploy.
 
 ---
 
-## 10. Admin Dashboard
+## 12. Admin Dashboard
 
 The `/admin` route is wallet-gated. Only the wallet matching `NEXT_PUBLIC_TREASURY_WALLET` can view it.
 
@@ -162,7 +205,7 @@ It shows:
 
 ---
 
-## 11. Project Structure (Quick Reference)
+## 13. Project Structure (Quick Reference)
 
 ```
 app/
@@ -176,8 +219,8 @@ app/
 │       └── manage/[mint]/   Revoke authority
 ├── admin/                   Treasury dashboard
 └── api/
-    ├── upload/              IPFS upload (server-side, Pinata JWT here)
-    └── metadata/            Metadata read route
+    ├── upload/              IPFS upload (rate-limited, structured logging)
+    └── metadata/            Metadata read route (rate-limited)
 
 components/
 ├── launcher/                Multi-step wizard
@@ -185,7 +228,13 @@ components/
 ├── liquidity/               Pool finder, price calculator
 ├── admin/                   Admin treasury client
 ├── compliance/              Banner + legal pages
-└── wallet/                  WalletContextProvider
+└── wallet/
+    ├── WalletContextProvider
+    ├── NetworkBanner          Devnet/mainnet indicator
+    └── SolBalanceCheck        Low-SOL warning
+
+hooks/
+└── useSOLBalance.ts         Wallet SOL balance hook
 
 services/
 ├── token-launcher/          Mint creation + Metaplex metadata
@@ -194,15 +243,22 @@ services/
 └── liquidity/               Raydium + Meteora pool lookup
 
 lib/
-├── config/app-config.ts     Single source of truth for all config
+├── config/
+│   ├── app-config.ts        Single source of truth for all config
+│   └── env-validation.ts    Schema-based env var validation
+├── logger/logger.ts         Structured JSON logger (prod) / human (dev)
 ├── solana/portfolio.ts      On-chain portfolio reader
-├── rate-limit/              Sliding window rate limiter
+├── rate-limit/              Upstash Redis rate limiter (in-memory fallback)
+├── utils/                   formatNumber, formatSOL, cn, etc.
 └── validation/              Zod schemas
+
+__tests__/                   Vitest test suites (32 tests)
+scripts/verify.sh            CI verification pipeline
 ```
 
 ---
 
-## 12. Going Further
+## 14. Going Further
 
 | Feature | Status | How to implement |
 |---|---|---|

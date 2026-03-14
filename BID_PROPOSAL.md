@@ -15,7 +15,7 @@ This is not a proposal for future work. It is a completed product at a fixed pri
 
 ---
 
-## What Is Already Built (63+ Production Files)
+## What Is Already Built (81+ Production Files)
 
 ### Core Launch Wizard
 | Feature | Status |
@@ -43,7 +43,11 @@ This is not a proposal for future work. It is a completed product at a fixed pri
 | **Pool finder** | ✅ Done | Calls Raydium v3 API + Meteora DLMM API in real time |
 | **Implied price calculator** | ✅ Done | Enter SOL + token amounts → see price per token |
 | **Admin treasury dashboard** | ✅ Done | Live SOL balance, estimated launch count and revenue |
-| **Rate limiting** | ✅ Done | 10 req/min per IP on all upload and metadata routes |
+| **Rate limiting** | ✅ Done | Upstash Redis (distributed) with in-memory fallback, 10 req/min per IP |
+| **Env validation** | ✅ Done | Schema-based startup validation with placeholder detection + mainnet safety |
+| **Structured logging** | ✅ Done | JSON in production, human-readable in dev, async operation timing |
+| **Network awareness** | ✅ Done | Devnet/mainnet banner + low-SOL balance warnings on all wallet pages |
+| **Test coverage** | ✅ Done | 32 passing vitest tests, 4 suites, CI verification pipeline |
 
 ### Legal & Compliance — Kuwait-Specific
 | Document | Status | Specifics |
@@ -85,15 +89,22 @@ Next.js 14 (App Router)
 │   ├── token-burn/      — Burn service
 │   ├── token-authority/ — Revoke mint/freeze authority
 │   └── liquidity/       — Pool management (Raydium + Meteora)
+├── hooks/
+│   └── useSOLBalance    — Wallet balance hook with low-SOL threshold
 ├── lib/
+│   ├── config/          — App config + schema-based env validation
+│   ├── logger/          — Structured JSON/human logger with operation timing
 │   ├── solana/          — Portfolio reader, mint info, connection helpers
-│   ├── rate-limit/      — Sliding window rate limiter (upgrade path: Upstash)
+│   ├── rate-limit/      — Upstash Redis rate limiter (in-memory fallback)
 │   └── validation/      — Zod schemas for all form data
-└── app/api/             — Upload + metadata routes (rate-limited, server-side IPFS)
+├── __tests__/           — 32 vitest tests across 4 suites
+├── scripts/verify.sh    — CI pipeline: typecheck → test → build
+└── app/api/             — Upload + metadata routes (rate-limited, structured logging)
 ```
 
 **Stack:** Next.js 14 · TypeScript strict · Tailwind CSS · @solana/web3.js ·
-@solana/spl-token · Metaplex Token Metadata v2 · React Hook Form + Zod · Pinata IPFS
+@solana/spl-token · Metaplex Token Metadata v2 · React Hook Form + Zod · Pinata IPFS ·
+Upstash Redis · Vitest
 
 ---
 
@@ -107,6 +118,28 @@ Next.js 14 (App Router)
 3. **Domain + Vercel deploy** — 10 minutes
 
 That is it. Everything else is done.
+
+---
+
+## Production Hardening Evidence
+
+This codebase has been through a formal remediation cycle. Verified results:
+
+| Metric | Result |
+|---|---|
+| TypeScript errors | **0** (`tsc --noEmit`) |
+| Test suites | **4 suites, 32 tests passing** (`vitest run`) |
+| Production build | **Exit 0**, 18 routes compiled |
+| Rate limiting | Upstash Redis (distributed), in-memory fallback |
+| Env validation | Schema-based with placeholder detection, Base58 wallet format, mainnet safety warnings |
+| API security | Rate-limited upload/metadata routes, structured error responses |
+| Observability | Structured logger with JSON output, async operation timing (`log.timed()`) |
+| Wallet UX | Network banner (devnet/mainnet), SOL balance warnings, soft wallet-rejection handling |
+| Liquidity UI | Honest integration labels (Live / Deep-link / Pending) — no overstated claims |
+| CI pipeline | `npm run verify` → typecheck + test + build in sequence |
+| Documentation | README + SETUP.md aligned to actual codebase state |
+
+This is not scaffolding. This is a system that has been hardened, tested, verified, and pushed.
 
 ---
 
