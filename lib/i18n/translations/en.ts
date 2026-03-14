@@ -227,6 +227,38 @@ const en: TranslationDictionary = {
   homepage_discussLink: 'Discuss the build plan →',
   homepage_logoAlt: 'Solana Launcher',
 
+  // Buyer-conversion sections
+  section_projectMatch: 'Direct Match',
+  section_projectMatch_title: 'Why This Matches Your Project',
+  section_projectMatch_subtitle: 'This live build is the working foundation for the exact type of launcher you described — with MVP features already implemented and advanced liquidity features scoped separately.',
+  homepage_projectMatchItems: [
+    'Simple meme coin creation flow — guided 4-step wizard, no coding required',
+    'Phantom + Solflare wallet connection with auto-detection',
+    'Token burn tools — select amount, confirm, permanently remove from supply',
+    'Revenue from launch fees — flat-fee treasury with admin revenue dashboard',
+    'Optional liquidity features scoped for Phase 2 — no scope creep',
+  ],
+  homepage_bridgingStatement: 'Everything above is live and running. You can connect a wallet and test the full flow on Devnet today — no setup, no waiting.',
+  section_customize: 'Your Version',
+  section_customize_title: 'What I Would Customize For You',
+  section_customize_subtitle: 'This is not a generic demo. Here is exactly what gets tailored to your project.',
+  homepage_customizeItems: [
+    { title: 'Branding & Domain', desc: 'Your logo, colors, fonts, and custom domain — fully white-labeled to your brand.' },
+    { title: 'Treasury Wallet', desc: 'Your wallet receives every launch fee. You control the revenue from day one.' },
+    { title: 'Launch Fee Amount', desc: 'Set the SOL fee per token creation to match your market and pricing strategy.' },
+    { title: 'Token Presets', desc: 'Customize the launch presets — meme coin, governance, community, or your own categories.' },
+    { title: 'Legal Pages', desc: 'Terms, privacy policy, and risk disclosure tailored to your jurisdiction and business.' },
+    { title: 'Phase 2 Liquidity', desc: 'On-chain Raydium and Meteora integrations built when you are ready — on your timeline.' },
+  ],
+  section_timeline: 'Timeline',
+  section_timeline_title: 'Delivery Timeline',
+  homepage_timelineItems: [
+    { phase: 'MVP Delivery', time: '1–2 weeks', detail: 'Branding, domain, treasury config, launch presets, legal pages. Everything you need to go live.' },
+    { phase: 'Refinement', time: '1 week', detail: 'Feedback round, UX polish, mobile testing, final client walkthrough.' },
+    { phase: 'Phase 2 (Optional)', time: '2–3 weeks', detail: 'On-chain liquidity, advanced analytics, custom Rust programs — scoped and priced separately.' },
+  ],
+  homepage_timelineNote: 'MVP is already 90%+ built. Timeline reflects customization, branding, and deployment — not building from scratch.',
+
   // FAQ
   faq_items: [
     { q: 'What is an SPL token?', a: 'An SPL token is the Solana equivalent of an ERC-20 token on Ethereum. It is a fungible token running on the Solana blockchain. You can set the name, symbol, supply, decimals, and attach metadata (image, description, links) to it.' },

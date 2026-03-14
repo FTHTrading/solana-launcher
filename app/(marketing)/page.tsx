@@ -24,6 +24,9 @@ import {
   TrendingUp,
   Sparkles,
   CircleDot,
+  Clock,
+  Palette,
+  Wrench,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -256,6 +259,46 @@ export default function HomePage() {
                 <span>{point}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          1b. WHY THIS MATCHES YOUR PROJECT
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 bg-emerald-500/5 border-y border-emerald-500/10">
+        <div className="container max-w-3xl mx-auto space-y-6">
+          <div className="text-center space-y-3">
+            <Badge variant="success" className="mx-auto">{t.section_projectMatch}</Badge>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+              {t.section_projectMatch_title}
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              {t.section_projectMatch_subtitle}
+            </p>
+          </div>
+
+          <ul className="space-y-3">
+            {t.homepage_projectMatchItems.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-3 text-sm">
+                <CheckCircle2 className="h-4 w-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="rounded-xl bg-card border border-border p-5 text-center">
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {t.homepage_bridgingStatement}
+            </p>
+            <div className="mt-4">
+              <Button size="lg" variant="gradient" asChild>
+                <Link href="/launch">
+                  {t.hero_cta_launch}
+                  <ArrowIcon className="h-4 w-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -610,6 +653,72 @@ export default function HomePage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          9. WHAT I WOULD CUSTOMIZE FOR YOU
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 bg-brand-500/5 border-y border-brand-500/10">
+        <div className="container max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <Badge variant="default" className="mx-auto">{t.section_customize}</Badge>
+            <h2 className="text-3xl font-bold tracking-tight">
+              {t.section_customize_title}
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              {t.section_customize_subtitle}
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {(() => {
+              const customizeIcons = [Palette, Wallet, Coins, Settings2, Scale, ArrowRightLeft];
+              return t.homepage_customizeItems.map((item, idx) => {
+                const Icon = customizeIcons[idx % customizeIcons.length];
+                return (
+                  <Card key={idx} className="p-5 space-y-2">
+                    <div className="flex items-center gap-3">
+                      <div className="h-9 w-9 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                        <Icon className="h-4 w-4 text-brand-500" />
+                      </div>
+                      <h3 className="font-semibold text-sm">{item.title}</h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </Card>
+                );
+              });
+            })()}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          10. DELIVERY TIMELINE
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="py-16">
+        <div className="container max-w-3xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <Badge variant="secondary" className="mx-auto">{t.section_timeline}</Badge>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+              {t.section_timeline_title}
+            </h2>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            {t.homepage_timelineItems.map((item, idx) => (
+              <Card key={idx} className="p-5 text-center space-y-2">
+                <Clock className="h-5 w-5 text-brand-500 mx-auto" />
+                <p className="font-bold text-sm">{item.phase}</p>
+                <p className="text-lg font-bold text-brand-500">{item.time}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{item.detail}</p>
+              </Card>
+            ))}
+          </div>
+
+          <p className="text-center text-xs text-muted-foreground italic">
+            {t.homepage_timelineNote}
+          </p>
         </div>
       </section>
 

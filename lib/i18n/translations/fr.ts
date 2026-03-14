@@ -227,6 +227,38 @@ const fr: TranslationDictionary = {
   homepage_discussLink: 'Discuter du plan de construction →',
   homepage_logoAlt: 'Plateforme de Lancement Solana',
 
+  // Buyer-conversion sections
+  section_projectMatch: 'Correspondance directe',
+  section_projectMatch_title: 'Pourquoi cela correspond à votre projet',
+  section_projectMatch_subtitle: 'Cette version en ligne est la fondation fonctionnelle du type exact de lanceur que vous avez décrit — avec les fonctionnalités MVP déjà implémentées et les fonctionnalités avancées de liquidité définies séparément.',
+  homepage_projectMatchItems: [
+    'Flux simple de création de meme coins — assistant guidé en 4 étapes, aucun code requis',
+    'Connexion wallet Phantom + Solflare avec détection automatique',
+    'Outils de burn de tokens — sélectionnez le montant, confirmez, retirez définitivement de la supply',
+    'Revenus des frais de lancement — trésorerie à frais fixe avec tableau de bord admin',
+    'Fonctionnalités de liquidité optionnelles prévues pour la Phase 2 — sans dérive du périmètre',
+  ],
+  homepage_bridgingStatement: 'Tout ce qui précède est en ligne et fonctionnel. Vous pouvez connecter un wallet et tester le flux complet sur Devnet aujourd\'hui — sans configuration, sans attente.',
+  section_customize: 'Votre version',
+  section_customize_title: 'Ce que je personnaliserais pour vous',
+  section_customize_subtitle: 'Ce n\'est pas une démo générique. Voici exactement ce qui sera adapté à votre projet.',
+  homepage_customizeItems: [
+    { title: 'Branding et domaine', desc: 'Votre logo, couleurs, polices et domaine personnalisé — entièrement en marque blanche.' },
+    { title: 'Wallet de trésorerie', desc: 'Votre wallet reçoit chaque frais de lancement. Vous contrôlez les revenus dès le premier jour.' },
+    { title: 'Montant des frais', desc: 'Définissez les frais en SOL par création de token selon votre marché et votre stratégie tarifaire.' },
+    { title: 'Presets de tokens', desc: 'Personnalisez les presets de lancement — meme coin, gouvernance, communauté, ou vos propres catégories.' },
+    { title: 'Pages légales', desc: 'Conditions, politique de confidentialité et divulgation des risques adaptées à votre juridiction.' },
+    { title: 'Liquidité Phase 2', desc: 'Intégrations on-chain Raydium et Meteora construites quand vous êtes prêt — selon votre calendrier.' },
+  ],
+  section_timeline: 'Calendrier',
+  section_timeline_title: 'Calendrier de livraison',
+  homepage_timelineItems: [
+    { phase: 'Livraison MVP', time: '1–2 semaines', detail: 'Branding, domaine, config trésorerie, presets de lancement, pages légales. Tout le nécessaire pour lancer.' },
+    { phase: 'Affinage', time: '1 semaine', detail: 'Tour de retours, polish UX, tests mobile, walkthrough client final.' },
+    { phase: 'Phase 2 (Optionnelle)', time: '2–3 semaines', detail: 'Liquidité on-chain, analytics avancés, programmes Rust personnalisés — périmètre et prix définis séparément.' },
+  ],
+  homepage_timelineNote: 'Le MVP est déjà construit à 90%+. Le calendrier reflète la personnalisation, le branding et le déploiement — pas la construction depuis zéro.',
+
   // FAQ
   faq_items: [
     { q: "Qu'est-ce qu'un jeton SPL ?", a: "Un jeton SPL est l'équivalent Solana d'un jeton ERC-20 sur Ethereum. C'est un jeton fongible fonctionnant sur la blockchain Solana. Vous pouvez définir le nom, le symbole, l'offre, les décimales et joindre des métadonnées (image, description, liens)." },

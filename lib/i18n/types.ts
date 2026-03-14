@@ -159,6 +159,21 @@ export interface TranslationDictionary {
   homepage_discussLink: string;
   homepage_logoAlt: string;
 
+  // Buyer-conversion sections
+  section_projectMatch: string;
+  section_projectMatch_title: string;
+  section_projectMatch_subtitle: string;
+  homepage_projectMatchItems: string[];
+  homepage_bridgingStatement: string;
+  section_customize: string;
+  section_customize_title: string;
+  section_customize_subtitle: string;
+  homepage_customizeItems: Array<{ title: string; desc: string }>;
+  section_timeline: string;
+  section_timeline_title: string;
+  homepage_timelineItems: Array<{ phase: string; time: string; detail: string }>;
+  homepage_timelineNote: string;
+
   // FAQ
   faq_items: Array<{ q: string; a: string }>;
 
