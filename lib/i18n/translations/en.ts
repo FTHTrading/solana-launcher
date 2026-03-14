@@ -45,7 +45,7 @@ const en: TranslationDictionary = {
     'Four steps from zero to a live SPL token on Solana. Every step is guided and validated.',
   section_phases_title: 'Full Platform — Built Across Three Phases',
   section_phases_subtitle:
-    'Phase 1 delivered the MVP. Phase 2 is complete — premium tiers, white-label, ecosystem integrations, and referral system. Phase 3 expands into on-chain SDKs.',
+    'Phase 1 delivered the MVP. Many Phase 2 platform features are already built — premium tiers, white-label, ecosystem integrations, and referral system. The remaining work is mainly on-chain liquidity execution and deeper custom protocol work, scoped separately.',
   section_feasibility: 'Feasibility, Complexity & Cost',
   section_feasibility_subtitle: 'Direct answers to the questions you asked in the brief.',
   section_whyDifferent: 'Why This Is Not a Generic Clone',
@@ -72,8 +72,8 @@ const en: TranslationDictionary = {
   phase1_desc: 'Core launch platform',
   phase2_title: 'Phase 2 — Growth',
   phase2_desc: 'Monetization, ecosystem, white-label',
-  phase3_title: 'Phase 3 — Expansion',
-  phase3_desc: 'On-chain SDKs, i18n, mobile',
+  phase3_title: 'Optional Expansion',
+  phase3_desc: 'On-chain liquidity, analytics, custom programs',
 
   // Feasibility
   feasibility_title: 'Feasibility',
@@ -206,7 +206,6 @@ const en: TranslationDictionary = {
     'On-chain Meteora DLMM pool creation',
     'Custom Rust programs for advanced tokenomics',
     'Analytics dashboard with Birdeye API integration',
-    'Multi-language support (EN, AR, FR, HI, UR + RTL)',
     'Mobile-optimized PWA',
   ],
   homepage_whyDifferent: [

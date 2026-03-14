@@ -41,7 +41,7 @@ const ur: TranslationDictionary = {
   section_howItWorks: 'کیسے کام کرتا ہے',
   section_howItWorks_subtitle: 'صفر سے Solana پر لائیو SPL ٹوکن تک چار قدم۔ ہر قدم رہنمائی شدہ اور تصدیق شدہ ہے۔',
   section_phases_title: 'مکمل پلیٹ فارم — تین مراحل میں تعمیر شدہ',
-  section_phases_subtitle: 'مرحلہ 1 نے MVP دیا۔ مرحلہ 2 مکمل ہے — پریمیم ٹیئرز، وائٹ لیبل، ایکو سسٹم انضمام، اور ریفرل سسٹم۔ مرحلہ 3 آن-چین SDK میں توسیع کرتا ہے۔',
+  section_phases_subtitle: 'مرحلہ 1 نے MVP دیا۔ مرحلہ 2 کی بہت سی پلیٹ فارم خصوصیات پہلے سے تعمیر شدہ ہیں — پریمیم ٹیئرز، وائٹ لیبل، ایکو سسٹم انضمام، اور ریفرل سسٹم۔ باقی کام بنیادی طور پر آن-چین لیکویڈیٹی عمل درآمد اور گہرا کسٹم پروٹوکول کام ہے، الگ سے سکوپ کیا گیا۔',
   section_feasibility: 'قابل عمل، پیچیدگی اور لاگت',
   section_feasibility_subtitle: 'بریف میں آپ کے پوچھے گئے سوالات کے براہ راست جوابات۔',
   section_whyDifferent: 'یہ ایک عام کلون کیوں نہیں ہے',
@@ -67,8 +67,8 @@ const ur: TranslationDictionary = {
   phase1_desc: 'کور لانچ پلیٹ فارم',
   phase2_title: 'مرحلہ 2 — نمو',
   phase2_desc: 'منیٹائزیشن، ایکو سسٹم، وائٹ لیبل',
-  phase3_title: 'مرحلہ 3 — توسیع',
-  phase3_desc: 'آن-چین SDK، i18n، موبائل',
+  phase3_title: 'اختیاری توسیع',
+  phase3_desc: 'آن-چین لیکویڈیٹی، اینالیٹکس، کسٹم پروگرام',
 
   // Feasibility
   feasibility_title: 'قابل عمل',
@@ -196,7 +196,6 @@ const ur: TranslationDictionary = {
     'آن-چین Meteora DLMM پول تخلیق',
     'ایڈوانسڈ ٹوکنومکس کے لیے کسٹم Rust پروگرام',
     'Birdeye API انٹیگریشن کے ساتھ اینالیٹکس ڈیش بورڈ',
-    'کثیر لسانی سپورٹ (EN، AR، FR، HI، UR + RTL)',
     'موبائل کے لیے بہتر PWA',
   ],
   homepage_whyDifferent: [

@@ -179,7 +179,6 @@ const PHASE3_ITEMS = [
   'On-chain Meteora DLMM pool creation',
   'Custom Rust programs for advanced tokenomics',
   'Analytics dashboard with Birdeye API integration',
-  'Multi-language support (EN, AR, FR, HI, UR + RTL)',
   'Mobile-optimized PWA',
 ];
 
@@ -559,13 +558,13 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            {/* Phase 2 — Done */}
+            {/* Phase 2 — Platform Features Built */}
             <Card className="ring-2 ring-brand-500/30">
               <CardHeader className="border-b bg-brand-500/5">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-brand-500" />
                   <CardTitle className="text-base">{t.phase2_title}</CardTitle>
-                  <Badge variant="success" className="ml-auto text-[10px]">{t.common_complete}</Badge>
+                  <Badge variant="success" className="ml-auto text-[10px]">{t.common_built}</Badge>
                 </div>
                 <CardDescription>{t.phase2_desc}</CardDescription>
               </CardHeader>
@@ -581,12 +580,13 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            {/* Phase 3 — Future */}
+            {/* Optional Expansion */}
             <Card>
               <CardHeader className="border-b bg-blue-500/5">
                 <div className="flex items-center gap-2">
                   <Layers className="h-5 w-5 text-blue-500" />
                   <CardTitle className="text-base">{t.phase3_title}</CardTitle>
+                  <Badge variant="outline" className="ml-auto text-[10px]">Optional</Badge>
                 </div>
                 <CardDescription>{t.phase3_desc}</CardDescription>
               </CardHeader>

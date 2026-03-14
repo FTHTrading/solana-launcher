@@ -41,7 +41,7 @@ const hi: TranslationDictionary = {
   section_howItWorks: 'कैसे काम करता है',
   section_howItWorks_subtitle: 'शून्य से Solana पर लाइव SPL टोकन तक चार कदम। हर कदम निर्देशित और मान्य है।',
   section_phases_title: 'पूर्ण प्लेटफ़ॉर्म — तीन चरणों में निर्मित',
-  section_phases_subtitle: 'चरण 1 ने MVP दिया। चरण 2 पूर्ण है — प्रीमियम टियर, व्हाइट-लेबल, इकोसिस्टम इंटीग्रेशन, और रेफ़रल सिस्टम। चरण 3 ऑन-चेन SDK में विस्तार करता है।',
+  section_phases_subtitle: 'चरण 1 ने MVP दिया। चरण 2 की कई प्लेटफ़ॉर्म सुविधाएं पहले से निर्मित हैं — प्रीमियम टियर, व्हाइट-लेबल, इकोसिस्टम इंटीग्रेशन, और रेफ़रल सिस्टम। शेष कार्य मुख्य रूप से ऑन-चेन लिक्विडिटी निष्पादन और गहरा कस्टम प्रोटोकॉल कार्य है, जो अलग से स्कोप किया गया है।',
   section_feasibility: 'व्यवहार्यता, जटिलता और लागत',
   section_feasibility_subtitle: 'ब्रीफ़ में आपने जो प्रश्न पूछे उनके सीधे उत्तर।',
   section_whyDifferent: 'यह एक सामान्य क्लोन क्यों नहीं है',
@@ -67,8 +67,8 @@ const hi: TranslationDictionary = {
   phase1_desc: 'कोर लॉन्च प्लेटफ़ॉर्म',
   phase2_title: 'चरण 2 — विकास',
   phase2_desc: 'मुद्रीकरण, इकोसिस्टम, व्हाइट-लेबल',
-  phase3_title: 'चरण 3 — विस्तार',
-  phase3_desc: 'ऑन-चेन SDK, i18n, मोबाइल',
+  phase3_title: 'वैकल्पिक विस्तार',
+  phase3_desc: 'ऑन-चेन लिक्विडिटी, एनालिटिक्स, कस्टम प्रोग्राम',
 
   // Feasibility
   feasibility_title: 'व्यवहार्यता',
@@ -196,7 +196,6 @@ const hi: TranslationDictionary = {
     'ऑन-चेन Meteora DLMM पूल निर्माण',
     'उन्नत टोकनोमिक्स के लिए कस्टम Rust प्रोग्राम',
     'Birdeye API इंटीग्रेशन के साथ एनालिटिक्स डैशबोर्ड',
-    'बहुभाषी समर्थन (EN, AR, FR, HI, UR + RTL)',
     'मोबाइल-अनुकूलित PWA',
   ],
   homepage_whyDifferent: [

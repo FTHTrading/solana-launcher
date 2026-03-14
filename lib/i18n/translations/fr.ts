@@ -45,7 +45,7 @@ const fr: TranslationDictionary = {
     "Quatre étapes de zéro à un jeton SPL en direct sur Solana. Chaque étape est guidée et validée.",
   section_phases_title: 'Plateforme complète — Construite en trois phases',
   section_phases_subtitle:
-    "La Phase 1 a livré le MVP. La Phase 2 est complète — niveaux premium, marque blanche, intégrations d'écosystème et système de parrainage. La Phase 3 s'étend aux SDK on-chain.",
+    "La Phase 1 a livré le MVP. De nombreuses fonctionnalités de la Phase 2 sont déjà construites — niveaux premium, marque blanche, intégrations d'écosystème et système de parrainage. Le travail restant concerne principalement l'exécution de liquidité on-chain et le travail de protocole personnalisé, défini séparément.",
   section_feasibility: 'Faisabilité, Complexité et Coût',
   section_feasibility_subtitle: 'Réponses directes aux questions que vous avez posées dans le cahier des charges.',
   section_whyDifferent: "Pourquoi ce n'est pas un clone générique",
@@ -72,8 +72,8 @@ const fr: TranslationDictionary = {
   phase1_desc: 'Plateforme de lancement principale',
   phase2_title: 'Phase 2 — Croissance',
   phase2_desc: "Monétisation, écosystème, marque blanche",
-  phase3_title: 'Phase 3 — Expansion',
-  phase3_desc: 'SDK on-chain, i18n, mobile',
+  phase3_title: 'Expansion optionnelle',
+  phase3_desc: 'Liquidité on-chain, analytics, programmes personnalisés',
 
   // Feasibility
   feasibility_title: 'Faisabilité',
@@ -206,7 +206,6 @@ const fr: TranslationDictionary = {
     'Création de pool Meteora DLMM on-chain',
     'Programmes Rust personnalisés pour tokenomics avancés',
     'Tableau de bord analytique avec intégration Birdeye API',
-    'Support multilingue (EN, AR, FR, HI, UR + RTL)',
     'PWA optimisée mobile',
   ],
   homepage_whyDifferent: [

@@ -41,7 +41,7 @@ const ar: TranslationDictionary = {
   section_howItWorks: 'كيف يعمل',
   section_howItWorks_subtitle: 'أربع خطوات من الصفر إلى رمز SPL مباشر على Solana. كل خطوة موجهة ومُتحقق منها.',
   section_phases_title: 'منصة كاملة — بُنيت عبر ثلاث مراحل',
-  section_phases_subtitle: 'المرحلة 1 قدمت المنتج الأدنى. المرحلة 2 مكتملة — مستويات متميزة، علامة بيضاء، تكاملات النظام البيئي، ونظام الإحالة. المرحلة 3 تتوسع إلى أدوات SDK على السلسلة.',
+  section_phases_subtitle: 'المرحلة 1 قدمت المنتج الأدنى. العديد من ميزات المرحلة 2 مبنية بالفعل — مستويات متميزة، علامة بيضاء، تكاملات النظام البيئي، ونظام الإحالة. العمل المتبقي هو بشكل أساسي تنفيذ السيولة على السلسلة وعمل البروتوكول المخصص الأعمق، محدد النطاق بشكل منفصل.',
   section_feasibility: 'الجدوى والتعقيد والتكلفة',
   section_feasibility_subtitle: 'إجابات مباشرة على الأسئلة التي طرحتها في الموجز.',
   section_whyDifferent: 'لماذا هذا ليس نسخة عامة',
@@ -67,8 +67,8 @@ const ar: TranslationDictionary = {
   phase1_desc: 'منصة الإطلاق الأساسية',
   phase2_title: 'المرحلة 2 — النمو',
   phase2_desc: 'تحقيق الدخل، النظام البيئي، العلامة البيضاء',
-  phase3_title: 'المرحلة 3 — التوسع',
-  phase3_desc: 'أدوات SDK على السلسلة، ترجمة، جوال',
+  phase3_title: 'توسع اختياري',
+  phase3_desc: 'سيولة على السلسلة، تحليلات، برامج مخصصة',
 
   // Feasibility
   feasibility_title: 'الجدوى',
@@ -196,7 +196,6 @@ const ar: TranslationDictionary = {
     'إنشاء مجمع Meteora DLMM على السلسلة',
     'برامج Rust مخصصة لاقتصاديات الرموز المتقدمة',
     'لوحة تحليلات مع تكامل Birdeye API',
-    'دعم متعدد اللغات (EN، AR، FR، HI، UR + RTL)',
     'تطبيق ويب تقدمي محسن للجوال',
   ],
   homepage_whyDifferent: [
