@@ -11,17 +11,17 @@
 <img src="https://img.shields.io/badge/TSC-0_Errors-22c55e?style=for-the-badge&logo=typescript&logoColor=white" />
 <img src="https://img.shields.io/badge/Routes-15_/_15-22c55e?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Non--Custodial-✓-9945FF?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Kuwait_Compliant-CBK_Circular-f59e0b?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Kuwait_Aware-Jurisdiction_Disclosures-f59e0b?style=for-the-badge" />
 
 <br/><br/>
 
-> **Production-ready non-custodial Solana SPL token launch platform.**  
+> **Operator-ready non-custodial Solana SPL token launch platform.**  
 > Connect wallet → configure token → sign one transaction → token is live on-chain.  
-> No code. No custody. No partial charges.
+> No code. No custody. Atomic fee enforcement.
 
 <br/>
 
-**62 source files · 15 static routes · TypeScript strict mode · Kuwait/GCC compliance built-in**
+**60+ source files · 15 static routes · TypeScript strict mode · Kuwait/GCC jurisdiction-aware disclosures**
 
 <br/>
 
@@ -581,7 +581,9 @@ flowchart LR
 ```
 
 > **Atomicity guarantee:** Fee transfer + mint creation + supply are in the **same transaction**.  
-> If any instruction fails, the entire transaction reverts. No partial charges are architecturally possible.
+> If any instruction fails, the entire transaction reverts — no partial charges on the core launch.  
+> **Note:** Metaplex metadata attachment runs as a second transaction after the mint confirms.  
+> If the metadata tx fails, the token is live but without on-chain metadata (re-attachable).
 
 ---
 
@@ -1655,6 +1657,6 @@ Fix:
 <img src="https://img.shields.io/badge/BigInt_Safe-10^18_supply_precision-3b82f6?style=flat-square" />
 <img src="https://img.shields.io/badge/Rate_Limited-10_req/min/IP-ef4444?style=flat-square" />
 <img src="https://img.shields.io/badge/IPFS_Metadata-Permanent_decentralized-E4467C?style=flat-square" />
-<img src="https://img.shields.io/badge/CBK_Compliant-Circular_2/RB/336/2014-f59e0b?style=flat-square" />
+<img src="https://img.shields.io/badge/CBK_Aware-Circular_2/RB/336/2014-f59e0b?style=flat-square" />
 
 </div>

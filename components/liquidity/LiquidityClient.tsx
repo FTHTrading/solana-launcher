@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import {
   ArrowRight,
   BarChart3,
@@ -17,6 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Alert } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
+import { WalletGuard } from '@/components/wallet/WalletGuard';
 import { getPoolsForMint, type PoolInfo, type DexProvider } from '@/services/liquidity/liquidity.service';
 
 interface LiquidityClientProps {
@@ -25,7 +25,6 @@ interface LiquidityClientProps {
 
 export function LiquidityClient({ initialMint = '' }: LiquidityClientProps) {
   const { connected } = useWallet();
-  const { setVisible } = useWalletModal();
 
   const [mintInput, setMintInput] = useState(initialMint);
   const [pools, setPools] = useState<PoolInfo[]>([]);
@@ -54,15 +53,13 @@ export function LiquidityClient({ initialMint = '' }: LiquidityClientProps) {
 
   if (!connected) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
-        <h2 className="text-xl font-semibold">Connect Your Wallet</h2>
-        <p className="text-muted-foreground max-w-sm">
-          Connect your Solana wallet to manage liquidity.
-        </p>
-        <Button variant="gradient" size="lg" onClick={() => setVisible(true)}>
-          Connect Wallet
-        </Button>
-      </div>
+      <WalletGuard
+        icon={<Droplets className="h-6 w-6 text-sky-500" />}
+        title="Connect Your Wallet"
+        description="Connect your Solana wallet to manage liquidity."
+      >
+        <></>
+      </WalletGuard>
     );
   }
 

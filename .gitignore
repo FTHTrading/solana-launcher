@@ -38,6 +38,12 @@ next-env.d.ts
 # Prisma
 /prisma/migrations
 
+# Build artifacts / diagnostic output
+build-output.txt
+lint-output.txt
+tsc-errors.txt
+tsc-output.txt
+
 # Debug output files
 build-output.txt
 tsc-errors.txt

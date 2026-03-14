@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,12 +9,12 @@ import { Settings2, Search, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
+import { WalletGuard } from '@/components/wallet/WalletGuard';
 import { getWalletTokenAccounts, type TokenAccount } from '@/lib/solana/portfolio';
 import { truncateAddress } from '@/lib/utils/utils';
 
 export function ManageIndexClient() {
   const { connected, publicKey } = useWallet();
-  const { setVisible } = useWalletModal();
   const router = useRouter();
 
   const [mintInput, setMintInput] = useState('');
@@ -58,18 +57,13 @@ export function ManageIndexClient() {
 
   if (!connected || !publicKey) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
-        <div className="h-14 w-14 rounded-full bg-orange-500/10 flex items-center justify-center">
-          <Settings2 className="h-6 w-6 text-orange-500" />
-        </div>
-        <h2 className="text-xl font-semibold">Connect Your Wallet</h2>
-        <p className="text-muted-foreground max-w-sm text-sm">
-          Connect your wallet to manage token authorities.
-        </p>
-        <Button variant="gradient" onClick={() => setVisible(true)}>
-          Connect Wallet
-        </Button>
-      </div>
+      <WalletGuard
+        icon={<Settings2 className="h-6 w-6 text-orange-500" />}
+        title="Connect Your Wallet"
+        description="Connect your wallet to manage token authorities."
+      >
+        <></>
+      </WalletGuard>
     );
   }
 
