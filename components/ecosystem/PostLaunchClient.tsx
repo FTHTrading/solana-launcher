@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
+
 import {
   Bell,
   Bot,
@@ -24,7 +24,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Alert } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
-import { WalletGuard } from '@/components/wallet/WalletGuard';
 import { appConfig } from '@/lib/config/app-config';
 
 interface NotificationChannel {
@@ -115,23 +114,10 @@ const HELIUS_EVENTS = [
 ];
 
 export function PostLaunchClient() {
-  const { connected } = useWallet();
   const [mintAddress, setMintAddress] = useState('');
   const [webhookUrl, setWebhookUrl] = useState('');
   const [activeEvents, setActiveEvents] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
-
-  if (!connected) {
-    return (
-      <WalletGuard
-        icon={<Bell className="h-6 w-6 text-brand-500" />}
-        title="Connect Your Wallet"
-        description="Connect your Solana wallet to set up post-launch automation."
-      >
-        <></>
-      </WalletGuard>
-    );
-  }
 
   const toggleEvent = (id: string) => {
     setActiveEvents((prev) =>

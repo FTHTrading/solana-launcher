@@ -2,11 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  ArrowRight, Flame, LayoutDashboard, Rocket,
+  ArrowRight, Flame, Rocket,
   Settings2, Droplets, RefreshCw, ExternalLink,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,7 +30,6 @@ import { SolBalanceCheck } from '@/components/wallet/SolBalanceCheck';
 
 export function DashboardClient() {
   const { connected, publicKey } = useWallet();
-  const { setVisible } = useWalletModal();
 
   const [tokens, setTokens] = useState<TokenAccount[]>([]);
   const [loadingTokens, setLoadingTokens] = useState(false);
@@ -56,24 +54,8 @@ export function DashboardClient() {
     if (connected && publicKey) loadTokens();
   }, [connected, publicKey, loadTokens]);
 
-  if (!connected || !publicKey) {
-    return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
-        <div className="h-16 w-16 rounded-full bg-brand-500/10 flex items-center justify-center">
-          <LayoutDashboard className="h-7 w-7 text-brand-500" />
-        </div>
-        <h2 className="text-xl font-semibold">Connect Your Wallet</h2>
-        <p className="text-muted-foreground max-w-sm">
-          Connect your wallet to view your token portfolio and recent actions.
-        </p>
-        <Button variant="gradient" size="lg" onClick={() => setVisible(true)}>
-          Connect Wallet
-        </Button>
-      </div>
-    );
-  }
-
-  const walletUrl = getExplorerAccountUrl(publicKey.toBase58());
+  const walletAddress = publicKey?.toBase58() ?? 'DemoWa11etAddress1111111111111111111111111';
+  const walletUrl = getExplorerAccountUrl(walletAddress);
 
   return (
     <div className="space-y-6">
@@ -89,7 +71,7 @@ export function DashboardClient() {
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                 Connected Wallet
               </p>
-              <p className="font-mono text-sm font-medium">{publicKey.toBase58()}</p>
+              <p className="font-mono text-sm font-medium">{walletAddress}</p>
               <div className="flex items-center gap-2">
                 <Badge variant="success">Connected</Badge>
                 <Badge variant="devnet">{appConfig.solana.network}</Badge>

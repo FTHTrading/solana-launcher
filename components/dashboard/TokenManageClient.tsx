@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import Link from 'next/link';
 import {
   AlertTriangle,
@@ -31,9 +30,8 @@ interface TokenManageClientProps {
 }
 
 export function TokenManageClient({ mintAddress }: TokenManageClientProps) {
-  const { connected, publicKey } = useWallet();
+  const { publicKey } = useWallet();
   const wallet = useWallet();
-  const { setVisible } = useWalletModal();
 
   const [mintInfo, setMintInfo] = useState<MintInfo | null>(null);
   const [loading, setLoading] = useState(true);
@@ -84,15 +82,6 @@ export function TokenManageClient({ mintAddress }: TokenManageClientProps) {
     }
   };
 
-  if (!connected || !publicKey) {
-    return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
-        <h2 className="text-xl font-semibold">Connect Your Wallet</h2>
-        <Button variant="gradient" size="lg" onClick={() => setVisible(true)}>Connect Wallet</Button>
-      </div>
-    );
-  }
-
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20 gap-3 text-muted-foreground">
@@ -113,8 +102,8 @@ export function TokenManageClient({ mintAddress }: TokenManageClientProps) {
   const hasMintAuthority = !!mintInfo.mintAuthority;
   const hasFreezeAuthority = !!mintInfo.freezeAuthority;
   const isCreator =
-    (mintInfo.mintAuthority === publicKey.toBase58()) ||
-    (mintInfo.freezeAuthority === publicKey.toBase58());
+    (mintInfo.mintAuthority === publicKey?.toBase58()) ||
+    (mintInfo.freezeAuthority === publicKey?.toBase58());
 
   return (
     <div className="space-y-6">

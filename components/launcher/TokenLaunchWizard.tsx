@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { tokenFormSchema, type TokenFormData } from '@/lib/validation/token-schemas';
@@ -28,8 +26,6 @@ import { analytics } from '@/lib/analytics/analytics';
 // =============================================
 
 export function TokenLaunchWizard() {
-  const { connected } = useWallet();
-  const { setVisible } = useWalletModal();
   const [currentStep, setCurrentStep] = useState<WizardStep>(1);
 
   const { launch, txState, progressStep, appError, result, reset } = useTokenLaunch();
@@ -51,24 +47,6 @@ export function TokenLaunchWizard() {
     },
     mode: 'onTouched',
   });
-
-  // Prompt wallet connect if not connected
-  if (!connected) {
-    return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
-        <div className="h-16 w-16 rounded-full bg-brand-500/10 flex items-center justify-center">
-          <span className="text-2xl">🔌</span>
-        </div>
-        <h2 className="text-xl font-semibold">Connect Your Wallet</h2>
-        <p className="text-muted-foreground max-w-sm">
-          You need to connect a Solana wallet (Phantom or Solflare) before launching a token.
-        </p>
-        <Button variant="gradient" size="lg" onClick={() => setVisible(true)}>
-          Connect Wallet
-        </Button>
-      </div>
-    );
-  }
 
   // Success state
   if (txState.status === 'success' && result) {

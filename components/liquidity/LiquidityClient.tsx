@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
 import {
   ArrowRight,
   BarChart3,
@@ -18,7 +17,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Alert } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
-import { WalletGuard } from '@/components/wallet/WalletGuard';
 import { getPoolsForMint, type PoolInfo, type DexProvider } from '@/services/liquidity/liquidity.service';
 import { appConfig } from '@/lib/config/app-config';
 
@@ -27,7 +25,6 @@ interface LiquidityClientProps {
 }
 
 export function LiquidityClient({ initialMint = '' }: LiquidityClientProps) {
-  const { connected } = useWallet();
 
   const [mintInput, setMintInput] = useState(initialMint);
   const [pools, setPools] = useState<PoolInfo[]>([]);
@@ -53,18 +50,6 @@ export function LiquidityClient({ initialMint = '' }: LiquidityClientProps) {
   useEffect(() => {
     if (initialMint) fetchPools(initialMint);
   }, [initialMint, fetchPools]);
-
-  if (!connected) {
-    return (
-      <WalletGuard
-        icon={<Droplets className="h-6 w-6 text-sky-500" />}
-        title="Connect Your Wallet"
-        description="Connect your Solana wallet to manage liquidity."
-      >
-        <></>
-      </WalletGuard>
-    );
-  }
 
   return (
     <div className="space-y-6">

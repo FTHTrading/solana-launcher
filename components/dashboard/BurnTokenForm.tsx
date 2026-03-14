@@ -1,6 +1,5 @@
 'use client';
 
-import { useWallet } from '@solana/wallet-adapter-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { burnTokenSchema, type BurnTokenFormData } from '@/lib/validation/token-schemas';
@@ -9,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert } from '@/components/ui/alert';
 import { TransactionResultCard } from '@/components/ui/transaction-result-card';
-import { WalletGuard } from '@/components/wallet/WalletGuard';
 import { NetworkBanner } from '@/components/wallet/NetworkBanner';
 import { SolBalanceCheck } from '@/components/wallet/SolBalanceCheck';
 import { Flame } from 'lucide-react';
@@ -24,7 +22,6 @@ import { Flame } from 'lucide-react';
 // =============================================
 
 export function BurnTokenForm() {
-  const { connected } = useWallet();
   const { burn, txState, progressStep, appError, result, reset } = useBurnToken();
 
   const form = useForm<BurnTokenFormData>({
@@ -32,18 +29,6 @@ export function BurnTokenForm() {
     defaultValues: { mintAddress: '', amount: '' },
     mode: 'onTouched',
   });
-
-  if (!connected) {
-    return (
-      <WalletGuard
-        icon={<Flame className="h-6 w-6 text-destructive" />}
-        title="Connect Your Wallet"
-        description="Connect your wallet to use the burn tool."
-      >
-        <></>
-      </WalletGuard>
-    );
-  }
 
   if (txState.status === 'success' && result) {
     return (

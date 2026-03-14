@@ -5,11 +5,10 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Settings2, Search, ArrowRight } from 'lucide-react';
+import { Search, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
-import { WalletGuard } from '@/components/wallet/WalletGuard';
 import { getWalletTokenAccounts, type TokenAccount } from '@/lib/solana/portfolio';
 import { truncateAddress } from '@/lib/utils/utils';
 
@@ -53,18 +52,6 @@ export function ManageIndexClient() {
     }
     setMintInputError('');
     router.push(`/dashboard/manage/${trimmed}`);
-  }
-
-  if (!connected || !publicKey) {
-    return (
-      <WalletGuard
-        icon={<Settings2 className="h-6 w-6 text-orange-500" />}
-        title="Connect Your Wallet"
-        description="Connect your wallet to manage token authorities."
-      >
-        <></>
-      </WalletGuard>
-    );
   }
 
   return (

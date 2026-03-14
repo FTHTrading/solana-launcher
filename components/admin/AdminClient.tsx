@@ -1,13 +1,11 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 import Link from 'next/link';
 import {
-  ShieldAlert, Wallet, TrendingUp, ExternalLink,
-  RefreshCw, AlertTriangle,
+  Wallet, TrendingUp, ExternalLink,
+  RefreshCw,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,18 +23,9 @@ interface TreasuryStats {
 }
 
 export function AdminClient() {
-  const { connected, publicKey } = useWallet();
-  const { setVisible } = useWalletModal();
-
   const [stats, setStats] = useState<TreasuryStats | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const isAuthorized =
-    connected &&
-    publicKey &&
-    TREASURY_WALLET &&
-    publicKey.toBase58() === TREASURY_WALLET;
 
   const loadStats = useCallback(async () => {
     if (!TREASURY_WALLET) return;
@@ -68,46 +57,8 @@ export function AdminClient() {
   }, []);
 
   useEffect(() => {
-    if (isAuthorized) loadStats();
-  }, [isAuthorized, loadStats]);
-
-  if (!connected || !publicKey) {
-    return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
-        <div className="h-14 w-14 rounded-full bg-brand-500/10 flex items-center justify-center">
-          <ShieldAlert className="h-6 w-6 text-brand-500" />
-        </div>
-        <h2 className="text-xl font-semibold">Admin Access Required</h2>
-        <p className="text-muted-foreground max-w-sm text-sm">
-          Connect the treasury wallet to access admin controls.
-        </p>
-        <Button variant="gradient" onClick={() => setVisible(true)}>
-          Connect Wallet
-        </Button>
-      </div>
-    );
-  }
-
-  if (!isAuthorized) {
-    return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
-        <div className="h-14 w-14 rounded-full bg-destructive/10 flex items-center justify-center">
-          <AlertTriangle className="h-6 w-6 text-destructive" />
-        </div>
-        <h2 className="text-xl font-semibold">Unauthorized</h2>
-        <p className="text-sm text-muted-foreground max-w-sm">
-          Connected wallet{' '}
-          <span className="font-mono">{truncateAddress(publicKey.toBase58())}</span>{' '}
-          is not the treasury wallet. Only the treasury owner can access this page.
-        </p>
-        {!TREASURY_WALLET && (
-          <Badge variant="warning">
-            NEXT_PUBLIC_TREASURY_WALLET not set in .env
-          </Badge>
-        )}
-      </div>
-    );
-  }
+    loadStats();
+  }, [loadStats]);
 
   const treasuryUrl = `https://solscan.io/account/${TREASURY_WALLET}${
     appConfig.solana.network === 'devnet' ? '?cluster=devnet' : ''

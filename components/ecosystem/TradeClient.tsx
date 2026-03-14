@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
 import { useSearchParams } from 'next/navigation';
 import {
   ArrowRightLeft,
@@ -17,7 +16,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Alert } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
-import { WalletGuard } from '@/components/wallet/WalletGuard';
 import { appConfig } from '@/lib/config/app-config';
 
 const SOL_MINT = 'So11111111111111111111111111111111111111112';
@@ -75,24 +73,11 @@ const DEX_ROUTES: DexRoute[] = [
 ];
 
 export function TradeClient() {
-  const { connected } = useWallet();
   const searchParams = useSearchParams();
   const prefillMint = searchParams.get('mint') ?? '';
 
   const [tokenMint, setTokenMint] = useState(prefillMint);
   const [direction, setDirection] = useState<'buy' | 'sell'>('buy');
-
-  if (!connected) {
-    return (
-      <WalletGuard
-        icon={<ArrowRightLeft className="h-6 w-6 text-brand-500" />}
-        title="Connect Your Wallet"
-        description="Connect your Solana wallet to access swap routing across all major DEXs."
-      >
-        <></>
-      </WalletGuard>
-    );
-  }
 
   const inputMint = direction === 'buy' ? SOL_MINT : tokenMint;
   const outputMint = direction === 'buy' ? tokenMint : SOL_MINT;
