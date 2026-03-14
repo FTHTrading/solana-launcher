@@ -126,7 +126,8 @@ export function validateEnv(): EnvValidationResult {
   const summary: EnvValidationResult['summary'] = {};
 
   for (const v of ENV_SCHEMA) {
-    const value = process.env[v.key];
+    const raw = process.env[v.key];
+    const value = raw?.trim();
     const isSet = !!value && value.length > 0;
 
     summary[v.key] = { set: isSet, required: v.required, description: v.description };

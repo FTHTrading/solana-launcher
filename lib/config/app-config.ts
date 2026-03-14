@@ -12,7 +12,10 @@ if (typeof window === 'undefined') {
   logEnvValidation();
 }
 
-const rawNetwork = process.env.NEXT_PUBLIC_SOLANA_NETWORK ?? 'devnet';
+// Trim all env inputs to prevent trailing newline/whitespace poisoning
+const env = (key: string, fallback = '') => (process.env[key] ?? fallback).trim();
+
+const rawNetwork = env('NEXT_PUBLIC_SOLANA_NETWORK', 'devnet');
 
 function validateNetwork(n: string): SolanaNetwork {
   if (n === 'devnet' || n === 'mainnet-beta' || n === 'testnet') return n;
@@ -22,15 +25,15 @@ function validateNetwork(n: string): SolanaNetwork {
 
 export const appConfig = {
   app: {
-    name: process.env.NEXT_PUBLIC_APP_NAME ?? 'Solana Launcher',
-    url: process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
+    name: env('NEXT_PUBLIC_APP_NAME', 'Solana Launcher'),
+    url: env('NEXT_PUBLIC_APP_URL', 'http://localhost:3000'),
   },
 
   solana: {
     network: validateNetwork(rawNetwork) as SolanaNetwork,
     rpcUrl:
-      process.env.NEXT_PUBLIC_HELIUS_RPC_URL ??
-      process.env.NEXT_PUBLIC_SOLANA_RPC_URL ??
+      env('NEXT_PUBLIC_HELIUS_RPC_URL') ||
+      env('NEXT_PUBLIC_SOLANA_RPC_URL') ||
       clusterApiUrl(rawNetwork as Cluster),
     explorerBaseUrl: 'https://solscan.io',
     explorerClusterParam:
@@ -38,21 +41,18 @@ export const appConfig = {
   },
 
   fees: {
-    creationFeeSOL: parseFloat(
-      process.env.NEXT_PUBLIC_CREATION_FEE_SOL ?? '0.1'
-    ),
+    creationFeeSOL: parseFloat(env('NEXT_PUBLIC_CREATION_FEE_SOL', '0.1')),
     // Estimated network fee in SOL (covers rent + tx fees)
     estimatedNetworkFeeSOL: 0.01,
-    treasuryWallet: process.env.NEXT_PUBLIC_TREASURY_WALLET ?? '',
+    treasuryWallet: env('NEXT_PUBLIC_TREASURY_WALLET'),
   },
 
   storage: {
-    provider: (process.env.NEXT_PUBLIC_STORAGE_PROVIDER ?? 'pinata') as
+    provider: (env('NEXT_PUBLIC_STORAGE_PROVIDER', 'pinata')) as
       | 'pinata'
       | 'nft-storage'
       | 'web3-storage',
-    pinataGateway:
-      process.env.NEXT_PUBLIC_PINATA_GATEWAY ?? 'https://gateway.pinata.cloud',
+    pinataGateway: env('NEXT_PUBLIC_PINATA_GATEWAY', 'https://gateway.pinata.cloud'),
   },
 
   ecosystem: {
@@ -74,7 +74,7 @@ export const appConfig = {
       poolUrl: 'https://www.orca.so/pools',
     },
     helius: {
-      rpcUrl: process.env.NEXT_PUBLIC_HELIUS_RPC_URL ?? '',
+      rpcUrl: env('NEXT_PUBLIC_HELIUS_RPC_URL'),
     },
   },
 
