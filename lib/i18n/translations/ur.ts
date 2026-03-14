@@ -263,6 +263,33 @@ const ur: TranslationDictionary = {
   footer_architecture: 'آرکیٹیکچر',
   footer_verification: 'تصدیق',
 
+  // Sample Devnet Launch
+  section_devnetLaunch: 'آن-چین رسید',
+  section_devnetLaunch_title: 'نمونہ Devnet لانچ',
+  section_devnetLaunch_subtitle: 'اس پلیٹ فارم کے ذریعے Solana Devnet پر بنایا گیا ایک حقیقی SPL ٹوکن۔ نیچے ہر لنک Solana Explorer کھولتا ہے — کچھ بھی جعلی نہیں۔',
+  devnetLaunch_mintLabel: 'ٹوکن منٹ',
+  devnetLaunch_txLabel: 'تخلیق ٹرانزیکشن',
+  devnetLaunch_metadataLabel: 'میٹا ڈیٹا JSON (IPFS)',
+  devnetLaunch_imageLabel: 'ٹوکن تصویر (IPFS)',
+  devnetLaunch_viewMint: 'Explorer پر منٹ دیکھیں',
+  devnetLaunch_viewTx: 'ٹرانزیکشن دیکھیں',
+  devnetLaunch_viewMetadata: 'میٹا ڈیٹا دیکھیں',
+  devnetLaunch_viewImage: 'تصویر دیکھیں',
+  devnetLaunch_note: 'یہ ٹوکن launch.unykorn.org پر دستیاب اسی لانچ وزرڈ سے بنایا گیا تھا۔ Devnet ٹوکنز کی کوئی مالیاتی قدر نہیں ہے۔',
+
+  // Inline proof links on requirement cards
+  homepage_requirementProofLinks: [
+    { label1: 'لائیو فلو کھولیں', label2: 'والیٹ کوڈ دیکھیں' },
+    { label1: 'لانچ وزرڈ کھولیں', label2: 'وزرڈ کوڈ دیکھیں' },
+    { label1: 'فیس لاجک دیکھیں', label2: 'ایڈمن ڈیش بورڈ دیکھیں' },
+    { label1: 'پول فائنڈر کھولیں', label2: 'لیکویڈیٹی کوڈ دیکھیں' },
+    { label1: 'ڈیش بورڈ کھولیں', label2: 'برن کوڈ دیکھیں' },
+    { label1: 'تجویز پڑھیں', label2: 'آرکیٹیکچر دیکھیں' },
+  ],
+
+  // Legal deliverable proof
+  legal_deliverableProof: 'قانونی صفحات اور انکشاف فلو پہلے سے شامل ہیں اور آپ کے ڈپلائمنٹ دائرہ اختیار کے لیے حسب ضرورت بنائے جا سکتے ہیں۔',
+
   section_customize: 'آپ کا ورژن',
   section_customize_title: 'میں آپ کے لیے کیا حسب ضرورت بناؤں گا',
   section_customize_subtitle: 'یہ کوئی عام ڈیمو نہیں ہے۔ یہاں بتایا گیا ہے کہ آپ کے پروجیکٹ کے لیے کیا ڈھالا جائے گا۔',

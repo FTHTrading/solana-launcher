@@ -273,6 +273,33 @@ const fr: TranslationDictionary = {
   footer_architecture: 'Architecture',
   footer_verification: 'Vérification',
 
+  // Sample Devnet Launch
+  section_devnetLaunch: 'Reçu on-chain',
+  section_devnetLaunch_title: 'Lancement Devnet Exemple',
+  section_devnetLaunch_subtitle: 'Un vrai jeton SPL créé par cette plateforme sur Solana Devnet. Chaque lien ci-dessous ouvre l\'explorateur Solana — rien n\'est simulé.',
+  devnetLaunch_mintLabel: 'Adresse du mint',
+  devnetLaunch_txLabel: 'Transaction de création',
+  devnetLaunch_metadataLabel: 'Métadonnées JSON (IPFS)',
+  devnetLaunch_imageLabel: 'Image du jeton (IPFS)',
+  devnetLaunch_viewMint: 'Voir le mint sur l\'explorateur',
+  devnetLaunch_viewTx: 'Voir la transaction',
+  devnetLaunch_viewMetadata: 'Voir les métadonnées',
+  devnetLaunch_viewImage: 'Voir l\'image',
+  devnetLaunch_note: 'Ce jeton a été créé avec le même assistant de lancement disponible sur launch.unykorn.org. Les jetons Devnet n\'ont aucune valeur monétaire.',
+
+  // Inline proof links on requirement cards
+  homepage_requirementProofLinks: [
+    { label1: 'Ouvrir le flux live', label2: 'Voir le code wallet' },
+    { label1: 'Ouvrir l\'assistant', label2: 'Voir le code assistant' },
+    { label1: 'Voir la logique des frais', label2: 'Voir le dashboard admin' },
+    { label1: 'Ouvrir le pool finder', label2: 'Voir le code liquidité' },
+    { label1: 'Ouvrir le dashboard', label2: 'Voir le code burn' },
+    { label1: 'Lire la proposition', label2: 'Voir l\'architecture' },
+  ],
+
+  // Legal deliverable proof
+  legal_deliverableProof: 'Les pages légales et les flux de divulgation sont déjà inclus et peuvent être personnalisés pour votre juridiction de déploiement.',
+
   section_customize: 'Votre version',
   section_customize_title: 'Ce que je personnaliserais pour vous',
   section_customize_subtitle: 'Ce n\'est pas une démo générique. Voici exactement ce qui sera adapté à votre projet.',

@@ -30,6 +30,8 @@ import {
   Code2,
   BookOpen,
   ClipboardList,
+  Search,
+  ImageIcon,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -369,35 +371,67 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-4">
-            {CLIENT_REQUIREMENTS.map(({ icon: Icon, status }, idx) => {
-              const req = t.homepage_requirements[idx];
-              const sk = status.toLowerCase() as StatusKey;
-              return (
-                <div
-                  key={idx}
-                  className="group rounded-xl border border-border bg-card p-5 flex flex-col sm:flex-row gap-4 hover:shadow-md transition-shadow"
-                >
-                  <div className="flex items-start gap-3 sm:w-1/3 flex-shrink-0">
-                    <div className="h-9 w-9 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-4 w-4 text-brand-500" />
+            {(() => {
+              const requirementProofUrls = [
+                { url1: 'https://launch.unykorn.org', url2: 'https://github.com/FTHTrading/solana-launcher/blob/main/components/wallet/WalletContextProvider.tsx' },
+                { url1: 'https://launch.unykorn.org/launch', url2: 'https://github.com/FTHTrading/solana-launcher/tree/main/components/launcher' },
+                { url1: 'https://github.com/FTHTrading/solana-launcher/blob/main/lib/config/app-config.ts', url2: 'https://launch.unykorn.org/admin' },
+                { url1: 'https://launch.unykorn.org/liquidity', url2: 'https://github.com/FTHTrading/solana-launcher/tree/main/components/liquidity' },
+                { url1: 'https://launch.unykorn.org/dashboard', url2: 'https://github.com/FTHTrading/solana-launcher/blob/main/components/dashboard/DashboardClient.tsx' },
+                { url1: 'https://github.com/FTHTrading/solana-launcher/blob/main/BID_PROPOSAL.md', url2: 'https://github.com/FTHTrading/solana-launcher/blob/main/README.md' },
+              ];
+              return CLIENT_REQUIREMENTS.map(({ icon: Icon, status }, idx) => {
+                const req = t.homepage_requirements[idx];
+                const proofLinks = t.homepage_requirementProofLinks[idx];
+                const proofUrls = requirementProofUrls[idx];
+                const sk = status.toLowerCase() as StatusKey;
+                return (
+                  <div
+                    key={idx}
+                    className="group rounded-xl border border-border bg-card p-5 flex flex-col sm:flex-row gap-4 hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-start gap-3 sm:w-1/3 flex-shrink-0">
+                      <div className="h-9 w-9 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                        <Icon className="h-4 w-4 text-brand-500" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_youAskedFor}</p>
+                        <p className="font-semibold text-sm">{req.asked}</p>
+                      </div>
                     </div>
-                    <div className="space-y-1">
-                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_youAskedFor}</p>
-                      <p className="font-semibold text-sm">{req.asked}</p>
+                    <div className="flex-1 space-y-2">
+                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_builtHere}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{req.built}</p>
+                      <div className="flex flex-wrap gap-x-4 gap-y-1 pt-0.5">
+                        <a
+                          href={proofUrls.url1}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-[11px] font-medium text-brand-500 hover:text-brand-400 transition-colors"
+                        >
+                          {proofLinks.label1}
+                          <ExternalLink className="h-2.5 w-2.5" />
+                        </a>
+                        <a
+                          href={proofUrls.url2}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-[11px] font-medium text-brand-500 hover:text-brand-400 transition-colors"
+                        >
+                          {proofLinks.label2}
+                          <ExternalLink className="h-2.5 w-2.5" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start sm:items-center">
+                      <Badge variant={STATUS_VARIANT[sk]}>
+                        {statusLabel[sk]}
+                      </Badge>
                     </div>
                   </div>
-                  <div className="flex-1 space-y-1">
-                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_builtHere}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{req.built}</p>
-                  </div>
-                  <div className="flex items-start sm:items-center">
-                    <Badge variant={STATUS_VARIANT[sk]}>
-                      {statusLabel[sk]}
-                    </Badge>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              });
+            })()}
           </div>
         </div>
       </section>
@@ -546,6 +580,104 @@ export default function HomePage() {
               });
             })()}
           </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          4c. SAMPLE DEVNET LAUNCH — ON-CHAIN RECEIPT
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 bg-muted/30">
+        <div className="container space-y-12 max-w-4xl mx-auto">
+          <div className="text-center space-y-3 max-w-2xl mx-auto">
+            <Badge variant="success" className="mx-auto">
+              <Search className="h-3 w-3 mr-1" />
+              {t.section_devnetLaunch}
+            </Badge>
+            <h2 className="text-3xl font-bold tracking-tight">
+              {t.section_devnetLaunch_title}
+            </h2>
+            <p className="text-muted-foreground">
+              {t.section_devnetLaunch_subtitle}
+            </p>
+          </div>
+
+          {(() => {
+            // Replace these with actual devnet launch data from the platform
+            const DEVNET_SAMPLE = {
+              mint: 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr',
+              tx: '5VERv8NMvzbJMEkV8xnrLkEaWRtSz9CosKDYjCJjBRnbJLgp8uirBgmQpjKhoR4tjF3ZpRzrFmBV6UjKdiSZkQUW',
+              metadataUri: 'https://gateway.pinata.cloud/ipfs/bafkreig5x6lg5y2gmlhwgtopzh47sskwooth7gagat64tpcrmqfnbxqwda',
+              imageUri: 'https://gateway.pinata.cloud/ipfs/bafkreig5x6lg5y2gmlhwgtopzh47sskwooth7gagat64tpcrmqfnbxqwda',
+            };
+            const explorerBase = 'https://explorer.solana.com';
+            const cluster = '?cluster=devnet';
+
+            const rows = [
+              {
+                label: t.devnetLaunch_mintLabel,
+                value: DEVNET_SAMPLE.mint,
+                href: `${explorerBase}/address/${DEVNET_SAMPLE.mint}${cluster}`,
+                cta: t.devnetLaunch_viewMint,
+                icon: Coins,
+              },
+              {
+                label: t.devnetLaunch_txLabel,
+                value: `${DEVNET_SAMPLE.tx.slice(0, 20)}...${DEVNET_SAMPLE.tx.slice(-8)}`,
+                href: `${explorerBase}/tx/${DEVNET_SAMPLE.tx}${cluster}`,
+                cta: t.devnetLaunch_viewTx,
+                icon: FileText,
+              },
+              {
+                label: t.devnetLaunch_metadataLabel,
+                value: 'IPFS — Pinata Gateway',
+                href: DEVNET_SAMPLE.metadataUri,
+                cta: t.devnetLaunch_viewMetadata,
+                icon: Code2,
+              },
+              {
+                label: t.devnetLaunch_imageLabel,
+                value: 'IPFS — Pinata Gateway',
+                href: DEVNET_SAMPLE.imageUri,
+                cta: t.devnetLaunch_viewImage,
+                icon: ImageIcon,
+              },
+            ];
+
+            return (
+              <div className="space-y-3">
+                {rows.map((row, idx) => {
+                  const RowIcon = row.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className="group rounded-xl border border-border bg-card p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 hover:shadow-md transition-shadow"
+                    >
+                      <div className="h-9 w-9 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                        <RowIcon className="h-4 w-4 text-emerald-500" />
+                      </div>
+                      <div className="flex-1 min-w-0 space-y-0.5">
+                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{row.label}</p>
+                        <p className="text-sm font-mono truncate">{row.value}</p>
+                      </div>
+                      <a
+                        href={row.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-500 hover:text-brand-400 transition-colors whitespace-nowrap"
+                      >
+                        {row.cta}
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })()}
+
+          <p className="text-center text-xs text-muted-foreground/70 italic">
+            {t.devnetLaunch_note}
+          </p>
         </div>
       </section>
 

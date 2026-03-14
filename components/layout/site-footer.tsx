@@ -57,6 +57,9 @@ export function SiteFooter() {
               <li><Link href="/privacy" className="hover:text-foreground transition-colors">{t.footer_privacy}</Link></li>
               <li><Link href="/risk-disclosure" className="hover:text-foreground transition-colors">{t.footer_riskDisclosure}</Link></li>
             </ul>
+            <p className="text-xs text-muted-foreground/70 leading-relaxed pt-1">
+              {t.legal_deliverableProof}
+            </p>
           </div>
         </div>
 

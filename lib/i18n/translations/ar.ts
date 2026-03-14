@@ -263,6 +263,33 @@ const ar: TranslationDictionary = {
   footer_architecture: 'الهيكلية',
   footer_verification: 'التحقق',
 
+  // Sample Devnet Launch
+  section_devnetLaunch: 'إيصال على السلسلة',
+  section_devnetLaunch_title: 'إطلاق تجريبي على Devnet',
+  section_devnetLaunch_subtitle: 'رمز SPL حقيقي تم سكّه بواسطة هذه المنصة على Solana Devnet. كل رابط أدناه يفتح مستكشف Solana — لا شيء مزيف.',
+  devnetLaunch_mintLabel: 'عنوان السك',
+  devnetLaunch_txLabel: 'معاملة الإنشاء',
+  devnetLaunch_metadataLabel: 'بيانات وصفية JSON (IPFS)',
+  devnetLaunch_imageLabel: 'صورة الرمز (IPFS)',
+  devnetLaunch_viewMint: 'عرض السك في المستكشف',
+  devnetLaunch_viewTx: 'عرض المعاملة',
+  devnetLaunch_viewMetadata: 'عرض البيانات الوصفية',
+  devnetLaunch_viewImage: 'عرض الصورة',
+  devnetLaunch_note: 'تم إنشاء هذا الرمز باستخدام نفس معالج الإطلاق المتاح على launch.unykorn.org. رموز Devnet ليس لها قيمة نقدية.',
+
+  // Inline proof links on requirement cards
+  homepage_requirementProofLinks: [
+    { label1: 'افتح التدفق المباشر', label2: 'عرض كود المحفظة' },
+    { label1: 'افتح معالج الإطلاق', label2: 'عرض كود المعالج' },
+    { label1: 'عرض منطق الرسوم', label2: 'عرض لوحة الإدارة' },
+    { label1: 'افتح باحث المجمعات', label2: 'عرض كود السيولة' },
+    { label1: 'افتح لوحة التحكم', label2: 'عرض كود الحرق' },
+    { label1: 'اقرأ العرض', label2: 'عرض الهيكلية' },
+  ],
+
+  // Legal deliverable proof
+  legal_deliverableProof: 'الصفحات القانونية وتدفقات الإفصاح مدرجة بالفعل ويمكن تخصيصها لولايتك القضائية.',
+
   section_customize: 'نسختك',
   section_customize_title: 'ما سأخصصه لك',
   section_customize_subtitle: 'هذا ليس عرضاً عاماً. إليك بالضبط ما يتم تخصيصه لمشروعك.',

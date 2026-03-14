@@ -273,6 +273,33 @@ const en: TranslationDictionary = {
   footer_architecture: 'Architecture',
   footer_verification: 'Verification',
 
+  // Sample Devnet Launch
+  section_devnetLaunch: 'On-Chain Receipt',
+  section_devnetLaunch_title: 'Sample Devnet Launch',
+  section_devnetLaunch_subtitle: 'A real SPL token minted by this platform on Solana Devnet. Every link below opens the Solana Explorer — nothing is mocked.',
+  devnetLaunch_mintLabel: 'Token Mint',
+  devnetLaunch_txLabel: 'Creation Transaction',
+  devnetLaunch_metadataLabel: 'Metadata JSON (IPFS)',
+  devnetLaunch_imageLabel: 'Token Image (IPFS)',
+  devnetLaunch_viewMint: 'View Mint on Explorer',
+  devnetLaunch_viewTx: 'View Transaction',
+  devnetLaunch_viewMetadata: 'View Metadata',
+  devnetLaunch_viewImage: 'View Image',
+  devnetLaunch_note: 'This token was created using the same launch wizard available at launch.unykorn.org. Devnet tokens have no monetary value.',
+
+  // Inline proof links on requirement cards
+  homepage_requirementProofLinks: [
+    { label1: 'Open live flow', label2: 'View wallet code' },
+    { label1: 'Open launch wizard', label2: 'View wizard code' },
+    { label1: 'View fee logic', label2: 'View admin dashboard' },
+    { label1: 'Open pool finder', label2: 'View liquidity code' },
+    { label1: 'Open dashboard', label2: 'View burn code' },
+    { label1: 'Read proposal', label2: 'View architecture' },
+  ],
+
+  // Legal deliverable proof
+  legal_deliverableProof: 'Legal pages and disclosure flows are already included and can be customized for your deployment jurisdiction.',
+
   section_customize: 'Your Version',
   section_customize_title: 'What I Would Customize For You',
   section_customize_subtitle: 'This is not a generic demo. Here is exactly what gets tailored to your project.',

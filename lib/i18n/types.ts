@@ -197,6 +197,26 @@ export interface TranslationDictionary {
   footer_architecture: string;
   footer_verification: string;
 
+  // Sample Devnet Launch
+  section_devnetLaunch: string;
+  section_devnetLaunch_title: string;
+  section_devnetLaunch_subtitle: string;
+  devnetLaunch_mintLabel: string;
+  devnetLaunch_txLabel: string;
+  devnetLaunch_metadataLabel: string;
+  devnetLaunch_imageLabel: string;
+  devnetLaunch_viewMint: string;
+  devnetLaunch_viewTx: string;
+  devnetLaunch_viewMetadata: string;
+  devnetLaunch_viewImage: string;
+  devnetLaunch_note: string;
+
+  // Inline proof links on requirement cards
+  homepage_requirementProofLinks: Array<{ label1: string; label2: string }>;
+
+  // Legal deliverable proof
+  legal_deliverableProof: string;
+
   // FAQ
   faq_items: Array<{ q: string; a: string }>;
 

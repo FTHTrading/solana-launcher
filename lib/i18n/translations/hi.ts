@@ -263,6 +263,33 @@ const hi: TranslationDictionary = {
   footer_architecture: 'आर्किटेक्चर',
   footer_verification: 'वेरिफिकेशन',
 
+  // Sample Devnet Launch
+  section_devnetLaunch: 'ऑन-चेन रसीद',
+  section_devnetLaunch_title: 'सैंपल Devnet लॉन्च',
+  section_devnetLaunch_subtitle: 'इस प्लेटफ़ॉर्म द्वारा Solana Devnet पर मिंट किया गया एक असली SPL टोकन। नीचे हर लिंक Solana Explorer खोलता है — कुछ भी नकली नहीं है।',
+  devnetLaunch_mintLabel: 'टोकन मिंट',
+  devnetLaunch_txLabel: 'क्रिएशन ट्रांजैक्शन',
+  devnetLaunch_metadataLabel: 'मेटाडेटा JSON (IPFS)',
+  devnetLaunch_imageLabel: 'टोकन इमेज (IPFS)',
+  devnetLaunch_viewMint: 'Explorer पर मिंट देखें',
+  devnetLaunch_viewTx: 'ट्रांजैक्शन देखें',
+  devnetLaunch_viewMetadata: 'मेटाडेटा देखें',
+  devnetLaunch_viewImage: 'इमेज देखें',
+  devnetLaunch_note: 'यह टोकन launch.unykorn.org पर उपलब्ध उसी लॉन्च विज़ार्ड से बनाया गया था। Devnet टोकन का कोई मौद्रिक मूल्य नहीं है।',
+
+  // Inline proof links on requirement cards
+  homepage_requirementProofLinks: [
+    { label1: 'लाइव फ्लो खोलें', label2: 'वॉलेट कोड देखें' },
+    { label1: 'लॉन्च विज़ार्ड खोलें', label2: 'विज़ार्ड कोड देखें' },
+    { label1: 'फ़ीस लॉजिक देखें', label2: 'एडमिन डैशबोर्ड देखें' },
+    { label1: 'पूल फ़ाइंडर खोलें', label2: 'लिक्विडिटी कोड देखें' },
+    { label1: 'डैशबोर्ड खोलें', label2: 'बर्न कोड देखें' },
+    { label1: 'प्रस्ताव पढ़ें', label2: 'आर्किटेक्चर देखें' },
+  ],
+
+  // Legal deliverable proof
+  legal_deliverableProof: 'कानूनी पेज और प्रकटीकरण फ्लो पहले से शामिल हैं और आपके डिप्लॉयमेंट क्षेत्राधिकार के लिए अनुकूलित किए जा सकते हैं।',
+
   section_customize: 'आपका संस्करण',
   section_customize_title: 'मैं आपके लिए क्या कस्टमाइज़ करूंगा',
   section_customize_subtitle: 'यह कोई जेनेरिक डेमो नहीं है। यहां बताया गया है कि आपके प्रोजेक्ट के लिए क्या अनुकूलित किया जाएगा।',
