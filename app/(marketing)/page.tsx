@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -28,6 +30,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { appConfig } from '@/lib/config/app-config';
 import { FaqSection } from '@/components/launcher/FaqSection';
+import { useTranslation } from '@/lib/i18n/i18n-context';
 
 /* ─── Data ────────────────────────────────────────────────────────── */
 
@@ -173,6 +176,13 @@ const PHASE3_ITEMS = [
 ];
 
 export default function HomePage() {
+  const { t, isRtl } = useTranslation();
+  const ArrowIcon = isRtl ? (props: React.SVGProps<SVGSVGElement>) => (
+    <svg {...props} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m7-7l-7 7 7 7" />
+    </svg>
+  ) : ArrowRight;
+
   return (
     <>
       {/* ══════════════════════════════════════════════════════════════
@@ -199,40 +209,38 @@ export default function HomePage() {
           </div>
 
           <Badge variant="info" className="mx-auto">
-            {appConfig.solana.network === 'devnet' ? '🔧 Running on Devnet' : '🚀 Live on Mainnet'}
+            {appConfig.solana.network === 'devnet' ? t.hero_badge_devnet : t.hero_badge_mainnet}
           </Badge>
 
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-            Solana SPL Token{' '}
-            <span className="text-brand-500">Launch Platform</span>
+            {t.hero_title}{' '}
+            <span className="text-brand-500">{t.hero_titleAccent}</span>
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A production-grade, non-custodial token launcher with 23+ capabilities across launch,
-            management, ecosystem integrations, and monetization. White-label ready. 15+ Solana
-            partner integrations. Already built. Already verified.
+            {t.hero_subtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="xl" variant="gradient" asChild>
               <Link href="/launch">
-                Launch Token
-                <ArrowRight className="ml-2 h-5 w-5" />
+                {t.hero_cta_launch}
+                <ArrowIcon className={`h-5 w-5 ${isRtl ? 'mr-2' : 'ml-2'}`} />
               </Link>
             </Button>
             <Button size="xl" variant="outline" asChild>
-              <Link href="#whats-built">View What&apos;s Built</Link>
+              <Link href="#whats-built">{t.hero_cta_view}</Link>
             </Button>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-sm text-muted-foreground">
             {[
-              'Wallet-based launch flow',
-              'Premium tiers & referrals',
-              'White-label ready',
-              '15+ ecosystem partners',
-              'Post-launch automation',
-              'Production hardened',
+              t.hero_pill_wallet,
+              t.hero_pill_tiers,
+              t.hero_pill_whiteLabel,
+              t.hero_pill_partners,
+              t.hero_pill_postLaunch,
+              t.hero_pill_hardened,
             ].map((point) => (
               <div key={point} className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0" />
@@ -249,12 +257,12 @@ export default function HomePage() {
       <section className="py-20 bg-muted/30">
         <div className="container space-y-12 max-w-5xl mx-auto">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
-            <Badge variant="info" className="mx-auto">Direct Response</Badge>
+            <Badge variant="info" className="mx-auto">{t.section_directResponse}</Badge>
             <h2 className="text-3xl font-bold tracking-tight">
-              Your Request, Translated Into a Real System
+              {t.section_directResponse_title}
             </h2>
             <p className="text-muted-foreground">
-              Every item from the original brief is addressed below. This is not a promise — it is built.
+              {t.section_directResponse_subtitle}
             </p>
           </div>
 
@@ -269,12 +277,12 @@ export default function HomePage() {
                     <Icon className="h-4 w-4 text-brand-500" />
                   </div>
                   <div className="space-y-1">
-                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">You asked for</p>
+                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_youAskedFor}</p>
                     <p className="font-semibold text-sm">{asked}</p>
                   </div>
                 </div>
                 <div className="flex-1 space-y-1">
-                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Built here</p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_builtHere}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{built}</p>
                 </div>
                 <div className="flex items-start sm:items-center">
@@ -295,11 +303,10 @@ export default function HomePage() {
         <div className="container space-y-12 max-w-6xl mx-auto">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold tracking-tight">
-              What&apos;s Already Built
+              {t.section_whatsBuilt}
             </h2>
             <p className="text-muted-foreground">
-              23 capabilities across launch, management, monetization, ecosystem, and infrastructure.
-              Each one is implemented, not planned.
+              {t.section_whatsBuilt_subtitle}
             </p>
           </div>
 
@@ -341,13 +348,13 @@ export default function HomePage() {
           <div className="text-center space-y-3 max-w-2xl mx-auto">
             <Badge variant="success" className="mx-auto">
               <Terminal className="h-3 w-3 mr-1" />
-              Production-Grade
+              {t.section_hardening}
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight">
-              This Is Not a Mockup. This Is Engineered.
+              {t.section_hardening_title}
             </h2>
             <p className="text-muted-foreground">
-              Real metrics from the codebase. No invented numbers.
+              {t.section_hardening_subtitle}
             </p>
           </div>
 
@@ -380,15 +387,17 @@ export default function HomePage() {
       <section id="how-it-works" className="py-20">
         <div className="container space-y-12">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tight">How It Works</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{t.section_howItWorks}</h2>
             <p className="text-muted-foreground">
-              Four steps from zero to a live SPL token on Solana. Every step is guided and validated.
+              {t.section_howItWorks_subtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {STEPS.map((s, idx) => {
               const StepIcon = s.icon;
+              const stepTitles = [t.step1_title, t.step2_title, t.step3_title, t.step4_title];
+              const stepDescs = [t.step1_desc, t.step2_desc, t.step3_desc, t.step4_desc];
               return (
                 <div key={s.step} className="relative space-y-3">
                   {idx < STEPS.length - 1 && (
@@ -399,8 +408,8 @@ export default function HomePage() {
                   </div>
                   <div className="space-y-1">
                     <p className="text-xs font-medium text-brand-500">{s.step}</p>
-                    <h3 className="font-semibold">{s.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{s.description}</p>
+                    <h3 className="font-semibold">{stepTitles[idx]}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{stepDescs[idx]}</p>
                   </div>
                 </div>
               );
@@ -410,8 +419,8 @@ export default function HomePage() {
           <div className="text-center">
             <Button size="lg" variant="gradient" asChild>
               <Link href="/launch">
-                Start Now — Free on Devnet
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {t.common_startNow}
+                <ArrowIcon className={`h-4 w-4 ${isRtl ? 'mr-2' : 'ml-2'}`} />
               </Link>
             </Button>
           </div>
@@ -425,11 +434,10 @@ export default function HomePage() {
         <div className="container space-y-12 max-w-6xl mx-auto">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold tracking-tight">
-              Full Platform — Built Across Three Phases
+              {t.section_phases_title}
             </h2>
             <p className="text-muted-foreground">
-              Phase 1 delivered the MVP. Phase 2 is complete — premium tiers, white-label,
-              ecosystem integrations, and referral system. Phase 3 expands into on-chain SDKs.
+              {t.section_phases_subtitle}
             </p>
           </div>
 
@@ -439,9 +447,9 @@ export default function HomePage() {
               <CardHeader className="border-b bg-emerald-500/5">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-emerald-500" />
-                  <CardTitle className="text-base">Phase 1 — MVP</CardTitle>
+                  <CardTitle className="text-base">{t.phase1_title}</CardTitle>
                 </div>
-                <CardDescription>Core launch platform</CardDescription>
+                <CardDescription>{t.phase1_desc}</CardDescription>
               </CardHeader>
               <CardContent className="pt-4">
                 <ul className="space-y-2">
@@ -460,10 +468,10 @@ export default function HomePage() {
               <CardHeader className="border-b bg-brand-500/5">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-brand-500" />
-                  <CardTitle className="text-base">Phase 2 — Growth</CardTitle>
-                  <Badge variant="success" className="ml-auto text-[10px]">Complete</Badge>
+                  <CardTitle className="text-base">{t.phase2_title}</CardTitle>
+                  <Badge variant="success" className="ml-auto text-[10px]">{t.common_complete}</Badge>
                 </div>
-                <CardDescription>Monetization, ecosystem, white-label</CardDescription>
+                <CardDescription>{t.phase2_desc}</CardDescription>
               </CardHeader>
               <CardContent className="pt-4">
                 <ul className="space-y-2">
@@ -482,9 +490,9 @@ export default function HomePage() {
               <CardHeader className="border-b bg-blue-500/5">
                 <div className="flex items-center gap-2">
                   <Layers className="h-5 w-5 text-blue-500" />
-                  <CardTitle className="text-base">Phase 3 — Expansion</CardTitle>
+                  <CardTitle className="text-base">{t.phase3_title}</CardTitle>
                 </div>
-                <CardDescription>On-chain SDKs, i18n, mobile</CardDescription>
+                <CardDescription>{t.phase3_desc}</CardDescription>
               </CardHeader>
               <CardContent className="pt-4">
                 <ul className="space-y-2">
@@ -508,10 +516,10 @@ export default function HomePage() {
         <div className="container space-y-12 max-w-5xl mx-auto">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold tracking-tight">
-              Feasibility, Complexity & Cost
+              {t.section_feasibility}
             </h2>
             <p className="text-muted-foreground">
-              Direct answers to the questions you asked in the brief.
+              {t.section_feasibility_subtitle}
             </p>
           </div>
 
@@ -521,14 +529,11 @@ export default function HomePage() {
                 <div className="h-10 w-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-2">
                   <CheckCircle2 className="h-5 w-5 text-emerald-500" />
                 </div>
-                <CardTitle className="text-base">Feasibility</CardTitle>
+                <CardTitle className="text-base">{t.feasibility_title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong className="text-foreground">Highly feasible.</strong> SPL token creation
-                  uses well-documented Solana primitives. The core launch wizard, wallet adapter, IPFS
-                  upload, and fee architecture are all production-proven patterns. This MVP is
-                  already fully functional.
+                  {t.feasibility_text}
                 </p>
               </CardContent>
             </Card>
@@ -538,14 +543,11 @@ export default function HomePage() {
                 <div className="h-10 w-10 rounded-lg bg-amber-500/10 flex items-center justify-center mb-2">
                   <TrendingUp className="h-5 w-5 text-amber-500" />
                 </div>
-                <CardTitle className="text-base">Complexity</CardTitle>
+                <CardTitle className="text-base">{t.complexity_title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong className="text-foreground">Moderate for MVP. Higher for Phase 2.</strong>{' '}
-                  Token creation + fee enforcement is straightforward. Complexity increases significantly
-                  with on-chain liquidity pools (Raydium/Meteora SDK integration) and advanced authority
-                  controls.
+                  {t.complexity_text}
                 </p>
               </CardContent>
             </Card>
@@ -555,14 +557,11 @@ export default function HomePage() {
                 <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-2">
                   <Scale className="h-5 w-5 text-blue-500" />
                 </div>
-                <CardTitle className="text-base">Cost & Scope</CardTitle>
+                <CardTitle className="text-base">{t.cost_title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong className="text-foreground">MVP is fixed-scope.</strong> Everything in
-                  the MVP column is built and included. Phase 2 features are scoped separately —
-                  no obligation. Quality depends on not overloading the initial release with
-                  speculative features.
+                  {t.cost_text}
                 </p>
               </CardContent>
             </Card>
@@ -577,10 +576,10 @@ export default function HomePage() {
         <div className="container space-y-12 max-w-4xl mx-auto">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold tracking-tight">
-              Why This Is Not a Generic Clone
+              {t.section_whyDifferent}
             </h2>
             <p className="text-muted-foreground">
-              Most bids promise features. This one delivers a system.
+              {t.section_whyDifferent_subtitle}
             </p>
           </div>
 
@@ -635,34 +634,34 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container max-w-3xl mx-auto space-y-8">
           <div className="text-center space-y-3">
-            <h2 className="text-3xl font-bold tracking-tight">Simple, Transparent Pricing</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{t.section_pricing}</h2>
             <p className="text-muted-foreground">
-              One flat fee. No hidden costs. You see the exact amount before signing.
+              {t.section_pricing_subtitle}
             </p>
           </div>
 
           <Card className="overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-brand-500/10 to-transparent border-b">
-              <CardTitle>Token Creation</CardTitle>
-              <CardDescription>Everything included in a single payment</CardDescription>
+              <CardTitle>{t.pricing_tokenCreation}</CardTitle>
+              <CardDescription>{t.pricing_included}</CardDescription>
             </CardHeader>
             <CardContent className="pt-6 space-y-4">
               <div className="flex items-center justify-between py-2 border-b">
-                <span className="text-sm">Platform fee</span>
+                <span className="text-sm">{t.pricing_platformFee}</span>
                 <span className="font-mono font-semibold">
                   {appConfig.fees.creationFeeSOL} SOL
                 </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b">
                 <span className="text-sm text-muted-foreground">
-                  Estimated network / rent fee
+                  {t.pricing_networkFee}
                 </span>
                 <span className="font-mono text-muted-foreground text-sm">
                   ~{appConfig.fees.estimatedNetworkFeeSOL} SOL
                 </span>
               </div>
               <div className="flex items-center justify-between py-2">
-                <span className="font-medium">Estimated total</span>
+                <span className="font-medium">{t.pricing_total}</span>
                 <span className="font-mono font-bold text-lg">
                   ~{(appConfig.fees.creationFeeSOL + appConfig.fees.estimatedNetworkFeeSOL).toFixed(3)} SOL
                 </span>
@@ -684,7 +683,7 @@ export default function HomePage() {
           </Card>
 
           <p className="text-xs text-center text-muted-foreground/70">
-            Devnet launches use test SOL and are free. Switch to Mainnet when you are ready.
+            {t.pricing_devnetNote}
           </p>
         </div>
       </section>
@@ -694,7 +693,7 @@ export default function HomePage() {
         <div className="container max-w-3xl mx-auto space-y-8">
           <div className="text-center space-y-3">
             <h2 className="text-3xl font-bold tracking-tight">
-              Frequently Asked Questions
+              {t.section_faq}
             </h2>
           </div>
           <FaqSection />
@@ -707,28 +706,26 @@ export default function HomePage() {
       <section className="py-24 bg-gradient-to-b from-brand-500/5 to-transparent">
         <div className="container text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Build the Launcher Correctly From Day One
+            {t.section_cta_title}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A production-minded Solana SPL token launch platform with a clean user flow,
-            honest architecture, and room to grow. Already built. Already verified.
-            Ready to deploy.
+            {t.section_cta_subtitle}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="xl" variant="gradient" asChild>
               <Link href="/launch">
-                Launch Token
-                <ArrowRight className="ml-2 h-5 w-5" />
+                {t.hero_cta_launch}
+                <ArrowIcon className={`h-5 w-5 ${isRtl ? 'mr-2' : 'ml-2'}`} />
               </Link>
             </Button>
             <Button size="xl" variant="outline" asChild>
               <Link href="/dashboard">
-                View Dashboard
+                {t.common_viewDashboard}
               </Link>
             </Button>
           </div>
           <p className="text-xs text-muted-foreground pt-4">
-            Questions about Phase 2, custom requirements, or deployment?{' '}
+            {t.common_contactCta}{' '}
             <a
               href="mailto:kevan@unykorn.org?subject=Solana%20Launcher%20—%20Project%20Discussion"
               className="text-brand-500 hover:text-brand-400 font-medium underline underline-offset-2"

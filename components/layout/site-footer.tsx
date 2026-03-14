@@ -1,8 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 import { Rocket } from 'lucide-react';
 import { appConfig } from '@/lib/config/app-config';
+import { useTranslation } from '@/lib/i18n/i18n-context';
 
 export function SiteFooter() {
+  const { t } = useTranslation();
+
   return (
     <footer className="border-t border-border/50 bg-background">
       <div className="container py-12">
@@ -14,32 +19,31 @@ export function SiteFooter() {
               <span>{appConfig.app.name}</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              A simple, transparent tool for creating Solana SPL tokens. 
-              No technical knowledge required.
+              {t.footer_desc}
             </p>
             <p className="text-xs text-muted-foreground/60">
-              Network: {appConfig.solana.network}
+              {t.footer_network}: {appConfig.solana.network}
             </p>
           </div>
 
           {/* Product */}
           <div className="space-y-3">
-            <h4 className="text-sm font-medium">Product</h4>
+            <h4 className="text-sm font-medium">{t.footer_product}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/#features" className="hover:text-foreground transition-colors">Features</Link></li>
-              <li><Link href="/#how-it-works" className="hover:text-foreground transition-colors">How It Works</Link></li>
-              <li><Link href="/#faq" className="hover:text-foreground transition-colors">FAQ</Link></li>
-              <li><Link href="/launch" className="hover:text-foreground transition-colors">Launch Token</Link></li>
+              <li><Link href="/#features" className="hover:text-foreground transition-colors">{t.nav_features}</Link></li>
+              <li><Link href="/#how-it-works" className="hover:text-foreground transition-colors">{t.nav_howItWorks}</Link></li>
+              <li><Link href="/#faq" className="hover:text-foreground transition-colors">{t.nav_faq}</Link></li>
+              <li><Link href="/launch" className="hover:text-foreground transition-colors">{t.footer_launchToken}</Link></li>
             </ul>
           </div>
 
           {/* Legal */}
           <div className="space-y-3">
-            <h4 className="text-sm font-medium">Legal</h4>
+            <h4 className="text-sm font-medium">{t.footer_legal}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link></li>
-              <li><Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/risk-disclosure" className="hover:text-foreground transition-colors">Risk Disclosure</Link></li>
+              <li><Link href="/terms" className="hover:text-foreground transition-colors">{t.footer_terms}</Link></li>
+              <li><Link href="/privacy" className="hover:text-foreground transition-colors">{t.footer_privacy}</Link></li>
+              <li><Link href="/risk-disclosure" className="hover:text-foreground transition-colors">{t.footer_riskDisclosure}</Link></li>
             </ul>
           </div>
         </div>
@@ -47,21 +51,13 @@ export function SiteFooter() {
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-border/30 space-y-3">
           <p className="text-xs text-muted-foreground/70 leading-relaxed max-w-3xl">
-            <strong>Risk Disclosure:</strong> Launching tokens on public blockchains carries
-            significant financial and legal risks. This tool is provided as infrastructure
-            software only. You are solely responsible for ensuring your token launch complies
-            with all applicable laws and regulations in your jurisdiction. Token launchers
-            may have regulatory implications depending on how tokens are marketed, sold, or
-            distributed. This is not financial or legal advice.
+            {t.footer_riskText}
           </p>
           <p className="text-xs text-muted-foreground/60 leading-relaxed max-w-3xl">
-            <strong>Jurisdictional Notice:</strong> The regulatory treatment of digital tokens
-            varies by country. Users in Kuwait should be aware of CBK Circular No. 2/RB/336/2014
-            and related guidance from the Capital Markets Authority. Users across the Gulf and MENA
-            region should independently verify compliance with local laws before proceeding.
+            {t.footer_jurisdictionText}
           </p>
           <p className="text-xs text-muted-foreground/50">
-            © {new Date().getFullYear()} {appConfig.app.name}. Not affiliated with Solana Foundation.
+            © {new Date().getFullYear()} {appConfig.app.name}. {t.common_notAffiliated}
           </p>
         </div>
       </div>

@@ -4,6 +4,7 @@ import './globals.css';
 import { WalletContextProvider } from '@/components/wallet/WalletContextProvider';
 import { appConfig } from '@/lib/config/app-config';
 import { ReactQueryProvider } from '@/components/providers/ReactQueryProvider';
+import { I18nProvider } from '@/lib/i18n/i18n-context';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-geist-sans' });
 
@@ -39,9 +40,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans`}>
-        <ReactQueryProvider>
-          <WalletContextProvider>{children}</WalletContextProvider>
-        </ReactQueryProvider>
+        <I18nProvider>
+          <ReactQueryProvider>
+            <WalletContextProvider>{children}</WalletContextProvider>
+          </ReactQueryProvider>
+        </I18nProvider>
       </body>
     </html>
   );

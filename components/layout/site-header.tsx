@@ -7,11 +7,14 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { Badge } from '@/components/ui/badge';
 import { appConfig, isMainnet } from '@/lib/config/app-config';
 import { truncateAddress } from '@/lib/utils/utils';
+import { useTranslation } from '@/lib/i18n/i18n-context';
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 
 const TREASURY_WALLET = process.env.NEXT_PUBLIC_TREASURY_WALLET ?? '';
 
 export function SiteHeader() {
   const { publicKey, connected } = useWallet();
+  const { t } = useTranslation();
   const isAdmin = connected && publicKey && TREASURY_WALLET && publicKey.toBase58() === TREASURY_WALLET;
 
   return (
@@ -39,44 +42,45 @@ export function SiteHeader() {
           {!connected && (
             <>
               <Link href="/#features" className="text-muted-foreground hover:text-foreground transition-colors">
-                Features
+                {t.nav_features}
               </Link>
               <Link href="/#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">
-                How It Works
+                {t.nav_howItWorks}
               </Link>
               <Link href="/#faq" className="text-muted-foreground hover:text-foreground transition-colors">
-                FAQ
+                {t.nav_faq}
               </Link>
             </>
           )}
           {connected && (
             <>
               <Link href="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">
-                Dashboard
+                {t.nav_dashboard}
               </Link>
               <Link href="/launch" className="text-muted-foreground hover:text-foreground transition-colors">
-                Launch
+                {t.nav_launch}
               </Link>
               <Link href="/trade" className="text-muted-foreground hover:text-foreground transition-colors">
-                Trade
+                {t.nav_trade}
               </Link>
               <Link href="/liquidity" className="text-muted-foreground hover:text-foreground transition-colors">
-                Liquidity
+                {t.nav_liquidity}
               </Link>
               <Link href="/ecosystem" className="text-muted-foreground hover:text-foreground transition-colors">
-                Ecosystem
+                {t.nav_ecosystem}
               </Link>
               {isAdmin && (
                 <Link href="/admin" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-amber-500">
-                  Admin
+                  {t.nav_admin}
                 </Link>
               )}
             </>
           )}
         </nav>
 
-        {/* Wallet */}
+        {/* Wallet + Language */}
         <div className="flex items-center gap-3">
+          <LanguageSwitcher />
           {connected && publicKey && (
             <span className="hidden sm:block text-xs text-muted-foreground font-mono">
               {truncateAddress(publicKey.toBase58())}
