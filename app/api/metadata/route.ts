@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import type { TokenMetadata } from '@/types';
 import { getStorageAdapter } from '@/lib/storage/storage';
 import { isRateLimited, getIpKey } from '@/lib/rate-limit/rate-limit';
+import { createLogger } from '@/lib/logger/logger';
+
+const log = createLogger('api/metadata');
 
 // =============================================
 // POST /api/metadata
@@ -12,7 +15,7 @@ import { isRateLimited, getIpKey } from '@/lib/rate-limit/rate-limit';
 
 export async function POST(req: NextRequest) {
   // Rate limit
-  if (isRateLimited(getIpKey(req.headers), { maxRequests: 10, windowMs: 60_000 })) {
+  if (await isRateLimited(getIpKey(req.headers), { maxRequests: 10, windowMs: 60_000 })) {
     return NextResponse.json(
       { error: 'Too many requests. Please wait a moment.' },
       { status: 429 }
@@ -31,12 +34,13 @@ export async function POST(req: NextRequest) {
     }
 
     const storage = getStorageAdapter();
-    const result = await storage.uploadMetadata(body);
+    const result = await log.timed('IPFS metadata upload', () => storage.uploadMetadata(body));
 
+    log.info('Metadata uploaded', { name: body.name, symbol: body.symbol });
     return NextResponse.json({ uri: result.uri }, { status: 200 });
   } catch (err) {
     const msg = err instanceof Error ? err.message : 'Unknown error';
-    console.error('[api/metadata] Upload failed:', msg);
+    log.error('Metadata upload failed', { error: msg });
     return NextResponse.json(
       { error: `Metadata upload failed: ${msg}` },
       { status: 500 }

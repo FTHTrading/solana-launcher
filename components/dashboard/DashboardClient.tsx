@@ -15,6 +15,8 @@ import { Badge } from '@/components/ui/badge';
 import { appConfig, getExplorerAccountUrl } from '@/lib/config/app-config';
 import { truncateAddress } from '@/lib/utils/utils';
 import { getWalletTokenAccounts, type TokenAccount } from '@/lib/solana/portfolio';
+import { NetworkBanner } from '@/components/wallet/NetworkBanner';
+import { SolBalanceCheck } from '@/components/wallet/SolBalanceCheck';
 
 // =============================================
 // DASHBOARD CLIENT
@@ -75,6 +77,10 @@ export function DashboardClient() {
 
   return (
     <div className="space-y-6">
+      {/* Network + balance */}
+      <NetworkBanner />
+      <SolBalanceCheck />
+
       {/* Wallet summary */}
       <Card>
         <CardContent className="pt-6">

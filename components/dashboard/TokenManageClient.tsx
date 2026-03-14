@@ -23,6 +23,8 @@ import { getMintInfo, type MintInfo } from '@/lib/solana/portfolio';
 import { revokeAuthority, type AuthorityKind } from '@/services/token-authority/revoke-authority.service';
 import { getExplorerTxUrl, getExplorerTokenUrl } from '@/lib/config/app-config';
 import { truncateAddress } from '@/lib/utils/utils';
+import { NetworkBanner } from '@/components/wallet/NetworkBanner';
+import { SolBalanceCheck } from '@/components/wallet/SolBalanceCheck';
 
 interface TokenManageClientProps {
   mintAddress: string;
@@ -117,6 +119,10 @@ export function TokenManageClient({ mintAddress }: TokenManageClientProps) {
   return (
     <div className="space-y-6">
 
+      {/* Network + balance awareness */}
+      <NetworkBanner />
+      <SolBalanceCheck />
+
       {/* Token header */}
       <Card>
         <CardContent className="pt-6">
@@ -191,7 +197,10 @@ export function TokenManageClient({ mintAddress }: TokenManageClientProps) {
 
       {/* Error */}
       {revokeError && (
-        <Alert variant="destructive" title="Revocation failed">
+        <Alert
+          variant={revokeError.includes('cancelled') || revokeError.includes('rejected') ? 'warning' : 'destructive'}
+          title={revokeError.includes('cancelled') || revokeError.includes('rejected') ? 'Transaction Cancelled' : 'Revocation failed'}
+        >
           {revokeError}
         </Alert>
       )}

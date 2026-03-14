@@ -79,13 +79,20 @@ export function LiquidityClient({ initialMint = '' }: LiquidityClientProps) {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Adding liquidity creates a trading pair for your token on a decentralised exchange.
                 Users can then swap SOL for your token — this is what gives it a live price.
-                Supported DEXs: <strong>Raydium AMM V4</strong>, <strong>Meteora DLMM</strong>,{' '}
-                <strong>Orca Whirlpool</strong>, and <strong>Jupiter LP</strong>.
               </p>
             </div>
           </div>
         </CardContent>
       </Card>
+
+      {/* Integration status notice */}
+      <Alert variant="warning" title="Current Capabilities">
+        <ul className="text-xs space-y-1 mt-1">
+          <li><strong>Live now:</strong> Pool discovery via Raydium &amp; Meteora APIs, price estimation, existing pool details</li>
+          <li><strong>Deep-link:</strong> Pre-filled links to create pools on Raydium, Meteora, Orca, and trade on Jupiter</li>
+          <li><strong>Pending:</strong> Direct in-app transaction building for pool creation (requires Raydium SDK v2 / Meteora DLMM SDK integration)</li>
+        </ul>
+      </Alert>
 
       {/* Pool lookup */}
       <div className="space-y-3">
@@ -248,14 +255,14 @@ function RaydiumAddLiquidity({ mintAddress }: { mintAddress: string }) {
             )}
           >
             <Plus className="h-4 w-4 mr-2" />
-            Create Pool on Raydium
+            Open Raydium Pool Creator
             <ExternalLink className="h-3 w-3 ml-1.5" />
           </Button>
         </div>
 
         <p className="text-xs text-muted-foreground">
-          Opens Raydium pool creation with your token pre-filled.
-          Full in-app pool creation with transaction builder is available as an upgrade.
+          Opens Raydium&apos;s pool creation page with your token pre-filled.
+          You will complete the transaction on Raydium directly.
         </p>
       </CardContent>
     </Card>
@@ -302,7 +309,8 @@ function MeteoraAddLiquidity({ mintAddress }: { mintAddress: string }) {
         </div>
 
         <p className="text-xs text-muted-foreground">
-          Full in-app DLMM pool creation with bin configuration is available as an upgrade.
+          Opens Meteora&apos;s DLMM pool creation page with your token pre-filled.
+          You will complete the transaction on Meteora directly.
         </p>
       </CardContent>
     </Card>

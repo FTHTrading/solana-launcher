@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getStorageAdapter } from '@/lib/storage/storage';
 import { appConfig } from '@/lib/config/app-config';
 import { isRateLimited, getIpKey } from '@/lib/rate-limit/rate-limit';
+import { createLogger } from '@/lib/logger/logger';
+
+const log = createLogger('api/upload');
 
 // =============================================
 // POST /api/upload
@@ -12,7 +15,9 @@ import { isRateLimited, getIpKey } from '@/lib/rate-limit/rate-limit';
 
 export async function POST(req: NextRequest) {
   // Rate limit: 10 uploads per minute per IP
-  if (isRateLimited(getIpKey(req.headers), { maxRequests: 10, windowMs: 60_000 })) {
+  const ip = getIpKey(req.headers);
+  if (await isRateLimited(ip, { maxRequests: 10, windowMs: 60_000 })) {
+    log.warn('Rate limited', { ip });
     return NextResponse.json(
       { error: 'Too many requests. Please wait a moment before uploading again.' },
       { status: 429 }
@@ -44,12 +49,13 @@ export async function POST(req: NextRequest) {
     }
 
     const storage = getStorageAdapter();
-    const result = await storage.uploadFile(file);
+    const result = await log.timed('IPFS upload', () => storage.uploadFile(file));
 
+    log.info('Upload complete', { fileType: file.type, fileSize: file.size });
     return NextResponse.json({ uri: result.uri }, { status: 200 });
   } catch (err) {
     const msg = err instanceof Error ? err.message : 'Unknown error';
-    console.error('[api/upload] Upload failed:', msg);
+    log.error('Upload failed', { error: msg });
     return NextResponse.json(
       { error: `Upload failed: ${msg}` },
       { status: 500 }

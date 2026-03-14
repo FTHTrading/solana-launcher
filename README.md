@@ -21,7 +21,7 @@
 
 <br/>
 
-**60+ source files · 15 static routes · TypeScript strict mode · Kuwait/GCC jurisdiction-aware disclosures**
+**80+ source files · 15 static routes · 58+ unit tests · TypeScript strict mode · Kuwait/GCC jurisdiction-aware disclosures**
 
 <br/>
 
@@ -470,7 +470,7 @@ curl -X POST $BASE/api/upload \
 | **Forms** | React Hook Form + Zod | 7.x / 3.x | Validated wizard forms, typed schemas |
 | **Data Fetching** | TanStack Query | 5.x | Server-state, caching, background retries |
 | **IPFS** | Pinata SDK | 2.x | Image + JSON metadata upload (server-side only) |
-| **Rate Limiting** | In-memory sliding window | custom | 10 req/min per IP on all upload routes |
+| **Rate Limiting** | Upstash Redis + in-memory fallback | @upstash/ratelimit | 10 req/min per IP, distributed across instances |
 | **UI Primitives** | Radix UI Slot | 1.x | Accessible `asChild` composition pattern |
 
 ---
@@ -735,7 +735,9 @@ solana-launcher/
 │   │   └── site-footer.tsx                ← Links · legal notice · social · jurisdiction warning
 │   │
 │   ├── 📁 wallet/
-│   │   └── WalletContextProvider.tsx      ← Phantom + Solflare + Backpack adapter configuration
+│   │   ├── WalletContextProvider.tsx      ← Phantom + Solflare + Backpack adapter configuration
+│   │   ├── NetworkBanner.tsx              ← Devnet/Mainnet/Testnet network indicator banner
+│   │   └── SolBalanceCheck.tsx            ← Inline SOL balance warning component
 │   │
 │   └── 📁 providers/
 │       └── ReactQueryProvider.tsx         ← TanStack Query client setup + provider
@@ -754,18 +756,20 @@ solana-launcher/
 │
 ├── 📁 hooks/                              ← React custom hooks (UI ↔ services glue)
 │   ├── useTokenLaunch.ts                  ← Complete launch flow as a hook with status machine
-│   └── useBurnToken.ts                    ← Burn flow as a hook
+│   ├── useBurnToken.ts                    ← Burn flow as a hook
+│   └── useSOLBalance.ts                   ← Wallet SOL balance tracking + low balance warning
 │
 ├── 📁 lib/                                ← Pure utilities + configuration (no React)
 │   ├── 📁 config/
-│   │   └── app-config.ts                  ← Single source of truth — reads all env vars
+│   │   ├── app-config.ts                  ← Single source of truth — reads all env vars
+│   │   └── env-validation.ts              ← Schema-based env validation + placeholder detection
 │   ├── 📁 solana/
 │   │   ├── connection.ts                  ← getConnection() singleton — reuses RPC connection
 │   │   └── portfolio.ts                   ← getWalletTokenAccounts · getMintInfo · Metaplex
 │   ├── 📁 storage/
 │   │   └── storage.ts                     ← uploadImage · uploadMetadata (Pinata wrappers)
 │   ├── 📁 rate-limit/
-│   │   └── rate-limit.ts                  ← Sliding window · Upstash Redis upgrade path
+│   │   └── rate-limit.ts                  ← Upstash Redis distributed rate limiter + in-memory fallback
 │   ├── 📁 validation/
 │   │   └── token-schemas.ts               ← Zod schemas: TokenFormData · MintParams · etc.
 │   ├── 📁 analytics/
@@ -786,7 +790,17 @@ solana-launcher/
 ├── ARCHITECTURE.md                        ← Deep-dive architecture decisions
 ├── DEPLOYMENT.md                          ← Production deployment runbook
 ├── SECURITY_NOTES.md                      ← Threat model + attack surface analysis
-└── FUTURE_ROADMAP.md                      ← Sprint 2+ features with estimates
+├── FUTURE_ROADMAP.md                      ← Sprint 2+ features with estimates
+├── vitest.config.ts                       ← Test runner configuration + path aliases
+├── 📁 __tests__/                          ← Unit test suite (vitest, 32 tests)
+│   ├── 📁 lib/
+│   │   ├── utils.test.ts                  ← 14 tests: truncateAddress, formatNumber, formatSOL, isValidUrl
+│   │   ├── errors.test.ts                 ← 10 tests: createAppError, parseBlockchainError, errorMessage
+│   │   └── env-validation.test.ts         ← 2 tests: missing vars, placeholder detection
+│   └── 📁 services/
+│       └── fees.test.ts                   ← 6 tests: calculateFees, PRICING_TIERS
+└── 📁 scripts/
+    └── verify.sh                          ← Full CI pipeline: type-check → lint → test → build
 ```
 
 ---
@@ -844,8 +858,11 @@ solana-launcher/
 
 | Feature | Implementation | Location |
 |---|---|---|
-| Rate limit — upload | 10 req/min/IP sliding window | `lib/rate-limit/rate-limit.ts` + `api/upload/route.ts` |
-| Rate limit — metadata | 10 req/min/IP sliding window | `api/metadata/route.ts` |
+| Rate limit — upload | 10 req/min/IP — Upstash Redis (distributed) | `lib/rate-limit/rate-limit.ts` + `api/upload/route.ts` |
+| Rate limit — metadata | 10 req/min/IP — Upstash Redis (distributed) | `api/metadata/route.ts` |
+| Env validation | Schema-based startup validation + placeholder detection | `lib/config/env-validation.ts` |
+| SOL balance check | Warns user before transactions if SOL is low | `hooks/useSOLBalance.ts` + `components/wallet/SolBalanceCheck.tsx` |
+| Network banner | Prominent devnet/mainnet/testnet indicator | `components/wallet/NetworkBanner.tsx` |
 | Pinata JWT server-only | Never in `NEXT_PUBLIC_` prefix | `app/api/upload/route.ts` |
 | Admin wallet gate | `publicKey.toBase58() === TREASURY_WALLET` | `components/admin/AdminClient.tsx` |
 | Non-custodial design | Wallet adapter signs; platform never sees keys | `hooks/useTokenLaunch.ts` |
@@ -976,6 +993,8 @@ npm run dev
 | `NEXT_PUBLIC_MIXPANEL_TOKEN` | none | Mixpanel analytics |
 | `DATABASE_URL` | none | Optional Prisma DB for launch history |
 | `DIRECT_URL` | none | Supabase direct connection URL |
+| `UPSTASH_REDIS_REST_URL` | none | Upstash Redis URL for distributed rate limiting |
+| `UPSTASH_REDIS_REST_TOKEN` | none | Upstash Redis auth token (paired with URL) |
 
 ---
 
@@ -1039,7 +1058,7 @@ PINATA_JWT=PASTE_YOUR_JWT_HERE
 ### Step 5 — Install and Run
 
 ```bash
-npm install          # installs all 62 dependencies including Solana SDK
+npm install          # installs all 40 dependencies including Solana SDK
 npm run dev          # starts Next.js dev server
 ```
 
@@ -1095,6 +1114,9 @@ Expected: Landing page loads, no console errors.
 | **Serve production** | `npm run start` | Runs the `.next/` build locally |
 | **Lint** | `npm run lint` | ESLint pass |
 | **Type check** | `npx tsc --noEmit` | TypeScript strict pass — 0 errors required |
+| **Test** | `npm run test` | Vitest — 32 unit tests across 4 suites |
+| **Test (watch)** | `npm run test:watch` | Vitest in watch mode for development |
+| **Full verify** | `npm run verify` | Type-check → lint → test → build (CI pipeline) |
 
 ---
 
@@ -1455,9 +1477,9 @@ User private keys    Stolen                            Never touched by platform
 / seed phrase        → wallet drained                  Wallet adapter signs locally.
                                                        Platform only gets signatures.
 
-API abuse            Spam uploads                      Sliding window: 10 req/min/IP
+API abuse            Spam uploads                      Upstash Redis: 10 req/min/IP
                      → Pinata bill spikes              on /api/upload and /api/metadata.
-                                                       Upgrade to Upstash for distributed.
+                                                       Distributed across all instances.
 
 Admin route          Unauthorized treasury             Client-side wallet check:
                      data accessed                     publicKey.toBase58() === TREASURY.
@@ -1477,22 +1499,22 @@ Supply manipulation  User mints extra tokens           Revoke mint authority aft
 ```typescript
 // lib/rate-limit/rate-limit.ts
 
-// Sliding window algorithm:
-// - Maintains a Map<ip, number[]> of request timestamps
-// - On each request: filter timestamps older than windowMs
-// - If remaining count > max: reject with 429
-// - Otherwise: record timestamp, allow
+// Distributed rate limiting via Upstash Redis:
+// - Primary: @upstash/ratelimit with slidingWindow algorithm
+// - Fallback: In-memory Map<ip, number[]> when UPSTASH_REDIS_REST_URL not set
+// - async isRateLimited(identifier, opts?) → boolean
+
+// Upstash Redis config (set in .env.local):
+//   UPSTASH_REDIS_REST_URL=https://xxx.upstash.io
+//   UPSTASH_REDIS_REST_TOKEN=AXxx...
 
 config: {
   windowMs: 60_000,   // 1 minute window
   max: 10,            // 10 requests per window per IP
 }
 
-// Upgrade path to distributed (Upstash Redis):
-// Replace in-memory Map with:
-//   import { Ratelimit } from "@upstash/ratelimit"
-//   import { Redis } from "@upstash/redis"
-// (documented in comments at bottom of rate-limit.ts)
+// Falls back to in-memory sliding window when Upstash is not configured.
+// In-memory fallback is suitable for single-instance dev but not production.
 ```
 
 ---
@@ -1539,7 +1561,7 @@ Launch history          Not stored by default   Optional: add DATABASE_URL
 | **Atomic fee in same transaction** | Solana guarantees atomicity at transaction level. Putting the fee transfer in the same transaction as the mint creation makes partial charges architecturally impossible — not just unlikely. |
 | **Re-broadcast loop** | Solana transactions expire if not confirmed within ~90 seconds. The official Solana pattern is to re-send every 2s until the blockhash expires or the tx confirms. Without this, network congestion causes silent failures. |
 | **Server-side IPFS upload** | Pinata JWT must never be in `NEXT_PUBLIC_` variables. The Next.js API route (`/api/upload`) acts as a server proxy — it holds the JWT and the browser only ever sends FormData. |
-| **Sliding window rate limiter** | Fixed window has burst vulnerabilities at window boundaries. Token bucket is stateful and complex. Sliding window gives accurate "last 60 seconds" counting with O(n) cleanup. |
+| **Upstash Redis rate limiter** | Distributed sliding window via `@upstash/ratelimit`. Fixed window has burst vulnerabilities at window boundaries. Sliding window gives accurate "last 60 seconds" counting. Falls back to in-memory Map when Upstash is not configured (dev mode). |
 | **`'use client'` on all UI primitives** | Next.js 14 App Router treats all components as Server Components by default. Any component that uses `@radix-ui/react-slot` (which calls `useContext` internally) must be a Client Component or hydration fails with React error #143. |
 
 ---
@@ -1613,7 +1635,7 @@ npx tsc --noEmit && npm run build
 | `TRANSACTION_EXPIRED` | Block expired before confirmation | Already handled by re-broadcast loop — happens rarely on congested network |
 | `Insufficient lamports` | Low SOL balance (devnet) | Request airdrop at https://faucet.solana.com |
 | `bigint: Failed to load bindings` | WASM not available in SSR context | **Non-fatal.** Falls back to pure JS. Safe to ignore. |
-| `429 Too Many Requests` | Rate limit hit on upload or metadata | Wait 60 seconds. Adjust limit in `lib/rate-limit/rate-limit.ts` if needed. |
+| `429 Too Many Requests` | Rate limit hit on upload or metadata | Wait 60 seconds. Uses Upstash Redis when configured, in-memory fallback otherwise. |
 | `PINATA_JWT not set` | Missing env var | Copy `.env.example` → `.env.local`, set `PINATA_JWT` |
 | `Invalid treasury wallet` | Bad base58 key in env | Copy your Phantom public key: 44 base58 characters |
 | Admin page blank / no data | Wrong wallet connected | Connect the wallet matching `NEXT_PUBLIC_TREASURY_WALLET` |
@@ -1643,12 +1665,15 @@ Fix:
 |---|---|---|
 | TypeScript `--noEmit` | ✅ 0 errors | Strict mode, ES2020 target |
 | `npm run build` | ✅ Exit 0 | All 15 routes compiled |
+| `npm run test` | ✅ 32 passing | Vitest — 4 test suites |
+| `npm run verify` | ✅ | Type-check → lint → test → build |
 | Static pages | ✅ 15 / 15 | All routes pre-rendered |
 | `npm run dev` | ✅ 200 OK | Compiles in ~4.8s |
-| Source files | 62 | `.tsx` · `.ts` · `.mjs` |
+| Source files | 81 | `.tsx` · `.ts` · `.mjs` |
 | Legal documents | 3 | ToS · Privacy · Risk Disclosure |
 | Wallet support | 3 | Phantom · Solflare · Backpack |
 | Networks | 2 | Devnet · Mainnet-Beta |
+| Rate limiting | Distributed | Upstash Redis + in-memory fallback |
 
 ---
 

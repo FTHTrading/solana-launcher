@@ -1,10 +1,16 @@
 import { clusterApiUrl, type Cluster } from '@solana/web3.js';
 import type { SolanaNetwork } from '@/types';
+import { logEnvValidation } from './env-validation';
 
 // =============================================
 // APP CONFIGURATION
 // All magic values must come from here.
 // =============================================
+
+// Validate env vars once on startup (server-side only)
+if (typeof window === 'undefined') {
+  logEnvValidation();
+}
 
 const rawNetwork = process.env.NEXT_PUBLIC_SOLANA_NETWORK ?? 'devnet';
 

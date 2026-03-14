@@ -16,6 +16,8 @@ import { StepLaunch } from '@/components/launcher/steps/StepLaunch';
 import { LaunchSuccess } from '@/components/launcher/LaunchSuccess';
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
+import { NetworkBanner } from '@/components/wallet/NetworkBanner';
+import { SolBalanceCheck } from '@/components/wallet/SolBalanceCheck';
 import { analytics } from '@/lib/analytics/analytics';
 
 // =============================================
@@ -147,12 +149,20 @@ export function TokenLaunchWizard() {
         currentStep={currentStep}
       />
 
-      {/* Error banner */}
-      {appError && (
+      {/* Network + balance awareness */}
+      <NetworkBanner />
+      <SolBalanceCheck threshold={0.05} />
+
+      {/* Error banner — wallet rejection gets a gentler treatment */}
+      {appError && appError.code === 'WALLET_REJECTED' ? (
+        <Alert variant="warning" title="Transaction Cancelled">
+          {appError.userMessage}
+        </Alert>
+      ) : appError ? (
         <Alert variant="destructive" title="Transaction Failed">
           {appError.userMessage}
         </Alert>
-      )}
+      ) : null}
 
       {/* Step content */}
       <div className="bg-card border border-border rounded-xl p-6 md:p-8">

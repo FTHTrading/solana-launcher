@@ -10,6 +10,8 @@ import { Input } from '@/components/ui/input';
 import { Alert } from '@/components/ui/alert';
 import { TransactionResultCard } from '@/components/ui/transaction-result-card';
 import { WalletGuard } from '@/components/wallet/WalletGuard';
+import { NetworkBanner } from '@/components/wallet/NetworkBanner';
+import { SolBalanceCheck } from '@/components/wallet/SolBalanceCheck';
 import { Flame } from 'lucide-react';
 
 // =============================================
@@ -66,11 +68,18 @@ export function BurnTokenForm() {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-      {appError && (
+      <NetworkBanner />
+      <SolBalanceCheck />
+
+      {appError && appError.code === 'WALLET_REJECTED' ? (
+        <Alert variant="warning" title="Transaction Cancelled">
+          {appError.userMessage}
+        </Alert>
+      ) : appError ? (
         <Alert variant="destructive" title="Burn Failed">
           {appError.userMessage}
         </Alert>
-      )}
+      ) : null}
 
       {/* Irreversible warning */}
       <Alert variant="warning" title="Irreversible Action">
