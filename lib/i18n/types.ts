@@ -174,6 +174,15 @@ export interface TranslationDictionary {
   homepage_timelineItems: Array<{ phase: string; time: string; detail: string }>;
   homepage_timelineNote: string;
 
+  // Scorecard table
+  section_scorecard: string;
+  section_scorecard_title: string;
+  section_scorecard_subtitle: string;
+  scorecard_col_youAsked: string;
+  scorecard_col_status: string;
+  scorecard_col_forYou: string;
+  homepage_scorecardItems: Array<{ asked: string; status: string; forYou: string }>;
+
   // FAQ
   faq_items: Array<{ q: string; a: string }>;
 

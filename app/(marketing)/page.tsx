@@ -304,6 +304,48 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
+          1c. SCORECARD — YOUR BRIEF vs. WHAT'S BUILT
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="py-16">
+        <div className="container max-w-3xl mx-auto space-y-6">
+          <div className="text-center space-y-3">
+            <Badge variant="info" className="mx-auto">{t.section_scorecard}</Badge>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+              {t.section_scorecard_title}
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              {t.section_scorecard_subtitle}
+            </p>
+          </div>
+
+          <div className="overflow-x-auto rounded-xl border border-border">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b bg-muted/50">
+                  <th className="text-start px-4 py-3 font-semibold">{t.scorecard_col_youAsked}</th>
+                  <th className="text-center px-4 py-3 font-semibold">{t.scorecard_col_status}</th>
+                  <th className="text-start px-4 py-3 font-semibold">{t.scorecard_col_forYou}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {t.homepage_scorecardItems.map((row, idx) => (
+                  <tr key={idx} className="border-b last:border-0 hover:bg-muted/30 transition-colors">
+                    <td className="px-4 py-3 font-medium">{row.asked}</td>
+                    <td className="px-4 py-3 text-center">
+                      <Badge variant={idx === t.homepage_scorecardItems.length - 1 ? 'warning' : 'success'} className="text-[10px]">
+                        {row.status}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">{row.forYou}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
           2. YOUR REQUEST, TRANSLATED INTO A REAL SYSTEM
       ══════════════════════════════════════════════════════════════ */}
       <section className="py-20 bg-muted/30">
