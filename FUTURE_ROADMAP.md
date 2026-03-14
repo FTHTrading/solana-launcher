@@ -63,7 +63,54 @@ All items below are built and integrated.
 
 ---
 
-## Phase 3 — On-Chain SDK & Expansion
+## Phase 3 — Multilingual UX Foundation (Complete)
+
+Client-side internationalization shipped with persistent locale switching and RTL support.
+
+- [x] **5-language UI support** — EN, AR (RTL), FR, HI, UR (RTL) with ~100 translation keys each
+  - Implementation: `lib/i18n/translations/en.ts`, `ar.ts`, `fr.ts`, `hi.ts`, `ur.ts`
+- [x] **Type-safe translation system** — `TranslationDictionary` interface with compile-time key validation
+  - Implementation: `lib/i18n/types.ts`
+- [x] **I18n provider + hook** — React Context with `useTranslation()`, SSR-safe hydration, localStorage persistence
+  - Implementation: `lib/i18n/i18n-context.tsx`
+- [x] **RTL support** — Dynamic `html dir` + `lang` attribute updates, CSS RTL utilities for margins, flex, text alignment
+  - Implementation: `app/globals.css` (RTL section), `lib/i18n/i18n-context.tsx`
+- [x] **Language switcher** — Dropdown with flags, native labels, active indicator
+  - Implementation: `components/layout/LanguageSwitcher.tsx`
+- [x] **Translated marketing surfaces** — Hero, section titles, steps, pricing, feasibility, FAQ, CTA, header, footer
+  - Implementation: `app/(marketing)/page.tsx`, `site-header.tsx`, `site-footer.tsx`
+- Commit: `61e9405`
+
+---
+
+## Phase 4 — Translation Coverage & RTL Polish
+
+Extend i18n to all product flows and audit RTL visual parity.
+
+- [ ] **Dashboard translation coverage** — Portfolio, token management, admin panels
+- [ ] **Launch wizard translation** — All 4 steps, validation messages, presets, confirmation
+- [ ] **Error + toast translation** — Validation errors, wallet rejection, RPC failures, success confirmations
+- [ ] **Hardcoded string sweep** — Systematic audit for remaining English-only strings across all views
+- [ ] **RTL visual QA** — Breakpoint-by-breakpoint audit of Arabic + Urdu layouts (icon direction, spacing, dropdowns, mixed LTR data)
+- [ ] **Locale persistence across flows** — Language carries through auth, wallet, token creation, receipts
+- [ ] **Mobile language switcher** — Responsive dropdown behavior on small screens
+
+---
+
+## Phase 5 — SEO-Grade Internationalization
+
+Full search engine discoverability for multilingual audiences.
+
+- [ ] **Locale-aware metadata** — `<title>`, `<meta description>`, Open Graph per language
+- [ ] **`hreflang` tags** — Proper `<link rel="alternate" hreflang="...">` for all 5 locales
+- [ ] **Canonical strategy** — Prevent duplicate content across language variants
+- [ ] **Optional locale-prefixed routes** — `/ar/`, `/fr/`, `/hi/`, `/ur/` if targeting organic search traffic
+- [ ] **Server-aware locale handling** — Cookie/header-based detection for SSR metadata
+- [ ] **Launch success share card** — OG image generation with locale-aware text for social sharing
+
+---
+
+## Phase 6 — On-Chain SDK & Expansion
 
 Architecture prepared. These items require deeper SDK integration:
 
@@ -73,9 +120,7 @@ Architecture prepared. These items require deeper SDK integration:
   - Integration points documented in `services/liquidity/liquidity.service.ts`
 - [ ] **Custom Rust on-chain programs** — For bespoke tokenomics, custom fee enforcement, or advanced pool mechanics
 - [ ] **Launch analytics dashboard** — Conversion funnel, revenue tracking, Birdeye API integration
-- [ ] **Multi-language support** — EN, AR, FR, HI, UR with full RTL support
 - [ ] **Mobile-optimized PWA** — Progressive web app with wallet deep links
-- [ ] **Launch success share card** — OG image generation for sharing on X/Twitter
 
 ---
 
