@@ -44,6 +44,9 @@ export function SiteHeader() {
               <Link href="/#features" className="text-muted-foreground hover:text-foreground transition-colors">
                 {t.nav_features}
               </Link>
+              <Link href="/#proof" className="text-muted-foreground hover:text-foreground transition-colors">
+                {t.nav_proof}
+              </Link>
               <Link href="/#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">
                 {t.nav_howItWorks}
               </Link>

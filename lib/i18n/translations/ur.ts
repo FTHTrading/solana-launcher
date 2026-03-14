@@ -241,6 +241,28 @@ const ur: TranslationDictionary = {
     { asked: 'ٹوکن مینجمنٹ', status: 'بنا ہوا', forYou: 'ضرورت کے مطابق اضافی کنٹرولز' },
     { asked: 'لیکویڈیٹی پاتھ', status: 'تیار', forYou: 'اختیاری — MVP کے بعد شامل کیا جا سکتا ہے' },
   ],
+
+  // Proof section
+  nav_proof: 'ثبوت',
+  hero_cta_proof: 'ثبوت دیکھیں',
+  section_proof: 'ثبوت، وعدے نہیں',
+  section_proof_title: 'ہر دعویٰ قابل تصدیق ہے',
+  section_proof_subtitle: 'یہ کوئی پچ ڈیک نہیں ہے۔ اس صفحے پر بیان کی گئی ہر صلاحیت کے پیچھے ایک لائیو لنک، سورس فائل، یا تصدیقی کمانڈ ہے۔',
+  homepage_proofCards: [
+    { title: 'لائیو ایپ', desc: 'پورا پلیٹ فارم ابھی Devnet پر لائیو اور ٹیسٹ کے قابل ہے۔ والیٹ جوڑیں اور مکمل فلو آزمائیں۔', linkLabel: 'لائیو آزمائیں ←' },
+    { title: 'سورس کوڈ', desc: 'مکمل ریپوزٹری — 81+ فائلیں، 18 روٹس، TypeScript strict موڈ، صفر ایررز۔', linkLabel: 'ریپوزٹری دیکھیں ←' },
+    { title: 'تصدیقی کمانڈ', desc: 'ایک کمانڈ TypeScript چیکس، 32 ٹیسٹ اور مکمل Next.js پروڈکشن بلڈ چلاتی ہے۔', linkLabel: 'npm run verify' },
+    { title: 'سیٹ اپ گائیڈ', desc: 'کلون کریں، انسٹال کریں، ترتیب دیں، اور 5 منٹ سے کم میں مقامی طور پر چلائیں۔', linkLabel: 'سیٹ اپ پڑھیں ←' },
+    { title: 'آرکیٹیکچر دستاویزات', desc: 'سسٹم ڈیزائن، ٹیک اسٹیک، فائل ڈھانچہ، اور ڈپلائمنٹ آرکیٹیکچر — سب دستاویزی۔', linkLabel: 'دستاویزات پڑھیں ←' },
+    { title: 'تجویز اور اسکوپ نقشہ', desc: 'مکمل اسکوپ تفصیل: مراحل، قیمتیں، ٹائم لائن، اور ڈیلیوریبلز۔', linkLabel: 'تجویز پڑھیں ←' },
+  ],
+  footer_proof: 'ثبوت',
+  footer_liveApp: 'لائیو ایپ',
+  footer_sourceCode: 'سورس کوڈ',
+  footer_setupGuide: 'سیٹ اپ گائیڈ',
+  footer_architecture: 'آرکیٹیکچر',
+  footer_verification: 'تصدیق',
+
   section_customize: 'آپ کا ورژن',
   section_customize_title: 'میں آپ کے لیے کیا حسب ضرورت بناؤں گا',
   section_customize_subtitle: 'یہ کوئی عام ڈیمو نہیں ہے۔ یہاں بتایا گیا ہے کہ آپ کے پروجیکٹ کے لیے کیا ڈھالا جائے گا۔',

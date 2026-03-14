@@ -251,6 +251,28 @@ const fr: TranslationDictionary = {
     { asked: 'Gestion des tokens', status: 'Construit', forYou: 'Contrôles supplémentaires si nécessaire' },
     { asked: 'Chemin de liquidité', status: 'Préparé', forYou: 'Optionnel — ajout possible après le MVP' },
   ],
+
+  // Proof section
+  nav_proof: 'Preuves',
+  hero_cta_proof: 'Voir les preuves',
+  section_proof: 'Preuves, pas promesses',
+  section_proof_title: 'Chaque affirmation est vérifiable',
+  section_proof_subtitle: 'Ceci n\'est pas un pitch deck. Chaque capacité décrite sur cette page a un lien live, un fichier source ou une commande de vérification derrière elle.',
+  homepage_proofCards: [
+    { title: 'App en direct', desc: 'La plateforme complète est en ligne et testable sur Devnet maintenant. Connectez un wallet et testez le flux complet.', linkLabel: 'Essayer en direct →' },
+    { title: 'Code source', desc: 'Dépôt complet — 81+ fichiers, 18 routes, TypeScript strict mode, zéro erreur.', linkLabel: 'Voir le dépôt →' },
+    { title: 'Commande de vérification', desc: 'Une seule commande lance les vérifications TypeScript, 32 tests et un build de production Next.js complet.', linkLabel: 'npm run verify' },
+    { title: 'Guide d\'installation', desc: 'Clonez, installez, configurez et lancez la plateforme localement en moins de 5 minutes.', linkLabel: 'Lire le guide →' },
+    { title: 'Docs d\'architecture', desc: 'Conception du système, stack technique, structure des fichiers et architecture de déploiement — tout documenté.', linkLabel: 'Lire les docs →' },
+    { title: 'Proposition & périmètre', desc: 'Détail complet du périmètre : phases, tarification, calendrier et livrables.', linkLabel: 'Lire la proposition →' },
+  ],
+  footer_proof: 'Preuves',
+  footer_liveApp: 'App en direct',
+  footer_sourceCode: 'Code source',
+  footer_setupGuide: 'Guide d\'installation',
+  footer_architecture: 'Architecture',
+  footer_verification: 'Vérification',
+
   section_customize: 'Votre version',
   section_customize_title: 'Ce que je personnaliserais pour vous',
   section_customize_subtitle: 'Ce n\'est pas une démo générique. Voici exactement ce qui sera adapté à votre projet.',

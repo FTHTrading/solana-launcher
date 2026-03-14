@@ -26,7 +26,10 @@ import {
   CircleDot,
   Clock,
   Palette,
-  Wrench,
+  ExternalLink,
+  Code2,
+  BookOpen,
+  ClipboardList,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -148,7 +151,7 @@ const STEPS = [
   },
 ];
 
-const MVP_ITEMS = [
+const _MVP_ITEMS = [
   'Phantom + Solflare wallet connection',
   'Guided 4-step token launch wizard',
   'IPFS metadata upload (Pinata)',
@@ -163,7 +166,7 @@ const MVP_ITEMS = [
   'Full verification pipeline (tsc + vitest + build)',
 ];
 
-const PHASE2_DONE = [
+const _PHASE2_DONE = [
   'Premium launch tiers (Standard / Premium / Featured)',
   'White-label multi-tenant system with fee splits',
   'Referral + affiliate tracking with commissions',
@@ -174,7 +177,7 @@ const PHASE2_DONE = [
   '4-DEX swap routing (Jupiter, Raydium, Meteora, Orca)',
 ];
 
-const PHASE3_ITEMS = [
+const _PHASE3_ITEMS = [
   'On-chain Raydium AMM V4 liquidity add/remove',
   'On-chain Meteora DLMM pool creation',
   'Custom Rust programs for advanced tokenomics',
@@ -241,6 +244,12 @@ export default function HomePage() {
             </Button>
             <Button size="xl" variant="outline" asChild>
               <Link href="#whats-built">{t.hero_cta_view}</Link>
+            </Button>
+            <Button size="xl" variant="outline" asChild>
+              <Link href="#proof">
+                <Shield className="h-4 w-4 mr-2" />
+                {t.hero_cta_proof}
+              </Link>
             </Button>
           </div>
 
@@ -472,6 +481,70 @@ export default function HomePage() {
             <p className="text-xs text-muted-foreground">
               {verifyParts[0]}<code className="px-1.5 py-0.5 rounded bg-muted text-[11px] font-mono">npm run verify</code>{verifyParts[1]}
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          4b. PROOF, NOT PROMISES
+      ══════════════════════════════════════════════════════════════ */}
+      <section id="proof" className="py-20">
+        <div className="container space-y-12 max-w-5xl mx-auto">
+          <div className="text-center space-y-3 max-w-2xl mx-auto">
+            <Badge variant="info" className="mx-auto">
+              <Shield className="h-3 w-3 mr-1" />
+              {t.section_proof}
+            </Badge>
+            <h2 className="text-3xl font-bold tracking-tight">
+              {t.section_proof_title}
+            </h2>
+            <p className="text-muted-foreground">
+              {t.section_proof_subtitle}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {(() => {
+              const proofIcons = [ExternalLink, Code2, Terminal, BookOpen, FileText, ClipboardList];
+              const proofLinks = [
+                'https://launch.unykorn.org',
+                'https://github.com/FTHTrading/solana-launcher',
+                'https://github.com/FTHTrading/solana-launcher/blob/main/package.json',
+                'https://github.com/FTHTrading/solana-launcher/blob/main/SETUP.md',
+                'https://github.com/FTHTrading/solana-launcher/blob/main/README.md',
+                'https://github.com/FTHTrading/solana-launcher/blob/main/BID_PROPOSAL.md',
+              ];
+              return t.homepage_proofCards.map((card, idx) => {
+                const Icon = proofIcons[idx];
+                const href = proofLinks[idx];
+                return (
+                  <Card key={idx} className="hover:shadow-md transition-shadow group">
+                    <CardContent className="pt-5 pb-4 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="h-9 w-9 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                          <Icon className="h-4 w-4 text-brand-500" />
+                        </div>
+                        <h3 className="font-semibold text-sm">{card.title}</h3>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{card.desc}</p>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-500 hover:text-brand-400 transition-colors"
+                      >
+                        {idx === 2 ? (
+                          <code className="px-1.5 py-0.5 rounded bg-muted text-[11px] font-mono">{card.linkLabel}</code>
+                        ) : (
+                          card.linkLabel
+                        )}
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </CardContent>
+                  </Card>
+                );
+              });
+            })()}
           </div>
         </div>
       </section>

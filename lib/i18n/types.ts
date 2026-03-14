@@ -183,6 +183,20 @@ export interface TranslationDictionary {
   scorecard_col_forYou: string;
   homepage_scorecardItems: Array<{ asked: string; status: string; forYou: string }>;
 
+  // Proof section
+  nav_proof: string;
+  hero_cta_proof: string;
+  section_proof: string;
+  section_proof_title: string;
+  section_proof_subtitle: string;
+  homepage_proofCards: Array<{ title: string; desc: string; linkLabel: string }>;
+  footer_proof: string;
+  footer_liveApp: string;
+  footer_sourceCode: string;
+  footer_setupGuide: string;
+  footer_architecture: string;
+  footer_verification: string;
+
   // FAQ
   faq_items: Array<{ q: string; a: string }>;
 

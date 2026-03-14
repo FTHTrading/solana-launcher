@@ -241,6 +241,28 @@ const ar: TranslationDictionary = {
     { asked: 'إدارة الرموز', status: 'مبني', forYou: 'عناصر تحكم إضافية حسب الحاجة' },
     { asked: 'مسار السيولة', status: 'مُعد', forYou: 'اختياري — يمكن إضافته بعد MVP' },
   ],
+
+  // Proof section
+  nav_proof: 'الدليل',
+  hero_cta_proof: 'شاهد الدليل',
+  section_proof: 'دليل، ليس وعود',
+  section_proof_title: 'كل ادعاء قابل للتحقق',
+  section_proof_subtitle: 'هذا ليس عرضاً تقديمياً. كل قدرة موصوفة في هذه الصفحة لها رابط مباشر أو ملف مصدري أو أمر تحقق خلفها.',
+  homepage_proofCards: [
+    { title: 'التطبيق المباشر', desc: 'المنصة الكاملة حية وقابلة للاختبار على Devnet الآن. اربط محفظة وجرب التدفق الكامل.', linkLabel: 'جربه مباشرة ←' },
+    { title: 'الكود المصدري', desc: 'مستودع كامل — أكثر من 81 ملف، 18 مساراً، TypeScript strict، صفر أخطاء.', linkLabel: 'عرض المستودع ←' },
+    { title: 'أمر التحقق', desc: 'أمر واحد يشغل فحوصات TypeScript و32 اختباراً وبناء إنتاجي كامل لـ Next.js.', linkLabel: 'npm run verify' },
+    { title: 'دليل الإعداد', desc: 'استنسخ، ثبّت، هيئ، وشغّل المنصة محلياً في أقل من 5 دقائق.', linkLabel: 'اقرأ دليل الإعداد ←' },
+    { title: 'وثائق الهيكلية', desc: 'تصميم النظام، مجموعة التقنيات، هيكل الملفات، وهندسة النشر — كلها موثقة.', linkLabel: 'اقرأ الوثائق ←' },
+    { title: 'خريطة العرض والنطاق', desc: 'تفصيل كامل للنطاق: المراحل، التسعير، الجدول الزمني، والمخرجات.', linkLabel: 'اقرأ العرض ←' },
+  ],
+  footer_proof: 'الدليل',
+  footer_liveApp: 'التطبيق المباشر',
+  footer_sourceCode: 'الكود المصدري',
+  footer_setupGuide: 'دليل الإعداد',
+  footer_architecture: 'الهيكلية',
+  footer_verification: 'التحقق',
+
   section_customize: 'نسختك',
   section_customize_title: 'ما سأخصصه لك',
   section_customize_subtitle: 'هذا ليس عرضاً عاماً. إليك بالضبط ما يتم تخصيصه لمشروعك.',

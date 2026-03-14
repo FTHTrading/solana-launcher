@@ -251,6 +251,28 @@ const en: TranslationDictionary = {
     { asked: 'Token management', status: 'Built', forYou: 'Extra controls as needed' },
     { asked: 'Liquidity path', status: 'Prepared', forYou: 'Optional — can be added after MVP' },
   ],
+
+  // Proof section
+  nav_proof: 'Proof',
+  hero_cta_proof: 'See the Proof',
+  section_proof: 'Proof, Not Promises',
+  section_proof_title: 'Every Claim Is Verifiable',
+  section_proof_subtitle: 'This is not a pitch deck. Every capability described on this page has a live link, a source file, or a verification command behind it.',
+  homepage_proofCards: [
+    { title: 'Live App', desc: 'The full platform is live and testable on Devnet right now. Connect a wallet and try the complete flow.', linkLabel: 'Try It Live →' },
+    { title: 'Source Code', desc: 'Complete repository — 81+ files, 18 routes, TypeScript strict mode, zero errors.', linkLabel: 'View Repository →' },
+    { title: 'Verification Command', desc: 'One command runs TypeScript checks, 32 tests, and a full Next.js production build.', linkLabel: 'npm run verify' },
+    { title: 'Setup Guide', desc: 'Clone, install, configure, and run the full platform locally in under 5 minutes.', linkLabel: 'Read Setup →' },
+    { title: 'Architecture Docs', desc: 'System design, tech stack, file structure, and deployment architecture — all documented.', linkLabel: 'Read Docs →' },
+    { title: 'Proposal & Scope Map', desc: 'Full scope breakdown: phases, pricing, timeline, and deliverables — written before the first line of code.', linkLabel: 'Read Proposal →' },
+  ],
+  footer_proof: 'Proof',
+  footer_liveApp: 'Live App',
+  footer_sourceCode: 'Source Code',
+  footer_setupGuide: 'Setup Guide',
+  footer_architecture: 'Architecture',
+  footer_verification: 'Verification',
+
   section_customize: 'Your Version',
   section_customize_title: 'What I Would Customize For You',
   section_customize_subtitle: 'This is not a generic demo. Here is exactly what gets tailored to your project.',

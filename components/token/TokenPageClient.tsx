@@ -14,7 +14,6 @@ import {
   ShieldCheck,
   ShieldX,
   TrendingUp,
-  Wallet,
   Share2,
   Droplets,
   Link2,
@@ -56,7 +55,7 @@ interface MetaplexMetadata {
 }
 
 export function TokenPageClient({ mintAddress }: TokenPageClientProps) {
-  const { connected } = useWallet();
+  const { connected: _connected } = useWallet();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [tokenInfo, setTokenInfo] = useState<TokenOnChainInfo | null>(null);
@@ -158,7 +157,7 @@ export function TokenPageClient({ mintAddress }: TokenPageClientProps) {
       } catch {
         // Non-fatal
       }
-    } catch (err) {
+    } catch {
       setError('Failed to fetch token data. Please try again.');
     } finally {
       setLoading(false);

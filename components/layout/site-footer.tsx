@@ -11,7 +11,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border/50 bg-background">
       <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="space-y-3 md:col-span-2">
             <div className="flex items-center gap-2 font-semibold">
@@ -34,6 +34,18 @@ export function SiteFooter() {
               <li><Link href="/#how-it-works" className="hover:text-foreground transition-colors">{t.nav_howItWorks}</Link></li>
               <li><Link href="/#faq" className="hover:text-foreground transition-colors">{t.nav_faq}</Link></li>
               <li><Link href="/launch" className="hover:text-foreground transition-colors">{t.footer_launchToken}</Link></li>
+            </ul>
+          </div>
+
+          {/* Proof */}
+          <div className="space-y-3">
+            <h4 className="text-sm font-medium">{t.footer_proof}</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="https://launch.unykorn.org" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{t.footer_liveApp}</a></li>
+              <li><a href="https://github.com/FTHTrading/solana-launcher" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{t.footer_sourceCode}</a></li>
+              <li><a href="https://github.com/FTHTrading/solana-launcher/blob/main/SETUP.md" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{t.footer_setupGuide}</a></li>
+              <li><a href="https://github.com/FTHTrading/solana-launcher/blob/main/README.md" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{t.footer_architecture}</a></li>
+              <li><a href="https://github.com/FTHTrading/solana-launcher/blob/main/BID_PROPOSAL.md" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{t.footer_verification}</a></li>
             </ul>
           </div>
 
