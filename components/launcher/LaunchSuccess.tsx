@@ -1,9 +1,20 @@
 'use client';
 
 import Link from 'next/link';
-import { CheckCircle2, Copy, ExternalLink, LayoutDashboard, Rocket } from 'lucide-react';
+import {
+  ArrowRightLeft,
+  CheckCircle2,
+  Copy,
+  Droplets,
+  ExternalLink,
+  LayoutDashboard,
+  Rocket,
+  Zap,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { getExplorerTokenUrl, getExplorerTxUrl } from '@/lib/config/app-config';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { getExplorerTokenUrl, getExplorerTxUrl, appConfig } from '@/lib/config/app-config';
 import { truncateAddress } from '@/lib/utils/utils';
 import { useState } from 'react';
 
@@ -115,15 +126,144 @@ export function LaunchSuccess({
         </Button>
       </div>
 
-      {/* Next steps */}
-      <div className="text-left rounded-xl border border-border bg-muted/20 p-4">
-        <p className="text-sm font-medium mb-2">Next steps:</p>
-        <ul className="space-y-1.5 text-sm text-muted-foreground list-disc list-inside">
-          <li>Share your mint address with your community</li>
-          <li>Add your token to a DEX for trading (coming soon)</li>
-          <li>List your token on Solscan or CoinGecko</li>
-          <li>Use the dashboard to view and manage your token</li>
-        </ul>
+      {/* Ecosystem Deep-Links */}
+      <div className="text-left space-y-3">
+        <p className="text-sm font-semibold">Next steps — go live now:</p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Jupiter Swap */}
+          <Card className="group hover:border-emerald-500/40 transition-colors">
+            <CardContent className="pt-4 pb-4 flex items-start gap-3">
+              <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                <Zap className="h-4 w-4 text-emerald-500" />
+              </div>
+              <div className="space-y-1.5 flex-1 min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <p className="text-sm font-semibold">Trade on Jupiter</p>
+                  <Badge variant="info" className="text-[10px]">Best Price</Badge>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Swap across 20+ DEXs with best-price routing
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  onClick={() =>
+                    window.open(
+                      `${appConfig.ecosystem.jupiter.swapUrl}/So11111111111111111111111111111111111111112-${mintAddress}`,
+                      '_blank'
+                    )
+                  }
+                >
+                  <ArrowRightLeft className="h-3 w-3 mr-1.5" />
+                  Open Jupiter
+                  <ExternalLink className="h-3 w-3 ml-1.5" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Raydium Pool */}
+          <Card className="group hover:border-blue-500/40 transition-colors">
+            <CardContent className="pt-4 pb-4 flex items-start gap-3">
+              <div className="h-8 w-8 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                <Droplets className="h-4 w-4 text-blue-500" />
+              </div>
+              <div className="space-y-1.5 flex-1 min-w-0">
+                <p className="text-sm font-semibold">Create Raydium Pool</p>
+                <p className="text-xs text-muted-foreground">
+                  AMM V4 constant-product SOL/TOKEN pool
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  onClick={() =>
+                    window.open(
+                      `${appConfig.ecosystem.raydium.poolUrl}/?inputCurrency=sol&outputCurrency=${mintAddress}`,
+                      '_blank'
+                    )
+                  }
+                >
+                  <Droplets className="h-3 w-3 mr-1.5" />
+                  Open Raydium
+                  <ExternalLink className="h-3 w-3 ml-1.5" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Meteora Pool */}
+          <Card className="group hover:border-cyan-500/40 transition-colors">
+            <CardContent className="pt-4 pb-4 flex items-start gap-3">
+              <div className="h-8 w-8 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                <Droplets className="h-4 w-4 text-cyan-500" />
+              </div>
+              <div className="space-y-1.5 flex-1 min-w-0">
+                <p className="text-sm font-semibold">Create Meteora Pool</p>
+                <p className="text-xs text-muted-foreground">
+                  DLMM concentrated liquidity bins
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  onClick={() =>
+                    window.open(
+                      `${appConfig.ecosystem.meteora.poolUrl}?tokenMint=${mintAddress}`,
+                      '_blank'
+                    )
+                  }
+                >
+                  <Droplets className="h-3 w-3 mr-1.5" />
+                  Open Meteora
+                  <ExternalLink className="h-3 w-3 ml-1.5" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Orca Pool */}
+          <Card className="group hover:border-purple-500/40 transition-colors">
+            <CardContent className="pt-4 pb-4 flex items-start gap-3">
+              <div className="h-8 w-8 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                <Droplets className="h-4 w-4 text-purple-500" />
+              </div>
+              <div className="space-y-1.5 flex-1 min-w-0">
+                <p className="text-sm font-semibold">Create Orca Pool</p>
+                <p className="text-xs text-muted-foreground">
+                  Whirlpool CLMM concentrated liquidity
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  onClick={() =>
+                    window.open(
+                      `${appConfig.ecosystem.orca.poolUrl}?tokenMint=${mintAddress}`,
+                      '_blank'
+                    )
+                  }
+                >
+                  <Droplets className="h-3 w-3 mr-1.5" />
+                  Open Orca
+                  <ExternalLink className="h-3 w-3 ml-1.5" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Additional next steps */}
+        <div className="rounded-xl border border-border bg-muted/20 p-4">
+          <ul className="space-y-1.5 text-sm text-muted-foreground list-disc list-inside">
+            <li>Share your mint address with your community</li>
+            <li>List your token on <a href="https://solscan.io" target="_blank" rel="noopener noreferrer" className="text-brand-500 underline underline-offset-2">Solscan</a> or <a href="https://www.coingecko.com" target="_blank" rel="noopener noreferrer" className="text-brand-500 underline underline-offset-2">CoinGecko</a></li>
+            <li>Use the <Link href="/dashboard" className="text-brand-500 underline underline-offset-2">dashboard</Link> to manage and monitor your token</li>
+            <li>Set up <Link href="/post-launch" className="text-brand-500 underline underline-offset-2">post-launch automation</Link> for webhooks & notifications</li>
+          </ul>
+        </div>
       </div>
 
       {/* Actions */}

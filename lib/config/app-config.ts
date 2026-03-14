@@ -23,6 +23,7 @@ export const appConfig = {
   solana: {
     network: validateNetwork(rawNetwork) as SolanaNetwork,
     rpcUrl:
+      process.env.NEXT_PUBLIC_HELIUS_RPC_URL ??
       process.env.NEXT_PUBLIC_SOLANA_RPC_URL ??
       clusterApiUrl(rawNetwork as Cluster),
     explorerBaseUrl: 'https://solscan.io',
@@ -46,6 +47,29 @@ export const appConfig = {
       | 'web3-storage',
     pinataGateway:
       process.env.NEXT_PUBLIC_PINATA_GATEWAY ?? 'https://gateway.pinata.cloud',
+  },
+
+  ecosystem: {
+    jupiter: {
+      swapUrl: 'https://jup.ag/swap',
+      apiUrl: 'https://quote-api.jup.ag/v6',
+    },
+    raydium: {
+      appUrl: 'https://raydium.io',
+      swapUrl: 'https://raydium.io/swap',
+      poolUrl: 'https://raydium.io/liquidity/create-pool',
+    },
+    meteora: {
+      appUrl: 'https://app.meteora.ag',
+      poolUrl: 'https://app.meteora.ag/pools/create',
+    },
+    orca: {
+      appUrl: 'https://www.orca.so',
+      poolUrl: 'https://www.orca.so/pools',
+    },
+    helius: {
+      rpcUrl: process.env.NEXT_PUBLIC_HELIUS_RPC_URL ?? '',
+    },
   },
 
   token: {

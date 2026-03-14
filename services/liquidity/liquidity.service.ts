@@ -43,7 +43,7 @@ export const METEORA_DLMM_PROGRAM_ID = new PublicKey(
 
 // ── Types ──────────────────────────────────────────────────
 
-export type DexProvider = 'raydium' | 'meteora';
+export type DexProvider = 'raydium' | 'meteora' | 'orca' | 'jupiter';
 
 export interface AddLiquidityParams {
   provider: DexProvider;

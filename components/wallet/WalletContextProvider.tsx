@@ -6,6 +6,7 @@ import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
+import { BackpackWalletAdapter } from '@solana/wallet-adapter-backpack';
 import { appConfig } from '@/lib/config/app-config';
 
 // Import Solana wallet adapter styles
@@ -29,6 +30,7 @@ export function WalletContextProvider({ children }: WalletContextProviderProps) 
     () => [
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter({ network }),
+      new BackpackWalletAdapter(),
     ],
     [network]
   );

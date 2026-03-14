@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, Coins, Lock, Rocket, Shield, Zap } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, ArrowRightLeft, CheckCircle2, Coins, Globe, Lock, Rocket, Shield, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -49,7 +50,7 @@ const STEPS = [
   {
     step: '01',
     title: 'Connect Wallet',
-    description: 'Connect Phantom or Solflare. No sign-up needed.',
+    description: 'Connect Phantom, Solflare, or Backpack. No sign-up needed.',
   },
   {
     step: '02',
@@ -82,6 +83,17 @@ export default function HomePage() {
         </div>
 
         <div className="container text-center space-y-8 max-w-4xl mx-auto">
+          <div className="flex justify-center">
+            <Image
+              src="/images/brand/logo-primary.png"
+              alt="Solana Launcher"
+              width={80}
+              height={80}
+              className="rounded-2xl shadow-lg shadow-brand-500/20"
+              priority
+            />
+          </div>
+
           <Badge variant="info" className="mx-auto">
             {appConfig.solana.network === 'devnet' ? '🔧 Running on Devnet' : '🚀 Live on Mainnet'}
           </Badge>
@@ -258,6 +270,55 @@ export default function HomePage() {
           <p className="text-xs text-center text-muted-foreground/70">
             Devnet launches use test SOL and are free. Switch to Mainnet when you are ready.
           </p>
+        </div>
+      </section>
+
+      {/* ── Ecosystem ── */}
+      <section className="py-20 bg-muted/20">
+        <div className="container max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <h2 className="text-3xl font-bold tracking-tight">
+              Full Solana Ecosystem
+            </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Launch your token, then trade and add liquidity across every major Solana DEX&nbsp;—
+              all from one platform.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { name: 'Jupiter', desc: 'Best-price routing', icon: <Zap className="h-5 w-5 text-emerald-500" />, color: 'from-emerald-500/10 to-green-500/10' },
+              { name: 'Raydium', desc: 'AMM V4 pools', icon: <Coins className="h-5 w-5 text-blue-500" />, color: 'from-blue-500/10 to-indigo-500/10' },
+              { name: 'Meteora', desc: 'DLMM liquidity', icon: <Globe className="h-5 w-5 text-cyan-500" />, color: 'from-cyan-500/10 to-teal-500/10' },
+              { name: 'Orca', desc: 'Whirlpool CLMM', icon: <ArrowRightLeft className="h-5 w-5 text-purple-500" />, color: 'from-violet-500/10 to-purple-500/10' },
+            ].map((dex) => (
+              <Card key={dex.name} className="text-center hover:shadow-md transition-shadow">
+                <CardContent className="pt-6 pb-4 space-y-2">
+                  <div className={`h-12 w-12 mx-auto rounded-xl bg-gradient-to-br ${dex.color} flex items-center justify-center`}>
+                    {dex.icon}
+                  </div>
+                  <p className="font-semibold text-sm">{dex.name}</p>
+                  <p className="text-xs text-muted-foreground">{dex.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Button variant="outline" size="lg" asChild>
+              <Link href="/ecosystem">
+                <Globe className="mr-2 h-4 w-4" />
+                Explore Ecosystem
+              </Link>
+            </Button>
+            <Button variant="ghost" size="lg" asChild>
+              <Link href="/trade">
+                <ArrowRightLeft className="mr-2 h-4 w-4" />
+                Go to Trade
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 

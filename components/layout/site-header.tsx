@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { Badge } from '@/components/ui/badge';
 import { appConfig, isMainnet } from '@/lib/config/app-config';
 import { truncateAddress } from '@/lib/utils/utils';
-import { Rocket } from 'lucide-react';
 
 const TREASURY_WALLET = process.env.NEXT_PUBLIC_TREASURY_WALLET ?? '';
 
@@ -19,7 +19,13 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo + Brand */}
         <Link href="/" className="flex items-center gap-2 font-semibold">
-          <Rocket className="h-5 w-5 text-brand-500" />
+          <Image
+            src="/images/brand/logo-mark.png"
+            alt={appConfig.app.name}
+            width={28}
+            height={28}
+            className="rounded-md"
+          />
           <span className="text-foreground">{appConfig.app.name}</span>
           {!isMainnet() && (
             <Badge variant="devnet" className="hidden sm:inline-flex">
@@ -51,8 +57,14 @@ export function SiteHeader() {
               <Link href="/launch" className="text-muted-foreground hover:text-foreground transition-colors">
                 Launch
               </Link>
+              <Link href="/trade" className="text-muted-foreground hover:text-foreground transition-colors">
+                Trade
+              </Link>
               <Link href="/liquidity" className="text-muted-foreground hover:text-foreground transition-colors">
                 Liquidity
+              </Link>
+              <Link href="/ecosystem" className="text-muted-foreground hover:text-foreground transition-colors">
+                Ecosystem
               </Link>
               {isAdmin && (
                 <Link href="/admin" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-amber-500">

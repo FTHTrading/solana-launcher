@@ -6,10 +6,12 @@ import {
   ArrowRight,
   BarChart3,
   ExternalLink,
+  Layers,
   Loader2,
   Plus,
   RefreshCw,
   Droplets,
+  Zap,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -18,6 +20,7 @@ import { Alert } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { WalletGuard } from '@/components/wallet/WalletGuard';
 import { getPoolsForMint, type PoolInfo, type DexProvider } from '@/services/liquidity/liquidity.service';
+import { appConfig } from '@/lib/config/app-config';
 
 interface LiquidityClientProps {
   initialMint?: string;
@@ -76,7 +79,8 @@ export function LiquidityClient({ initialMint = '' }: LiquidityClientProps) {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Adding liquidity creates a trading pair for your token on a decentralised exchange.
                 Users can then swap SOL for your token — this is what gives it a live price.
-                Supported DEXs: <strong>Raydium AMM V4</strong> and <strong>Meteora DLMM</strong>.
+                Supported DEXs: <strong>Raydium AMM V4</strong>, <strong>Meteora DLMM</strong>,{' '}
+                <strong>Orca Whirlpool</strong>, and <strong>Jupiter LP</strong>.
               </p>
             </div>
           </div>
@@ -132,20 +136,27 @@ export function LiquidityClient({ initialMint = '' }: LiquidityClientProps) {
 
       {/* Create new pool */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-2">
           <h2 className="text-base font-semibold">Add Liquidity</h2>
-          <div className="flex gap-2">
-            {(['raydium', 'meteora'] as DexProvider[]).map((p) => (
+          <div className="flex gap-2 flex-wrap">
+            {(
+              [
+                { key: 'raydium' as DexProvider, label: 'Raydium AMM V4' },
+                { key: 'meteora' as DexProvider, label: 'Meteora DLMM' },
+                { key: 'orca' as DexProvider, label: 'Orca Whirlpool' },
+                { key: 'jupiter' as DexProvider, label: 'Jupiter LP' },
+              ] as const
+            ).map(({ key, label }) => (
               <button
-                key={p}
-                onClick={() => setSelectedProvider(p)}
+                key={key}
+                onClick={() => setSelectedProvider(key)}
                 className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
-                  selectedProvider === p
+                  selectedProvider === key
                     ? 'bg-brand-500 text-white border-brand-500'
                     : 'border-border text-muted-foreground hover:border-brand-500/50'
                 }`}
               >
-                {p === 'raydium' ? 'Raydium AMM V4' : 'Meteora DLMM'}
+                {label}
               </button>
             ))}
           </div>
@@ -156,6 +167,12 @@ export function LiquidityClient({ initialMint = '' }: LiquidityClientProps) {
         )}
         {selectedProvider === 'meteora' && (
           <MeteoraAddLiquidity mintAddress={mintInput} />
+        )}
+        {selectedProvider === 'orca' && (
+          <OrcaAddLiquidity mintAddress={mintInput} />
+        )}
+        {selectedProvider === 'jupiter' && (
+          <JupiterLiquidity mintAddress={mintInput} />
         )}
       </div>
     </div>
@@ -286,6 +303,117 @@ function MeteoraAddLiquidity({ mintAddress }: { mintAddress: string }) {
 
         <p className="text-xs text-muted-foreground">
           Full in-app DLMM pool creation with bin configuration is available as an upgrade.
+        </p>
+      </CardContent>
+    </Card>
+  );
+}
+
+// ── Orca UI ────────────────────────────────────────────────
+
+function OrcaAddLiquidity({ mintAddress }: { mintAddress: string }) {
+  return (
+    <Card>
+      <CardHeader>
+        <div className="flex items-center gap-2">
+          <CardTitle className="text-sm">Orca Whirlpool</CardTitle>
+          <Badge variant="info">Concentrated Liquidity</Badge>
+        </div>
+        <CardDescription>
+          Whirlpool pools let you concentrate liquidity in a specific price range
+          for higher fee earnings and capital efficiency.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <Alert variant="info" title="Whirlpool CLMM">
+          <p className="text-xs mt-1">
+            Select tick spacing and price range to optimise your position. Tighter
+            ranges earn more fees but require active management. Supports
+            Token-2022 tokens.
+          </p>
+        </Alert>
+
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            disabled={!mintAddress}
+            onClick={() =>
+              window.open(
+                `${appConfig.ecosystem.orca.poolUrl}?tokenMint=${mintAddress}`,
+                '_blank'
+              )
+            }
+          >
+            <Layers className="h-4 w-4 mr-2" />
+            Create Whirlpool on Orca
+            <ExternalLink className="h-3 w-3 ml-1.5" />
+          </Button>
+        </div>
+
+        <p className="text-xs text-muted-foreground">
+          Orca&apos;s SDK enables fully on-chain pool creation. Deep-link opens
+          the pool wizard with your token pre-filled.
+        </p>
+      </CardContent>
+    </Card>
+  );
+}
+
+// ── Jupiter LP UI ────────────────────────────────────────────
+
+function JupiterLiquidity({ mintAddress }: { mintAddress: string }) {
+  return (
+    <Card>
+      <CardHeader>
+        <div className="flex items-center gap-2">
+          <CardTitle className="text-sm">Jupiter LP</CardTitle>
+          <Badge variant="info">Aggregated</Badge>
+        </div>
+        <CardDescription>
+          Jupiter aggregates liquidity from all Solana DEXs. Your token is
+          automatically tradable once any pool exists on Raydium, Orca, or
+          Meteora.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <Alert variant="info" title="How Jupiter LP Works">
+          <p className="text-xs mt-1">
+            Jupiter doesn&apos;t host its own pools — it routes trades across all
+            DEXs. Create a pool on Raydium, Orca, or Meteora first, then your
+            token is instantly swappable on Jupiter with the best price.
+          </p>
+        </Alert>
+
+        <div className="flex gap-2 flex-wrap">
+          <Button
+            variant="gradient"
+            disabled={!mintAddress}
+            onClick={() =>
+              window.open(
+                `${appConfig.ecosystem.jupiter.swapUrl}/So11111111111111111111111111111111111111112-${mintAddress}`,
+                '_blank'
+              )
+            }
+          >
+            <Zap className="h-4 w-4 mr-2" />
+            Trade on Jupiter
+            <ExternalLink className="h-3 w-3 ml-1.5" />
+          </Button>
+          <Button variant="outline" asChild>
+            <a
+              href="https://station.jup.ag/docs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Jupiter Docs
+              <ExternalLink className="h-3 w-3 ml-1.5" />
+            </a>
+          </Button>
+        </div>
+
+        <p className="text-xs text-muted-foreground">
+          Once you have a pool on any DEX, Jupiter will auto-discover it and
+          route trades through the most efficient path.
         </p>
       </CardContent>
     </Card>
