@@ -32,7 +32,7 @@ export function SiteHeader() {
           <span className="text-foreground">{appConfig.app.name}</span>
           {!isMainnet() && (
             <Badge variant="devnet" className="hidden sm:inline-flex">
-              Devnet
+              {t.common_devnet}
             </Badge>
           )}
         </Link>

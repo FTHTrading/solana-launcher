@@ -139,4 +139,41 @@ export interface TranslationDictionary {
 
   // Language
   language_label: string;
+
+  // Status badges
+  status_built: string;
+  status_beta: string;
+  status_verified: string;
+  status_hardened: string;
+
+  // Homepage content arrays
+  homepage_requirements: Array<{ asked: string; built: string }>;
+  homepage_capabilities: Array<{ name: string; desc: string }>;
+  homepage_hardening: Array<{ metric: string; value: string; detail: string }>;
+  homepage_mvpItems: string[];
+  homepage_phase2Items: string[];
+  homepage_phase3Items: string[];
+  homepage_whyDifferent: Array<{ title: string; desc: string }>;
+  homepage_pricingIncludes: string[];
+  homepage_verifyText: string;
+  homepage_discussLink: string;
+  homepage_logoAlt: string;
+
+  // FAQ
+  faq_items: Array<{ q: string; a: string }>;
+
+  // Common additions
+  common_devnet: string;
+  common_mainnet: string;
+}
+
+/**
+ * Simple string interpolation for translation templates.
+ * Replace `{key}` placeholders with values from the vars object.
+ *
+ * @example
+ * interpolate('Fee is {fee} SOL', { fee: 0.1 }); // 'Fee is 0.1 SOL'
+ */
+export function interpolate(template: string, vars: Record<string, string | number>): string {
+  return template.replace(/\{(\w+)\}/g, (_, key) => String(vars[key] ?? `{${key}}`));
 }

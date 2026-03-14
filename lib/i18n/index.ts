@@ -14,4 +14,4 @@ export const dictionaries: Record<Locale, TranslationDictionary> = {
 };
 
 export { type Locale, type TranslationDictionary } from './types';
-export { LOCALES, RTL_LOCALES, LOCALE_META, DEFAULT_LOCALE, isRTL } from './types';
+export { LOCALES, RTL_LOCALES, LOCALE_META, DEFAULT_LOCALE, isRTL, interpolate } from './types';

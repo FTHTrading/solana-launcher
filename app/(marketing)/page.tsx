@@ -32,7 +32,12 @@ import { appConfig } from '@/lib/config/app-config';
 import { FaqSection } from '@/components/launcher/FaqSection';
 import { useTranslation } from '@/lib/i18n/i18n-context';
 
-/* ─── Data ────────────────────────────────────────────────────────── */
+/* ─── Config ───────────────────────────────────────────────────────── */
+
+type StatusKey = 'built' | 'beta' | 'verified' | 'hardened';
+const STATUS_VARIANT: Record<StatusKey, 'success' | 'warning' | 'default' | 'info'> = {
+  built: 'success', beta: 'warning', verified: 'default', hardened: 'info',
+};
 
 const CLIENT_REQUIREMENTS = [
   {
@@ -177,6 +182,10 @@ const PHASE3_ITEMS = [
 
 export default function HomePage() {
   const { t, isRtl } = useTranslation();
+  const statusLabel: Record<StatusKey, string> = {
+    built: t.status_built, beta: t.status_beta, verified: t.status_verified, hardened: t.status_hardened,
+  };
+  const verifyParts = t.homepage_verifyText.split('{cmd}');
   const ArrowIcon = isRtl ? (props: React.SVGProps<SVGSVGElement>) => (
     <svg {...props} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m7-7l-7 7 7 7" />
@@ -200,7 +209,7 @@ export default function HomePage() {
           <div className="flex justify-center">
             <Image
               src="/images/brand/logo-primary.png"
-              alt="Solana Launcher"
+              alt={t.homepage_logoAlt}
               width={80}
               height={80}
               className="rounded-2xl shadow-lg shadow-brand-500/20"
@@ -225,7 +234,7 @@ export default function HomePage() {
             <Button size="xl" variant="gradient" asChild>
               <Link href="/launch">
                 {t.hero_cta_launch}
-                <ArrowIcon className={`h-5 w-5 ${isRtl ? 'mr-2' : 'ml-2'}`} />
+                <ArrowIcon className="h-5 w-5 ml-2" />
               </Link>
             </Button>
             <Button size="xl" variant="outline" asChild>
@@ -267,31 +276,35 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-4">
-            {CLIENT_REQUIREMENTS.map(({ asked, built, icon: Icon, status }) => (
-              <div
-                key={asked}
-                className="group rounded-xl border border-border bg-card p-5 flex flex-col sm:flex-row gap-4 hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-start gap-3 sm:w-1/3 flex-shrink-0">
-                  <div className="h-9 w-9 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
-                    <Icon className="h-4 w-4 text-brand-500" />
+            {CLIENT_REQUIREMENTS.map(({ icon: Icon, status }, idx) => {
+              const req = t.homepage_requirements[idx];
+              const sk = status.toLowerCase() as StatusKey;
+              return (
+                <div
+                  key={idx}
+                  className="group rounded-xl border border-border bg-card p-5 flex flex-col sm:flex-row gap-4 hover:shadow-md transition-shadow"
+                >
+                  <div className="flex items-start gap-3 sm:w-1/3 flex-shrink-0">
+                    <div className="h-9 w-9 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                      <Icon className="h-4 w-4 text-brand-500" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_youAskedFor}</p>
+                      <p className="font-semibold text-sm">{req.asked}</p>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_youAskedFor}</p>
-                    <p className="font-semibold text-sm">{asked}</p>
+                  <div className="flex-1 space-y-1">
+                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_builtHere}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{req.built}</p>
+                  </div>
+                  <div className="flex items-start sm:items-center">
+                    <Badge variant={STATUS_VARIANT[sk]}>
+                      {statusLabel[sk]}
+                    </Badge>
                   </div>
                 </div>
-                <div className="flex-1 space-y-1">
-                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t.common_builtHere}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{built}</p>
-                </div>
-                <div className="flex items-start sm:items-center">
-                  <Badge variant={status === 'Built' ? 'success' : status === 'Beta' ? 'warning' : 'info'}>
-                    {status}
-                  </Badge>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -311,16 +324,12 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CAPABILITIES.map(({ name, desc, status, icon: Icon }) => {
-              const variant =
-                status === 'Built' ? 'success' :
-                status === 'Hardened' ? 'info' :
-                status === 'Verified' ? 'default' :
-                status === 'Beta' ? 'warning' :
-                'secondary';
+            {CAPABILITIES.map(({ status, icon: Icon }, idx) => {
+              const cap = t.homepage_capabilities[idx];
+              const sk = status.toLowerCase() as StatusKey;
               return (
                 <div
-                  key={name}
+                  key={idx}
                   className="rounded-xl border border-border bg-card p-4 flex gap-3 hover:shadow-sm transition-shadow"
                 >
                   <div className="h-9 w-9 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
@@ -328,10 +337,10 @@ export default function HomePage() {
                   </div>
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-center justify-between gap-2">
-                      <h3 className="font-semibold text-sm truncate">{name}</h3>
-                      <Badge variant={variant} className="text-[10px] flex-shrink-0">{status}</Badge>
+                      <h3 className="font-semibold text-sm truncate">{cap.name}</h3>
+                      <Badge variant={STATUS_VARIANT[sk]} className="text-[10px] flex-shrink-0">{statusLabel[sk]}</Badge>
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{cap.desc}</p>
                   </div>
                 </div>
               );
@@ -359,23 +368,25 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {HARDENING.map(({ metric, value, detail, variant }) => (
-              <Card key={metric} className="hover:shadow-sm transition-shadow">
-                <CardContent className="pt-5 pb-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{metric}</span>
-                    <Badge variant={variant}>{value}</Badge>
-                  </div>
-                  <p className="text-xs text-muted-foreground">{detail}</p>
-                </CardContent>
-              </Card>
-            ))}
+            {HARDENING.map(({ variant }, idx) => {
+              const h = t.homepage_hardening[idx];
+              return (
+                <Card key={idx} className="hover:shadow-sm transition-shadow">
+                  <CardContent className="pt-5 pb-4 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{h.metric}</span>
+                      <Badge variant={variant}>{h.value}</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{h.detail}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           <div className="text-center">
             <p className="text-xs text-muted-foreground">
-              Run <code className="px-1.5 py-0.5 rounded bg-muted text-[11px] font-mono">npm run verify</code> to reproduce:
-              TypeScript → vitest → Next.js build, one command.
+              {verifyParts[0]}<code className="px-1.5 py-0.5 rounded bg-muted text-[11px] font-mono">npm run verify</code>{verifyParts[1]}
             </p>
           </div>
         </div>
@@ -420,7 +431,7 @@ export default function HomePage() {
             <Button size="lg" variant="gradient" asChild>
               <Link href="/launch">
                 {t.common_startNow}
-                <ArrowIcon className={`h-4 w-4 ${isRtl ? 'mr-2' : 'ml-2'}`} />
+                <ArrowIcon className="h-4 w-4 ml-2" />
               </Link>
             </Button>
           </div>
@@ -453,8 +464,8 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="pt-4">
                 <ul className="space-y-2">
-                  {MVP_ITEMS.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm">
+                  {t.homepage_mvpItems.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm">
                       <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
@@ -475,8 +486,8 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="pt-4">
                 <ul className="space-y-2">
-                  {PHASE2_DONE.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm">
+                  {t.homepage_phase2Items.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm">
                       <CheckCircle2 className="h-3.5 w-3.5 text-brand-500 mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
@@ -496,8 +507,8 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="pt-4">
                 <ul className="space-y-2">
-                  {PHASE3_ITEMS.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  {t.homepage_phase3Items.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <CircleDot className="h-3.5 w-3.5 text-blue-500 mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
@@ -584,48 +595,20 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              {
-                icon: Sparkles,
-                title: 'Already Built — Not Just Proposed',
-                desc: '81+ production files, 18 routes, every screen functional. You can run it locally today.',
-              },
-              {
-                icon: TestTube2,
-                title: 'Tested & Verified',
-                desc: '32 unit tests, TypeScript strict mode, CI-grade verification pipeline. Not "it works on my machine."',
-              },
-              {
-                icon: Shield,
-                title: 'Honest Status Language',
-                desc: 'Liquidity UI says "Integration Pending" — not "Coming Soon." Every label reflects actual implementation state.',
-              },
-              {
-                icon: FileText,
-                title: 'Documentation Matches Code',
-                desc: 'README, SETUP, BID_PROPOSAL, and architecture docs are all truth-aligned to what is actually built.',
-              },
-              {
-                icon: Lock,
-                title: 'Production Hardening Included',
-                desc: 'Rate limiting, env validation, structured logging, security headers — not afterthoughts, built in from day one.',
-              },
-              {
-                icon: Layers,
-                title: 'Battle-Tested Foundations',
-                desc: 'Built on SPL Token + Metaplex standards for lower risk and faster delivery. Custom Rust extensions available in Phase 2 — the architecture supports expansion without rewrites.',
-              },
-            ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="rounded-xl border border-border bg-card p-5 flex gap-4">
-                <div className="h-9 w-9 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
-                  <Icon className="h-4 w-4 text-brand-500" />
+            {[Sparkles, TestTube2, Shield, FileText, Lock, Layers].map((Icon, idx) => {
+              const item = t.homepage_whyDifferent[idx];
+              return (
+                <div key={idx} className="rounded-xl border border-border bg-card p-5 flex gap-4">
+                  <div className="h-9 w-9 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                    <Icon className="h-4 w-4 text-brand-500" />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-semibold text-sm">{item.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
-                <div className="space-y-1">
-                  <h3 className="font-semibold text-sm">{title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -667,13 +650,8 @@ export default function HomePage() {
                 </span>
               </div>
               <ul className="space-y-1.5 pt-2">
-                {[
-                  'SPL token mint creation',
-                  'IPFS image + metadata upload',
-                  'On-chain Metaplex metadata',
-                  'Explorer links + dashboard',
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                {t.homepage_pricingIncludes.map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 flex-shrink-0" />
                     {item}
                   </li>
@@ -715,7 +693,7 @@ export default function HomePage() {
             <Button size="xl" variant="gradient" asChild>
               <Link href="/launch">
                 {t.hero_cta_launch}
-                <ArrowIcon className={`h-5 w-5 ${isRtl ? 'mr-2' : 'ml-2'}`} />
+                <ArrowIcon className="h-5 w-5 ml-2" />
               </Link>
             </Button>
             <Button size="xl" variant="outline" asChild>
@@ -730,7 +708,7 @@ export default function HomePage() {
               href="mailto:kevan@unykorn.org?subject=Solana%20Launcher%20—%20Project%20Discussion"
               className="text-brand-500 hover:text-brand-400 font-medium underline underline-offset-2"
             >
-              Discuss the build plan →
+              {t.homepage_discussLink}
             </a>
           </p>
         </div>
