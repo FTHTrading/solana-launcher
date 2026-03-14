@@ -602,44 +602,31 @@ export default function HomePage() {
           </div>
 
           {(() => {
-            // Replace these with actual devnet launch data from the platform
-            const DEVNET_SAMPLE = {
-              mint: 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr',
-              tx: '5VERv8NMvzbJMEkV8xnrLkEaWRtSz9CosKDYjCJjBRnbJLgp8uirBgmQpjKhoR4tjF3ZpRzrFmBV6UjKdiSZkQUW',
-              metadataUri: 'https://gateway.pinata.cloud/ipfs/bafkreig5x6lg5y2gmlhwgtopzh47sskwooth7gagat64tpcrmqfnbxqwda',
-              imageUri: 'https://gateway.pinata.cloud/ipfs/bafkreig5x6lg5y2gmlhwgtopzh47sskwooth7gagat64tpcrmqfnbxqwda',
-            };
-            const explorerBase = 'https://explorer.solana.com';
-            const cluster = '?cluster=devnet';
-
             const rows = [
               {
                 label: t.devnetLaunch_mintLabel,
-                value: DEVNET_SAMPLE.mint,
-                href: `${explorerBase}/address/${DEVNET_SAMPLE.mint}${cluster}`,
-                cta: t.devnetLaunch_viewMint,
+                desc: t.devnetLaunch_mintDesc,
                 icon: Coins,
               },
               {
                 label: t.devnetLaunch_txLabel,
-                value: `${DEVNET_SAMPLE.tx.slice(0, 20)}...${DEVNET_SAMPLE.tx.slice(-8)}`,
-                href: `${explorerBase}/tx/${DEVNET_SAMPLE.tx}${cluster}`,
-                cta: t.devnetLaunch_viewTx,
+                desc: t.devnetLaunch_txDesc,
                 icon: FileText,
               },
               {
                 label: t.devnetLaunch_metadataLabel,
-                value: 'IPFS — Pinata Gateway',
-                href: DEVNET_SAMPLE.metadataUri,
-                cta: t.devnetLaunch_viewMetadata,
+                desc: t.devnetLaunch_metadataDesc,
                 icon: Code2,
               },
               {
                 label: t.devnetLaunch_imageLabel,
-                value: 'IPFS — Pinata Gateway',
-                href: DEVNET_SAMPLE.imageUri,
-                cta: t.devnetLaunch_viewImage,
+                desc: t.devnetLaunch_imageDesc,
                 icon: ImageIcon,
+              },
+              {
+                label: t.devnetLaunch_explorerLabel,
+                desc: t.devnetLaunch_explorerDesc,
+                icon: Search,
               },
             ];
 
@@ -652,25 +639,36 @@ export default function HomePage() {
                       key={idx}
                       className="group rounded-xl border border-border bg-card p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 hover:shadow-md transition-shadow"
                     >
+                      <div className="flex items-center justify-center flex-shrink-0">
+                        <span className="inline-flex items-center justify-center h-7 w-7 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-bold">
+                          {idx + 1}
+                        </span>
+                      </div>
                       <div className="h-9 w-9 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                         <RowIcon className="h-4 w-4 text-emerald-500" />
                       </div>
                       <div className="flex-1 min-w-0 space-y-0.5">
-                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{row.label}</p>
-                        <p className="text-sm font-mono truncate">{row.value}</p>
+                        <p className="text-sm font-semibold">{row.label}</p>
+                        <p className="text-xs text-muted-foreground">{row.desc}</p>
                       </div>
-                      <a
-                        href={row.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-500 hover:text-brand-400 transition-colors whitespace-nowrap"
-                      >
-                        {row.cta}
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
+                      <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0 hidden sm:block" />
                     </div>
                   );
                 })}
+
+                {/* CTA to try the launch wizard */}
+                <div className="pt-4 flex justify-center">
+                  <a
+                    href="https://launch.unykorn.org/launch"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 text-sm font-medium transition-colors shadow-sm"
+                  >
+                    <Rocket className="h-4 w-4" />
+                    {t.devnetLaunch_tryCta}
+                    <ExternalLink className="h-3 w-3 opacity-70" />
+                  </a>
+                </div>
               </div>
             );
           })()}

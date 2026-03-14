@@ -265,17 +265,25 @@ const hi: TranslationDictionary = {
 
   // Sample Devnet Launch
   section_devnetLaunch: 'ऑन-चेन रसीद',
-  section_devnetLaunch_title: 'सैंपल Devnet लॉन्च',
-  section_devnetLaunch_subtitle: 'इस प्लेटफ़ॉर्म द्वारा Solana Devnet पर मिंट किया गया एक असली SPL टोकन। नीचे हर लिंक Solana Explorer खोलता है — कुछ भी नकली नहीं है।',
-  devnetLaunch_mintLabel: 'टोकन मिंट',
+  section_devnetLaunch_title: 'हर लॉन्च क्या पैदा करता है',
+  section_devnetLaunch_subtitle: 'प्लेटफ़ॉर्म से बनाया गया हर टोकन पाँच सत्यापन योग्य ऑन-चेन आर्टिफैक्ट्स उत्पन्न करता है। devnet पर लॉन्च विज़ार्ड स्वयं आज़माएं — 30 सेकंड लगते हैं।',
+  devnetLaunch_mintLabel: 'टोकन मिंट एड्रेस',
   devnetLaunch_txLabel: 'क्रिएशन ट्रांजैक्शन',
-  devnetLaunch_metadataLabel: 'मेटाडेटा JSON (IPFS)',
-  devnetLaunch_imageLabel: 'टोकन इमेज (IPFS)',
-  devnetLaunch_viewMint: 'Explorer पर मिंट देखें',
+  devnetLaunch_metadataLabel: 'मेटाडेटा JSON',
+  devnetLaunch_imageLabel: 'टोकन इमेज',
+  devnetLaunch_explorerLabel: 'Explorer टोकन पेज',
+  devnetLaunch_viewMint: 'Explorer पर देखें',
   devnetLaunch_viewTx: 'ट्रांजैक्शन देखें',
   devnetLaunch_viewMetadata: 'मेटाडेटा देखें',
   devnetLaunch_viewImage: 'इमेज देखें',
-  devnetLaunch_note: 'यह टोकन launch.unykorn.org पर उपलब्ध उसी लॉन्च विज़ार्ड से बनाया गया था। Devnet टोकन का कोई मौद्रिक मूल्य नहीं है।',
+  devnetLaunch_viewExplorer: 'टोकन पेज खोलें',
+  devnetLaunch_mintDesc: 'Solana पर यूनिक SPL टोकन एड्रेस — ऑन-चेन सत्यापन योग्य',
+  devnetLaunch_txDesc: 'पूर्ण इंस्ट्रक्शन ट्रेस के साथ हस्ताक्षरित ट्रांजैक्शन रिकॉर्ड',
+  devnetLaunch_metadataDesc: 'नाम, सिंबल, इमेज URI — Pinata के माध्यम से IPFS पर संग्रहीत',
+  devnetLaunch_imageDesc: 'IPFS पर पिन किया गया टोकन आर्टवर्क — अपरिवर्तनीय और स्थायी',
+  devnetLaunch_explorerDesc: 'Solana Explorer पर होल्डर्स और हिस्ट्री के साथ पूर्ण टोकन ओवरव्यू',
+  devnetLaunch_tryCta: 'Devnet पर लॉन्च विज़ार्ड आज़माएं',
+  devnetLaunch_note: 'यह सेक्शन हर लॉन्च द्वारा उत्पन्न पाँच आर्टिफैक्ट्स दिखाता है। अपना सत्यापन योग्य सैंपल बनाने के लिए launch.unykorn.org पर विज़ार्ड आज़माएं। Devnet टोकन का कोई मौद्रिक मूल्य नहीं है।',
 
   // Inline proof links on requirement cards
   homepage_requirementProofLinks: [

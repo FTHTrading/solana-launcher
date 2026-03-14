@@ -275,17 +275,25 @@ const fr: TranslationDictionary = {
 
   // Sample Devnet Launch
   section_devnetLaunch: 'Reçu on-chain',
-  section_devnetLaunch_title: 'Lancement Devnet Exemple',
-  section_devnetLaunch_subtitle: 'Un vrai jeton SPL créé par cette plateforme sur Solana Devnet. Chaque lien ci-dessous ouvre l\'explorateur Solana — rien n\'est simulé.',
+  section_devnetLaunch_title: 'Ce que chaque lancement produit',
+  section_devnetLaunch_subtitle: 'Chaque jeton créé via la plateforme génère cinq artefacts vérifiables on-chain. Essayez l\'assistant vous-même sur devnet — cela prend 30 secondes.',
   devnetLaunch_mintLabel: 'Adresse du mint',
   devnetLaunch_txLabel: 'Transaction de création',
-  devnetLaunch_metadataLabel: 'Métadonnées JSON (IPFS)',
-  devnetLaunch_imageLabel: 'Image du jeton (IPFS)',
-  devnetLaunch_viewMint: 'Voir le mint sur l\'explorateur',
+  devnetLaunch_metadataLabel: 'Métadonnées JSON',
+  devnetLaunch_imageLabel: 'Image du jeton',
+  devnetLaunch_explorerLabel: 'Page du jeton sur l\'explorateur',
+  devnetLaunch_viewMint: 'Voir sur l\'explorateur',
   devnetLaunch_viewTx: 'Voir la transaction',
   devnetLaunch_viewMetadata: 'Voir les métadonnées',
   devnetLaunch_viewImage: 'Voir l\'image',
-  devnetLaunch_note: 'Ce jeton a été créé avec le même assistant de lancement disponible sur launch.unykorn.org. Les jetons Devnet n\'ont aucune valeur monétaire.',
+  devnetLaunch_viewExplorer: 'Ouvrir la page du jeton',
+  devnetLaunch_mintDesc: 'Adresse unique du jeton SPL sur Solana — vérifiable on-chain',
+  devnetLaunch_txDesc: 'Enregistrement de transaction signé avec trace complète des instructions',
+  devnetLaunch_metadataDesc: 'Nom, symbole et URI de l\'image stockés sur IPFS via Pinata',
+  devnetLaunch_imageDesc: 'Visuel du jeton épinglé sur IPFS — immuable et permanent',
+  devnetLaunch_explorerDesc: 'Vue complète du jeton sur Solana Explorer avec détenteurs et historique',
+  devnetLaunch_tryCta: 'Essayer l\'assistant sur Devnet',
+  devnetLaunch_note: 'Cette section montre les cinq artefacts produits par chaque lancement. Essayez l\'assistant sur launch.unykorn.org pour créer votre propre échantillon vérifiable sur Solana devnet. Les jetons Devnet n\'ont aucune valeur monétaire.',
 
   // Inline proof links on requirement cards
   homepage_requirementProofLinks: [

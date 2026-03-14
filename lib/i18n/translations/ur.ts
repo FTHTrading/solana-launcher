@@ -265,17 +265,25 @@ const ur: TranslationDictionary = {
 
   // Sample Devnet Launch
   section_devnetLaunch: 'آن-چین رسید',
-  section_devnetLaunch_title: 'نمونہ Devnet لانچ',
-  section_devnetLaunch_subtitle: 'اس پلیٹ فارم کے ذریعے Solana Devnet پر بنایا گیا ایک حقیقی SPL ٹوکن۔ نیچے ہر لنک Solana Explorer کھولتا ہے — کچھ بھی جعلی نہیں۔',
-  devnetLaunch_mintLabel: 'ٹوکن منٹ',
+  section_devnetLaunch_title: 'ہر لانچ کیا پیدا کرتا ہے',
+  section_devnetLaunch_subtitle: 'پلیٹ فارم سے بنایا گیا ہر ٹوکن پانچ قابل تصدیق آن-چین آرٹیفیکٹس پیدا کرتا ہے۔ devnet پر لانچ وزرڈ خود آزمائیں — 30 سیکنڈ لگتے ہیں۔',
+  devnetLaunch_mintLabel: 'ٹوکن منٹ ایڈریس',
   devnetLaunch_txLabel: 'تخلیق ٹرانزیکشن',
-  devnetLaunch_metadataLabel: 'میٹا ڈیٹا JSON (IPFS)',
-  devnetLaunch_imageLabel: 'ٹوکن تصویر (IPFS)',
-  devnetLaunch_viewMint: 'Explorer پر منٹ دیکھیں',
+  devnetLaunch_metadataLabel: 'میٹا ڈیٹا JSON',
+  devnetLaunch_imageLabel: 'ٹوکن تصویر',
+  devnetLaunch_explorerLabel: 'Explorer ٹوکن صفحہ',
+  devnetLaunch_viewMint: 'Explorer پر دیکھیں',
   devnetLaunch_viewTx: 'ٹرانزیکشن دیکھیں',
   devnetLaunch_viewMetadata: 'میٹا ڈیٹا دیکھیں',
   devnetLaunch_viewImage: 'تصویر دیکھیں',
-  devnetLaunch_note: 'یہ ٹوکن launch.unykorn.org پر دستیاب اسی لانچ وزرڈ سے بنایا گیا تھا۔ Devnet ٹوکنز کی کوئی مالیاتی قدر نہیں ہے۔',
+  devnetLaunch_viewExplorer: 'ٹوکن صفحہ کھولیں',
+  devnetLaunch_mintDesc: 'Solana پر منفرد SPL ٹوکن ایڈریس — آن-چین قابل تصدیق',
+  devnetLaunch_txDesc: 'مکمل ہدایات ٹریس کے ساتھ دستخط شدہ ٹرانزیکشن ریکارڈ',
+  devnetLaunch_metadataDesc: 'نام، علامت، تصویر URI — Pinata کے ذریعے IPFS پر محفوظ',
+  devnetLaunch_imageDesc: 'IPFS پر پن کیا گیا ٹوکن آرٹ ورک — ناقابل تبدیل اور مستقل',
+  devnetLaunch_explorerDesc: 'ہولڈرز اور تاریخ کے ساتھ Solana Explorer پر مکمل ٹوکن جائزہ',
+  devnetLaunch_tryCta: 'Devnet پر لانچ وزرڈ آزمائیں',
+  devnetLaunch_note: 'یہ سیکشن ہر لانچ سے پیدا ہونے والے پانچ آرٹیفیکٹس دکھاتا ہے۔ اپنا قابل تصدیق نمونہ بنانے کے لیے launch.unykorn.org پر وزرڈ آزمائیں۔ Devnet ٹوکنز کی کوئی مالیاتی قدر نہیں ہے۔',
 
   // Inline proof links on requirement cards
   homepage_requirementProofLinks: [

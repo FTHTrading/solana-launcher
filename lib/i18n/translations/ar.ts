@@ -265,17 +265,25 @@ const ar: TranslationDictionary = {
 
   // Sample Devnet Launch
   section_devnetLaunch: 'إيصال على السلسلة',
-  section_devnetLaunch_title: 'إطلاق تجريبي على Devnet',
-  section_devnetLaunch_subtitle: 'رمز SPL حقيقي تم سكّه بواسطة هذه المنصة على Solana Devnet. كل رابط أدناه يفتح مستكشف Solana — لا شيء مزيف.',
-  devnetLaunch_mintLabel: 'عنوان السك',
+  section_devnetLaunch_title: 'ما ينتجه كل إطلاق',
+  section_devnetLaunch_subtitle: 'كل رمز يتم إنشاؤه عبر المنصة يولّد خمسة عناصر قابلة للتحقق على السلسلة. جرّب معالج الإطلاق بنفسك على devnet — يستغرق 30 ثانية.',
+  devnetLaunch_mintLabel: 'عنوان سك الرمز',
   devnetLaunch_txLabel: 'معاملة الإنشاء',
-  devnetLaunch_metadataLabel: 'بيانات وصفية JSON (IPFS)',
-  devnetLaunch_imageLabel: 'صورة الرمز (IPFS)',
-  devnetLaunch_viewMint: 'عرض السك في المستكشف',
+  devnetLaunch_metadataLabel: 'بيانات وصفية JSON',
+  devnetLaunch_imageLabel: 'صورة الرمز',
+  devnetLaunch_explorerLabel: 'صفحة الرمز في المستكشف',
+  devnetLaunch_viewMint: 'عرض في المستكشف',
   devnetLaunch_viewTx: 'عرض المعاملة',
   devnetLaunch_viewMetadata: 'عرض البيانات الوصفية',
   devnetLaunch_viewImage: 'عرض الصورة',
-  devnetLaunch_note: 'تم إنشاء هذا الرمز باستخدام نفس معالج الإطلاق المتاح على launch.unykorn.org. رموز Devnet ليس لها قيمة نقدية.',
+  devnetLaunch_viewExplorer: 'فتح صفحة الرمز',
+  devnetLaunch_mintDesc: 'عنوان رمز SPL فريد على Solana — قابل للتحقق على السلسلة',
+  devnetLaunch_txDesc: 'سجل معاملة موقّع مع تتبع كامل للتعليمات',
+  devnetLaunch_metadataDesc: 'الاسم والرمز وعنوان الصورة مخزنة على IPFS عبر Pinata',
+  devnetLaunch_imageDesc: 'صورة الرمز مثبتة على IPFS — غير قابلة للتغيير ودائمة',
+  devnetLaunch_explorerDesc: 'نظرة شاملة على الرمز في مستكشف Solana مع حاملي الرمز والتاريخ',
+  devnetLaunch_tryCta: 'جرّب معالج الإطلاق على Devnet',
+  devnetLaunch_note: 'يعرض هذا القسم العناصر الخمسة التي ينتجها كل إطلاق. جرّب المعالج على launch.unykorn.org لإنشاء عينة قابلة للتحقق على Solana devnet. رموز Devnet ليس لها قيمة نقدية.',
 
   // Inline proof links on requirement cards
   homepage_requirementProofLinks: [

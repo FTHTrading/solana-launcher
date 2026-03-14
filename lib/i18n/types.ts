@@ -205,10 +205,18 @@ export interface TranslationDictionary {
   devnetLaunch_txLabel: string;
   devnetLaunch_metadataLabel: string;
   devnetLaunch_imageLabel: string;
+  devnetLaunch_explorerLabel: string;
   devnetLaunch_viewMint: string;
   devnetLaunch_viewTx: string;
   devnetLaunch_viewMetadata: string;
   devnetLaunch_viewImage: string;
+  devnetLaunch_viewExplorer: string;
+  devnetLaunch_mintDesc: string;
+  devnetLaunch_txDesc: string;
+  devnetLaunch_metadataDesc: string;
+  devnetLaunch_imageDesc: string;
+  devnetLaunch_explorerDesc: string;
+  devnetLaunch_tryCta: string;
   devnetLaunch_note: string;
 
   // Inline proof links on requirement cards

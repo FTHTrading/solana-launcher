@@ -275,17 +275,25 @@ const en: TranslationDictionary = {
 
   // Sample Devnet Launch
   section_devnetLaunch: 'On-Chain Receipt',
-  section_devnetLaunch_title: 'Sample Devnet Launch',
-  section_devnetLaunch_subtitle: 'A real SPL token minted by this platform on Solana Devnet. Every link below opens the Solana Explorer — nothing is mocked.',
-  devnetLaunch_mintLabel: 'Token Mint',
+  section_devnetLaunch_title: 'What Every Launch Produces',
+  section_devnetLaunch_subtitle: 'Every token created through the platform generates five verifiable on-chain artifacts. Try the launch wizard yourself on devnet — it takes 30 seconds.',
+  devnetLaunch_mintLabel: 'Token Mint Address',
   devnetLaunch_txLabel: 'Creation Transaction',
-  devnetLaunch_metadataLabel: 'Metadata JSON (IPFS)',
-  devnetLaunch_imageLabel: 'Token Image (IPFS)',
-  devnetLaunch_viewMint: 'View Mint on Explorer',
+  devnetLaunch_metadataLabel: 'Metadata JSON',
+  devnetLaunch_imageLabel: 'Token Image',
+  devnetLaunch_explorerLabel: 'Explorer Token Page',
+  devnetLaunch_viewMint: 'View on Explorer',
   devnetLaunch_viewTx: 'View Transaction',
   devnetLaunch_viewMetadata: 'View Metadata',
   devnetLaunch_viewImage: 'View Image',
-  devnetLaunch_note: 'This token was created using the same launch wizard available at launch.unykorn.org. Devnet tokens have no monetary value.',
+  devnetLaunch_viewExplorer: 'Open Token Page',
+  devnetLaunch_mintDesc: 'Unique SPL token address on Solana — verifiable on-chain',
+  devnetLaunch_txDesc: 'Signed transaction record with full instruction trace',
+  devnetLaunch_metadataDesc: 'Name, symbol, image URI stored on IPFS via Pinata',
+  devnetLaunch_imageDesc: 'Token artwork pinned to IPFS — immutable and permanent',
+  devnetLaunch_explorerDesc: 'Full token overview on Solana Explorer with holders and history',
+  devnetLaunch_tryCta: 'Try Launch Wizard on Devnet',
+  devnetLaunch_note: 'This section shows the five artifacts every launch produces. Try the wizard at launch.unykorn.org to create your own verifiable sample on Solana devnet. Devnet tokens have no monetary value.',
 
   // Inline proof links on requirement cards
   homepage_requirementProofLinks: [
