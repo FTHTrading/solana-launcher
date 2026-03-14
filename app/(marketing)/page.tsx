@@ -71,6 +71,7 @@ const CLIENT_REQUIREMENTS = [
 ];
 
 const CAPABILITIES = [
+  // Phase 1 — Core
   { name: 'Wallet UX', desc: 'Phantom + Solflare adapter, network banner, balance checks', status: 'Built', icon: Wallet },
   { name: 'Launch Wizard', desc: '4-step flow: Details → Branding → Supply → Review', status: 'Built', icon: Rocket },
   { name: 'Token Metadata Flow', desc: 'IPFS upload via Pinata, Metaplex on-chain metadata', status: 'Built', icon: FileCode2 },
@@ -79,16 +80,22 @@ const CAPABILITIES = [
   { name: 'Authority Revocation', desc: 'Revoke mint + freeze authority with trust score display', status: 'Built', icon: Shield },
   { name: 'Portfolio Dashboard', desc: 'Live on-chain token balances with images from RPC', status: 'Built', icon: Eye },
   { name: 'Liquidity Pool Finder', desc: 'Raydium V3 API + Meteora DLMM pool lookup', status: 'Beta', icon: ArrowRightLeft },
-  { name: 'Honest Liquidity Labels', desc: 'UI clearly shows SDK integration pending', status: 'Hardened', icon: Settings2 },
   { name: 'Network Awareness', desc: 'Devnet/mainnet banner + low-SOL warnings everywhere', status: 'Built', icon: Globe },
   { name: 'Validation Layer', desc: 'Zod schemas, 12 typed error codes, BigInt-safe math', status: 'Verified', icon: CheckCircle2 },
-  { name: 'Structured Logging', desc: 'JSON in production, human-readable in dev, async timing', status: 'Hardened', icon: Terminal },
   { name: 'Rate Limiting', desc: 'Upstash Redis distributed, in-memory fallback', status: 'Hardened', icon: Lock },
-  { name: 'Env Validation', desc: 'Schema-based startup checks with placeholder detection', status: 'Hardened', icon: Settings2 },
   { name: 'Verification Pipeline', desc: 'TypeScript + vitest + build in one command', status: 'Verified', icon: TestTube2 },
   { name: 'Test Coverage', desc: '32 passing tests across 4 suites', status: 'Verified', icon: TestTube2 },
   { name: 'Legal & Compliance', desc: 'Terms, privacy, risk disclosure, compliance banner', status: 'Built', icon: Scale },
   { name: 'Documentation', desc: 'README, SETUP, BID_PROPOSAL, architecture docs — all truth-aligned', status: 'Built', icon: FileText },
+  // Phase 2 — New
+  { name: 'Premium Launch Tiers', desc: '3 tiers: Standard, Premium, Featured — with feature gating', status: 'Built', icon: Sparkles },
+  { name: 'White-Label System', desc: 'Multi-tenant branding, fee splits, domain routing, feature flags', status: 'Built', icon: Layers },
+  { name: 'Referral & Affiliate', desc: 'Referral codes, commission tracking, discount stacking', status: 'Built', icon: TrendingUp },
+  { name: 'Token Page Generator', desc: 'Dynamic /token/[mint] pages with trust score and on-chain data', status: 'Built', icon: Eye },
+  { name: 'Ecosystem Hub', desc: '15+ Solana partners: Jupiter, Raydium, Birdeye, Jito, Pyth, more', status: 'Built', icon: Globe },
+  { name: 'Post-Launch Checklist', desc: '13-step guided checklist from security to growth', status: 'Built', icon: CheckCircle2 },
+  { name: 'Helius Webhooks', desc: 'Real-time transfer, whale, pool, and swap notifications', status: 'Built', icon: Settings2 },
+  { name: '4-DEX Swap Routing', desc: 'Jupiter, Raydium, Meteora, Orca deep-link routing', status: 'Built', icon: ArrowRightLeft },
 ];
 
 const HARDENING = [
@@ -145,16 +152,24 @@ const MVP_ITEMS = [
   'Full verification pipeline (tsc + vitest + build)',
 ];
 
-const PHASE2_ITEMS = [
+const PHASE2_DONE = [
+  'Premium launch tiers (Standard / Premium / Featured)',
+  'White-label multi-tenant system with fee splits',
+  'Referral + affiliate tracking with commissions',
+  'Token page generator with trust scoring',
+  'Ecosystem hub — 15+ Solana partner integrations',
+  'Post-launch checklist (13-step guided flow)',
+  'Helius webhooks for real-time notifications',
+  '4-DEX swap routing (Jupiter, Raydium, Meteora, Orca)',
+];
+
+const PHASE3_ITEMS = [
   'On-chain Raydium AMM V4 liquidity add/remove',
   'On-chain Meteora DLMM pool creation',
-  'Referral + affiliate system',
-  'Premium launch tiers',
-  'White-label / API access',
-  'Analytics + admin expansion',
-  'Custom Rust extensions for advanced tokenomics',
-  'Multi-token management dashboard',
-  'Custom domain + branding support',
+  'Custom Rust programs for advanced tokenomics',
+  'Analytics dashboard with Birdeye API integration',
+  'Multi-language support (EN, AR, FR, HI, UR + RTL)',
+  'Mobile-optimized PWA',
 ];
 
 export default function HomePage() {
@@ -193,9 +208,9 @@ export default function HomePage() {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A production-minded, non-custodial token launcher built to directly answer
-            your request — wallet connection, guided launch wizard, fee-based revenue,
-            token management, and room to grow. Already built. Already verified.
+            A production-grade, non-custodial token launcher with 23+ capabilities across launch,
+            management, ecosystem integrations, and monetization. White-label ready. 15+ Solana
+            partner integrations. Already built. Already verified.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -213,10 +228,10 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-sm text-muted-foreground">
             {[
               'Wallet-based launch flow',
-              'Guided token creation UX',
-              'IPFS metadata + on-chain',
-              'Burn + authority revocation',
-              'Liquidity path prepared',
+              'Premium tiers & referrals',
+              'White-label ready',
+              '15+ ecosystem partners',
+              'Post-launch automation',
               'Production hardened',
             ].map((point) => (
               <div key={point} className="flex items-center gap-2">
@@ -283,7 +298,7 @@ export default function HomePage() {
               What&apos;s Already Built
             </h2>
             <p className="text-muted-foreground">
-              18 capabilities across launch, management, compliance, and infrastructure.
+              23 capabilities across launch, management, monetization, ecosystem, and infrastructure.
               Each one is implemented, not planned.
             </p>
           </div>
@@ -404,29 +419,29 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          6. MVP NOW / PHASE 2 LATER
+          6. SCOPE: THREE PHASES
       ══════════════════════════════════════════════════════════════ */}
       <section className="py-20 bg-muted/30">
-        <div className="container space-y-12 max-w-5xl mx-auto">
+        <div className="container space-y-12 max-w-6xl mx-auto">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold tracking-tight">
-              Scope: MVP Now, Phase 2 When Ready
+              Full Platform — Built Across Three Phases
             </h2>
             <p className="text-muted-foreground">
-              Everything in the left column is built and verified today.
-              The right column is expansion-ready architecture — available if and when you want it.
+              Phase 1 delivered the MVP. Phase 2 is complete — premium tiers, white-label,
+              ecosystem integrations, and referral system. Phase 3 expands into on-chain SDKs.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* MVP */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Phase 1 — MVP */}
             <Card>
               <CardHeader className="border-b bg-emerald-500/5">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-emerald-500" />
-                  <CardTitle className="text-base">Included in MVP</CardTitle>
+                  <CardTitle className="text-base">Phase 1 — MVP</CardTitle>
                 </div>
-                <CardDescription>Built, tested, deployable today</CardDescription>
+                <CardDescription>Core launch platform</CardDescription>
               </CardHeader>
               <CardContent className="pt-4">
                 <ul className="space-y-2">
@@ -440,18 +455,40 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            {/* Phase 2 */}
+            {/* Phase 2 — Done */}
+            <Card className="ring-2 ring-brand-500/30">
+              <CardHeader className="border-b bg-brand-500/5">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-brand-500" />
+                  <CardTitle className="text-base">Phase 2 — Growth</CardTitle>
+                  <Badge variant="success" className="ml-auto text-[10px]">Complete</Badge>
+                </div>
+                <CardDescription>Monetization, ecosystem, white-label</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <ul className="space-y-2">
+                  {PHASE2_DONE.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-brand-500 mt-0.5 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* Phase 3 — Future */}
             <Card>
               <CardHeader className="border-b bg-blue-500/5">
                 <div className="flex items-center gap-2">
                   <Layers className="h-5 w-5 text-blue-500" />
-                  <CardTitle className="text-base">Future Expansion (Phase 2)</CardTitle>
+                  <CardTitle className="text-base">Phase 3 — Expansion</CardTitle>
                 </div>
-                <CardDescription>Architecture prepared, SDK integration optional</CardDescription>
+                <CardDescription>On-chain SDKs, i18n, mobile</CardDescription>
               </CardHeader>
               <CardContent className="pt-4">
                 <ul className="space-y-2">
-                  {PHASE2_ITEMS.map((item) => (
+                  {PHASE3_ITEMS.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <CircleDot className="h-3.5 w-3.5 text-blue-500 mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
