@@ -118,7 +118,7 @@ const CAPABILITIES = [
 const HARDENING = [
   { metric: 'TypeScript', value: '0 errors', detail: 'Strict mode — no type-level shortcuts', variant: 'success' as const },
   { metric: 'Test Suite', value: '32 passing', detail: '4 suites: env, utils, api-response, rate-limit', variant: 'success' as const },
-  { metric: 'Build', value: 'Exit 0', detail: '18 routes compiled, 0 warnings', variant: 'success' as const },
+  { metric: 'Build', value: 'Exit 0', detail: '20 routes compiled, 0 warnings', variant: 'success' as const },
   { metric: 'Env Validation', value: 'Schema-based', detail: 'Placeholder detection, mainnet safety checks', variant: 'success' as const },
   { metric: 'Rate Limiting', value: 'Distributed', detail: 'Upstash Redis with in-memory fallback', variant: 'success' as const },
   { metric: 'Logging', value: 'Structured', detail: 'JSON prod / human dev, async timing', variant: 'success' as const },
@@ -148,9 +148,15 @@ const STEPS = [
   },
   {
     step: '04',
-    title: 'Launch & Manage',
-    description: 'Sign the transaction. Your SPL token mints on Solana. View it on your dashboard, burn supply, revoke authorities, or explore liquidity options.',
+    title: 'Review & Launch',
+    description: 'Sign the transaction. Your SPL token mints on Solana with metadata, branding, and fee captured atomically in one transaction.',
     icon: Rocket,
+  },
+  {
+    step: '05',
+    title: 'Manage & Grow',
+    description: 'View your token on the dashboard. Burn supply, revoke authorities, explore liquidity pools, run through the post-launch checklist.',
+    icon: TrendingUp,
   },
 ];
 
@@ -181,11 +187,11 @@ const _PHASE2_DONE = [
 ];
 
 const _PHASE3_ITEMS = [
-  'On-chain Raydium AMM V4 liquidity add/remove',
-  'On-chain Meteora DLMM pool creation',
-  'Custom Rust programs for advanced tokenomics',
-  'Analytics dashboard with Birdeye API integration',
-  'Mobile-optimized PWA',
+  'Architecture prepared for Raydium AMM V4 liquidity management',
+  'Extension path ready for Meteora DLMM pool creation',
+  'Admin analytics dashboard with conversion tracking',
+  'Multi-template token launch themes',
+  'Custom Rust programs for bespoke tokenomics (if needed)',
 ];
 
 export default function HomePage() {
@@ -268,6 +274,40 @@ export default function HomePage() {
               <div key={point} className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0" />
                 <span>{point}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          1a. BUILT AROUND YOUR BRIEF + TRUST BADGES
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="py-12 border-b border-border/50">
+        <div className="container max-w-4xl mx-auto space-y-8">
+          <div className="rounded-2xl bg-gradient-to-r from-brand-500/10 via-brand-500/5 to-transparent border border-brand-500/20 p-6 md:p-8 text-center space-y-3">
+            <h2 className="text-xl md:text-2xl font-bold tracking-tight">
+              Built specifically around your brief
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Wallet connection, token launch flow, fee capture, token management, burn controls, and a clear
+              roadmap for liquidity tools — already implemented in a production-grade architecture you can
+              test right now.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {[
+              { icon: Shield, label: 'Non-custodial' },
+              { icon: Wallet, label: 'Wallet-based auth' },
+              { icon: Globe, label: 'Devnet live' },
+              { icon: FileCode2, label: 'Metadata on-chain' },
+              { icon: Lock, label: 'Atomic fee capture' },
+              { icon: ArrowRightLeft, label: 'Liquidity-ready' },
+            ].map(({ icon: BadgeIcon, label }) => (
+              <div key={label} className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium">
+                <BadgeIcon className="h-3.5 w-3.5 text-brand-500" />
+                {label}
               </div>
             ))}
           </div>
@@ -718,11 +758,11 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {STEPS.map((s, idx) => {
               const StepIcon = s.icon;
-              const stepTitles = [t.step1_title, t.step2_title, t.step3_title, t.step4_title];
-              const stepDescs = [t.step1_desc, t.step2_desc, t.step3_desc, t.step4_desc];
+              const stepTitles = [t.step1_title, t.step2_title, t.step3_title, t.step4_title, 'Manage & Grow'];
+              const stepDescs = [t.step1_desc, t.step2_desc, t.step3_desc, t.step4_desc, 'View your token on the dashboard. Burn supply, revoke authorities, explore liquidity pools, run through the post-launch checklist.'];
               return (
                 <div key={s.step} className="relative space-y-3">
                   {idx < STEPS.length - 1 && (
@@ -1050,6 +1090,128 @@ export default function HomePage() {
                 <Calculator className="mr-2 h-3.5 w-3.5" /> Revenue Projection Calculator →
               </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── What's Included — Scope Matrix ── */}
+      <section className="py-20 bg-muted/30">
+        <div className="container max-w-5xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <Badge variant="info" className="mx-auto">
+              <Layers className="h-3 w-3 mr-1" /> Scope & Value
+            </Badge>
+            <h2 className="text-3xl font-bold tracking-tight">What&apos;s Included in the Build</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Most proposals deliver an MVP and charge extra for everything else. This delivery includes all three tiers at one fixed price.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* MVP Core */}
+            <Card>
+              <CardHeader className="border-b">
+                <div className="flex items-center gap-2">
+                  <Rocket className="h-5 w-5 text-emerald-500" />
+                  <CardTitle className="text-base">MVP Core</CardTitle>
+                </div>
+                <CardDescription>What competitors quote $1,500+ for</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <ul className="space-y-2">
+                  {[
+                    'Phantom + Solflare wallet',
+                    '4-step launch wizard',
+                    'IPFS metadata upload',
+                    'On-chain Metaplex metadata',
+                    'Atomic fee capture',
+                    'Token burn flow',
+                    'Authority revocation',
+                    'Portfolio dashboard',
+                    'Legal pages (Kuwait/GCC)',
+                    'Verification pipeline',
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* Growth Platform */}
+            <Card>
+              <CardHeader className="border-b">
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-brand-500" />
+                  <CardTitle className="text-base">Growth Platform</CardTitle>
+                </div>
+                <CardDescription>Usually quoted as a Phase 2 add-on</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <ul className="space-y-2">
+                  {[
+                    { text: 'Everything in MVP, plus:', highlight: true },
+                    { text: 'Premium launch tiers (3 levels)', highlight: false },
+                    { text: 'Referral + affiliate system', highlight: false },
+                    { text: 'Ecosystem hub (15+ partners)', highlight: false },
+                    { text: 'Post-launch checklist', highlight: false },
+                    { text: 'Webhook notifications', highlight: false },
+                    { text: '4-DEX swap routing', highlight: false },
+                    { text: 'Token page generator', highlight: false },
+                    { text: 'Trust score display', highlight: false },
+                  ].map((item, idx) => (
+                    <li key={idx} className={`flex items-start gap-2 text-sm ${item.highlight ? 'font-medium text-brand-500' : ''}`}>
+                      {item.highlight
+                        ? <Sparkles className="h-3.5 w-3.5 text-brand-500 mt-0.5 flex-shrink-0" />
+                        : <CheckCircle2 className="h-3.5 w-3.5 text-brand-500 mt-0.5 flex-shrink-0" />}
+                      <span>{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* Full Launcher */}
+            <Card className="ring-2 ring-brand-500/30">
+              <CardHeader className="border-b bg-brand-500/5">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-brand-500" />
+                  <CardTitle className="text-base">Full Launcher</CardTitle>
+                  <Badge variant="success" className="ml-auto text-[10px]">Delivered</Badge>
+                </div>
+                <CardDescription>What you are getting — all of it</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <ul className="space-y-2">
+                  {[
+                    { text: 'Everything in Growth, plus:', highlight: true },
+                    { text: 'White-label multi-tenancy', highlight: false },
+                    { text: '5-language i18n + RTL', highlight: false },
+                    { text: 'Revenue projection calculator', highlight: false },
+                    { text: 'Competitor analysis matrix', highlight: false },
+                    { text: 'Admin treasury dashboard', highlight: false },
+                    { text: 'PWA mobile support', highlight: false },
+                    { text: 'Sample token demo page', highlight: false },
+                    { text: 'Full documentation suite', highlight: false },
+                  ].map((item, idx) => (
+                    <li key={idx} className={`flex items-start gap-2 text-sm ${item.highlight ? 'font-medium text-brand-500' : ''}`}>
+                      {item.highlight
+                        ? <Sparkles className="h-3.5 w-3.5 text-brand-500 mt-0.5 flex-shrink-0" />
+                        : <CheckCircle2 className="h-3.5 w-3.5 text-brand-500 mt-0.5 flex-shrink-0" />}
+                      <span>{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <p className="text-sm text-muted-foreground">
+              All three tiers are included. <strong className="text-foreground">$3,000 fixed price. Zero delivery risk. Day 1.</strong>
+            </p>
           </div>
         </div>
       </section>

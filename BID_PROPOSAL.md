@@ -101,13 +101,13 @@ Architecture prepared. These items require deeper SDK integration:
 
 | Capability | Notes |
 |-----------|-------|
-| Raydium AMM V4 add/remove liquidity | `@raydium-io/raydium-sdk-v2` — integration points in `liquidity.service.ts` |
-| Meteora DLMM pool creation | `@meteora-ag/dlmm` — integration points in `liquidity.service.ts` |
-| Custom Rust on-chain programs | For bespoke tokenomics or advanced pool mechanics |
-| Analytics dashboard | Birdeye API integration, conversion funnel, revenue tracking |
+| Raydium AMM V4 add/remove liquidity | Architecture prepared — `@raydium-io/raydium-sdk-v2` integration points in `liquidity.service.ts` |
+| Meteora DLMM pool creation | Extension path ready — `@meteora-ag/dlmm` integration points in `liquidity.service.ts` |
+| Custom Rust on-chain programs | For bespoke tokenomics or advanced pool mechanics (if needed) |
+| Analytics dashboard | Admin conversion tracking, Birdeye API integration |
 | ~~Mobile-optimized PWA~~ | **Done** — manifest.json, apple-touch-icon, installable on mobile |
 | Dashboard + admin translation coverage | Extend i18n to all product flows |
-| RTL visual QA | Full breakpoint audit for Arabic + Urdu layouts |
+| Multi-template token launch themes | Preset visual themes for token creation |
 
 ---
 

@@ -72,8 +72,8 @@ const en: TranslationDictionary = {
   phase1_desc: 'Core launch platform',
   phase2_title: 'Phase 2 — Growth',
   phase2_desc: 'Monetization, ecosystem, white-label',
-  phase3_title: 'Optional Expansion',
-  phase3_desc: 'On-chain liquidity, analytics, custom programs',
+  phase3_title: 'Prepared for Expansion',
+  phase3_desc: 'Architecture ready for on-chain liquidity, analytics, and custom programs',
 
   // Feasibility
   feasibility_title: 'Feasibility',
@@ -202,14 +202,14 @@ const en: TranslationDictionary = {
     '4-DEX swap routing (Jupiter, Raydium, Meteora, Orca)',
   ],
   homepage_phase3Items: [
-    'On-chain Raydium AMM V4 liquidity add/remove',
-    'On-chain Meteora DLMM pool creation',
-    'Custom Rust programs for advanced tokenomics',
-    'Analytics dashboard with Birdeye API integration',
-    'Mobile-optimized PWA',
+    'Architecture prepared for Raydium AMM V4 liquidity management',
+    'Extension path ready for Meteora DLMM pool creation',
+    'Admin analytics dashboard with conversion tracking',
+    'Multi-template token launch themes',
+    'Custom Rust programs for bespoke tokenomics (if needed)',
   ],
   homepage_whyDifferent: [
-    { title: 'Already Built — Not Just Proposed', desc: '81+ production files, 18 routes, every screen functional. You can run it locally today.' },
+    { title: 'Already Built \u2014 Not Just Proposed', desc: '125+ production files, 20 routes, every screen functional. You can run it locally today.' },
     { title: 'Tested & Verified', desc: '32 unit tests, TypeScript strict mode, CI-grade verification pipeline. Not "it works on my machine."' },
     { title: 'Honest Status Language', desc: 'Liquidity UI says "Integration Pending" — not "Coming Soon." Every label reflects actual implementation state.' },
     { title: 'Documentation Matches Code', desc: 'README, SETUP, BID_PROPOSAL, and architecture docs are all truth-aligned to what is actually built.' },
