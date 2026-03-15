@@ -17,12 +17,25 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: appConfig.app.name,
+    default: `${appConfig.app.name} — Create SPL Tokens in Minutes`,
     template: `%s | ${appConfig.app.name}`,
   },
   description:
-    'Create your own Solana SPL token in minutes. No coding required. Simple, transparent, and secure.',
-  keywords: ['Solana', 'SPL Token', 'Token Launcher', 'Meme Coin', 'Web3', 'Crypto', 'Token Creator'],
+    'Launch your own Solana SPL token with custom branding, IPFS metadata, and on-chain Metaplex verification. Non-custodial. From 0.1 SOL. No coding required.',
+  keywords: [
+    'Solana token creator',
+    'SPL token launcher',
+    'meme coin launcher',
+    'Solana token maker',
+    'create Solana token',
+    'no code token creator',
+    'SPL token',
+    'Solana meme coin',
+    'token launcher',
+    'Metaplex',
+    'IPFS metadata',
+    'Solana DeFi',
+  ],
   manifest: '/manifest.json',
   icons: [
     { rel: 'icon', url: '/favicon.png', type: 'image/png', sizes: '192x192' },
@@ -39,16 +52,24 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: appConfig.app.url,
     siteName: appConfig.app.name,
-    title: appConfig.app.name,
+    title: `${appConfig.app.name} — Create SPL Tokens on Solana`,
     description:
-      'Create your own Solana SPL token in minutes. No coding required.',
-    images: [{ url: `${appConfig.app.url}/images/brand/logo-primary.png`, width: 512, height: 512 }],
+      'Launch your own Solana SPL token with custom branding, IPFS metadata, and on-chain verification. Non-custodial. From 0.1 SOL.',
+    images: [{ url: `${appConfig.app.url}/images/brand/logo-primary.png`, width: 512, height: 512, alt: 'Solana Launcher' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: appConfig.app.name,
-    description: 'Create your own Solana SPL token in minutes.',
+    title: `${appConfig.app.name} — Create SPL Tokens on Solana`,
+    description:
+      'Launch your own Solana SPL token with custom branding, IPFS metadata, and on-chain verification. Non-custodial. From 0.1 SOL.',
     images: [`${appConfig.app.url}/images/brand/logo-primary.png`],
+  },
+  alternates: {
+    canonical: appConfig.app.url,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

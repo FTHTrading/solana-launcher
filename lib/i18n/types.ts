@@ -47,12 +47,17 @@ export interface TranslationDictionary {
   hero_subtitle: string;
   hero_cta_launch: string;
   hero_cta_view: string;
+  hero_cta_demo: string;
+  hero_cta_docs: string;
   hero_pill_wallet: string;
   hero_pill_tiers: string;
   hero_pill_whiteLabel: string;
   hero_pill_partners: string;
   hero_pill_postLaunch: string;
   hero_pill_hardened: string;
+
+  // Trust strip
+  trust_builtOn: string;
 
   // Section titles
   section_directResponse: string;
@@ -110,6 +115,17 @@ export interface TranslationDictionary {
   pricing_networkFee: string;
   pricing_total: string;
   pricing_devnetNote: string;
+  pricing_viewAll: string;
+
+  // Comparison
+  section_compare_title: string;
+  section_compare_subtitle: string;
+  compare_col_feature: string;
+  compare_col_us: string;
+  compare_col_cli: string;
+  compare_col_generic: string;
+  compare_col_pump: string;
+  homepage_compareFeatures: string[];
 
   // Footer
   footer_desc: string;

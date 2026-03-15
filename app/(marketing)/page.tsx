@@ -5,15 +5,18 @@ import Image from 'next/image';
 import {
   ArrowRight,
   ArrowRightLeft,
+  Check,
   CheckCircle2,
   Coins,
   Eye,
   FileCode2,
   Flame,
+  Minus,
   Rocket,
   Settings2,
   Shield,
   Wallet,
+  X,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -28,6 +31,28 @@ const FEATURE_ICONS = [Rocket, FileCode2, Shield, Flame, Eye, ArrowRightLeft];
 /* ─── Step icons mapped to step1–step4 translations ───────────────── */
 const STEP_ICONS = [Wallet, Settings2, Coins, Rocket];
 
+/* ─── Trust strip technologies ────────────────────────────────────── */
+const TRUST_ITEMS = ['Phantom', 'Solflare', 'SPL Token', 'Metaplex', 'IPFS'];
+
+/* ─── Comparison data: [us, cli, generic, pump] ───────────────────── */
+type CompareVal = boolean | 'partial';
+const COMPARE_DATA: CompareVal[][] = [
+  [true, false, true, true],       // Guided wizard
+  [true, false, 'partial', false], // IPFS + Metaplex
+  [true, 'partial', false, false], // Authority revoke
+  [true, 'partial', false, false], // Token burn
+  [true, false, false, false],     // Post-launch dashboard
+  [true, false, false, 'partial'], // Multi-DEX
+  [true, true, 'partial', false],  // Transparent pricing
+  [true, false, true, true],       // No code
+];
+
+function CompareCell({ val }: { val: CompareVal }) {
+  if (val === true) return <Check className="h-4 w-4 text-emerald-500 mx-auto" />;
+  if (val === 'partial') return <Minus className="h-4 w-4 text-amber-500 mx-auto" />;
+  return <X className="h-4 w-4 text-red-400/60 mx-auto" />;
+}
+
 export default function HomePage() {
   const { t, isRtl } = useTranslation();
 
@@ -41,9 +66,27 @@ export default function HomePage() {
 
   const stepTitles = [t.step1_title, t.step2_title, t.step3_title, t.step4_title];
   const stepDescs = [t.step1_desc, t.step2_desc, t.step3_desc, t.step4_desc];
+  const compareCols = [t.compare_col_us, t.compare_col_cli, t.compare_col_generic, t.compare_col_pump];
+
+  /* ─── FAQ structured data (JSON-LD) ─────────────────────────────── */
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: t.faq_items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
 
   return (
     <>
+      {/* JSON-LD for FAQ structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* ══════════════════════════════════════════════════════════════
           HERO
       ══════════════════════════════════════════════════════════════ */}
@@ -80,6 +123,7 @@ export default function HomePage() {
             {t.hero_subtitle}
           </p>
 
+          {/* 3-path CTA ladder */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="xl" variant="gradient" asChild>
               <Link href="/launch">
@@ -88,10 +132,16 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button size="xl" variant="outline" asChild>
-              <Link href="#features">{t.hero_cta_view}</Link>
+              <Link href="/launch">{t.hero_cta_demo}</Link>
+            </Button>
+            <Button size="lg" variant="ghost" asChild>
+              <Link href="#features" className="text-muted-foreground">
+                {t.hero_cta_view}
+              </Link>
             </Button>
           </div>
 
+          {/* Trust pills */}
           <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-sm text-muted-foreground">
             {[
               t.hero_pill_wallet,
@@ -105,6 +155,23 @@ export default function HomePage() {
                 <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0" />
                 <span>{point}</span>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          TRUST STRIP
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="border-y border-border/50 bg-muted/20 py-6">
+        <div className="container">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-muted-foreground">
+            <span className="font-medium text-foreground/70">{t.trust_builtOn}</span>
+            {TRUST_ITEMS.map((item) => (
+              <span key={item} className="flex items-center gap-1.5 font-medium">
+                <Shield className="h-3.5 w-3.5 text-brand-500/70" />
+                {item}
+              </span>
             ))}
           </div>
         </div>
@@ -194,9 +261,62 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
+          COMPARISON — WHY SOLANA LAUNCHER
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 bg-muted/30">
+        <div className="container space-y-12 max-w-4xl mx-auto">
+          <div className="text-center space-y-3 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold tracking-tight">
+              {t.section_compare_title}
+            </h2>
+            <p className="text-muted-foreground">
+              {t.section_compare_subtitle}
+            </p>
+          </div>
+
+          <div className="overflow-x-auto rounded-xl border border-border bg-background">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border bg-muted/50">
+                  <th className="text-left py-3.5 px-4 font-medium text-muted-foreground w-[36%]">
+                    {t.compare_col_feature}
+                  </th>
+                  {compareCols.map((col, idx) => (
+                    <th
+                      key={col}
+                      className={`text-center py-3.5 px-3 font-semibold text-xs uppercase tracking-wider ${
+                        idx === 0 ? 'text-brand-500' : 'text-muted-foreground'
+                      }`}
+                    >
+                      {col}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {t.homepage_compareFeatures.map((feature, rowIdx) => (
+                  <tr
+                    key={rowIdx}
+                    className="border-b border-border/50 last:border-0 hover:bg-muted/30 transition-colors"
+                  >
+                    <td className="py-3 px-4 font-medium">{feature}</td>
+                    {COMPARE_DATA[rowIdx]?.map((val, colIdx) => (
+                      <td key={colIdx} className="py-3 px-3 text-center">
+                        <CompareCell val={val} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
           PRICING
       ══════════════════════════════════════════════════════════════ */}
-      <section id="pricing" className="py-20 bg-muted/30">
+      <section id="pricing" className="py-20">
         <div className="container max-w-xl mx-auto space-y-8">
           <div className="text-center space-y-3">
             <h2 className="text-3xl font-bold tracking-tight">
@@ -246,12 +366,15 @@ export default function HomePage() {
                 {t.pricing_devnetNote}
               </p>
 
-              <div className="text-center pt-2">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
                 <Button size="lg" variant="gradient" asChild>
                   <Link href="/launch">
                     <Rocket className="h-4 w-4 mr-2" />
                     {t.hero_cta_launch}
                   </Link>
+                </Button>
+                <Button size="sm" variant="link" asChild>
+                  <Link href="/pricing">{t.pricing_viewAll}</Link>
                 </Button>
               </div>
             </CardContent>
@@ -262,7 +385,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════════════
           FAQ
       ══════════════════════════════════════════════════════════════ */}
-      <section id="faq" className="py-20">
+      <section id="faq" className="py-20 bg-muted/30">
         <div className="container max-w-3xl mx-auto space-y-8">
           <div className="text-center space-y-3">
             <h2 className="text-3xl font-bold tracking-tight">
@@ -274,7 +397,7 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          CTA
+          CTA — 3-path conversion
       ══════════════════════════════════════════════════════════════ */}
       <section className="py-24 bg-gradient-to-b from-brand-500/5 to-transparent">
         <div className="container text-center space-y-6 max-w-3xl mx-auto">
@@ -295,6 +418,16 @@ export default function HomePage() {
               <Link href="/dashboard">
                 {t.common_viewDashboard}
               </Link>
+            </Button>
+            <Button size="lg" variant="ghost" asChild>
+              <a
+                href="https://github.com/FTHTrading/solana-launcher/blob/main/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground"
+              >
+                {t.hero_cta_docs}
+              </a>
             </Button>
           </div>
         </div>

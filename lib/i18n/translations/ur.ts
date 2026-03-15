@@ -23,12 +23,17 @@ const ur: TranslationDictionary = {
     'حسب ضرورت برانڈنگ، IPFS میٹا ڈیٹا اور آن-چین تصدیق کے ساتھ SPL ٹوکن بنائیں۔ کوئی کوڈنگ ضروری نہیں۔ 0.1 SOL سے شروع۔',
   hero_cta_launch: 'ٹوکن لانچ کریں',
   hero_cta_view: 'خصوصیات دیکھیں',
+  hero_cta_demo: 'Devnet پر آزمائیں',
+  hero_cta_docs: 'دستاویزات پڑھیں',
   hero_pill_wallet: 'نان-کسٹوڈیل',
   hero_pill_tiers: 'IPFS + Metaplex',
   hero_pill_whiteLabel: 'Devnet اور Mainnet',
   hero_pill_partners: 'کوئی کوڈ ضروری نہیں',
   hero_pill_postLaunch: '0.1 SOL سے',
   hero_pill_hardened: 'فوری آن-چین',
+
+  // Trust strip
+  trust_builtOn: 'بنایا گیا',
 
   // Section titles
   section_directResponse: 'براہ راست جواب',
@@ -86,6 +91,26 @@ const ur: TranslationDictionary = {
   pricing_networkFee: 'تخمینی نیٹ ورک / کرایہ فیس',
   pricing_total: 'تخمینی کل',
   pricing_devnetNote: 'Devnet لانچز ٹیسٹ SOL استعمال کرتے ہیں اور مفت ہیں۔ جب تیار ہوں تو Mainnet پر جائیں۔',
+  pricing_viewAll: 'تمام درجات دیکھیں \u2192',
+
+  // Comparison
+  section_compare_title: 'Solana Launcher کیوں',
+  section_compare_subtitle: 'دیکھیں کہ Solana ٹوکن بنانے کے دوسرے طریقوں سے ہماری کیسے موازنہ ہے۔',
+  compare_col_feature: 'خصوصیت',
+  compare_col_us: 'Solana Launcher',
+  compare_col_cli: 'CLI مائننگ',
+  compare_col_generic: 'عمومی ٹولز',
+  compare_col_pump: 'Pump طرز',
+  homepage_compareFeatures: [
+    'گائیڈڈ لانچ وزرڈ',
+    'IPFS + Metaplex میٹا ڈیٹا',
+    'اختیارات منسوخی',
+    'ٹوکن جلانا',
+    'لانچ کے بعد ڈیش بورڈ',
+    'ملٹی-DEX ٹریکنگ',
+    'شفاف قیمتیں',
+    'کوئی کوڈنگ ضروری نہیں',
+  ],
 
   // Footer
   footer_desc: 'Solana SPL ٹوکن بنائیں اور منظم کریں۔ نان-کسٹوڈیل، شفاف اور آسان۔',

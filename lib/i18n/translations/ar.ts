@@ -23,12 +23,17 @@ const ar: TranslationDictionary = {
     'أنشئ رموز SPL مع علامة تجارية مخصصة وبيانات وصفية IPFS وتحقق على السلسلة. لا يتطلب برمجة. من 0.1 SOL.',
   hero_cta_launch: 'إطلاق رمز',
   hero_cta_view: 'اعرض الميزات',
+  hero_cta_demo: 'جرّب على Devnet',
+  hero_cta_docs: 'اقرأ الوثائق',
   hero_pill_wallet: 'غير حفظي',
   hero_pill_tiers: 'IPFS + Metaplex',
   hero_pill_whiteLabel: 'Devnet و Mainnet',
   hero_pill_partners: 'بدون برمجة',
   hero_pill_postLaunch: 'من 0.1 SOL',
   hero_pill_hardened: 'فوري على السلسلة',
+
+  // Trust strip
+  trust_builtOn: 'مبني على',
 
   // Section titles
   section_directResponse: 'استجابة مباشرة',
@@ -86,6 +91,26 @@ const ar: TranslationDictionary = {
   pricing_networkFee: 'رسوم الشبكة / الإيجار المقدرة',
   pricing_total: 'الإجمالي المقدر',
   pricing_devnetNote: 'إطلاقات Devnet تستخدم SOL تجريبي وهي مجانية. انتقل إلى Mainnet عندما تكون جاهزًا.',
+  pricing_viewAll: 'عرض جميع المستويات \u2192',
+
+  // Comparison
+  section_compare_title: 'لماذا Solana Launcher',
+  section_compare_subtitle: 'اكتشف كيف نقارن بالطرق الأخرى لإنشاء رموز Solana.',
+  compare_col_feature: 'الميزة',
+  compare_col_us: 'Solana Launcher',
+  compare_col_cli: 'سطر الأوامر',
+  compare_col_generic: 'أدوات عامة',
+  compare_col_pump: 'نمط Pump',
+  homepage_compareFeatures: [
+    'معالج إطلاق موجّه',
+    'بيانات IPFS + Metaplex',
+    'إلغاء الصلاحيات',
+    'حرق الرموز',
+    'لوحة تحكم ما بعد الإطلاق',
+    'تداول متعدد DEX',
+    'تسعير شفاف',
+    'بدون برمجة',
+  ],
 
   // Footer
   footer_desc: 'إنشاء وإدارة رموز Solana SPL. غير حفظي وشفاف وبسيط.',

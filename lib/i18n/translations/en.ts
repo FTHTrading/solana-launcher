@@ -23,12 +23,17 @@ const en: TranslationDictionary = {
     'Create SPL tokens with custom branding, IPFS metadata, and on-chain verification. No coding required. From 0.1 SOL.',
   hero_cta_launch: 'Launch Token',
   hero_cta_view: 'See Features',
+  hero_cta_demo: 'Try on Devnet',
+  hero_cta_docs: 'Read Docs',
   hero_pill_wallet: 'Non-custodial',
   hero_pill_tiers: 'IPFS + Metaplex',
   hero_pill_whiteLabel: 'Devnet & Mainnet',
   hero_pill_partners: 'No code required',
   hero_pill_postLaunch: 'From 0.1 SOL',
   hero_pill_hardened: 'Instant on-chain',
+
+  // Trust strip
+  trust_builtOn: 'Built on',
 
   // Section titles
   section_directResponse: 'Direct Response',
@@ -94,6 +99,26 @@ const en: TranslationDictionary = {
   pricing_networkFee: 'Estimated network / rent fee',
   pricing_total: 'Estimated total',
   pricing_devnetNote: 'Devnet launches use test SOL and are free. Switch to Mainnet when you are ready.',
+  pricing_viewAll: 'View all tiers \u2192',
+
+  // Comparison
+  section_compare_title: 'Why Solana Launcher',
+  section_compare_subtitle: 'See how we compare to other ways of creating Solana tokens.',
+  compare_col_feature: 'Feature',
+  compare_col_us: 'Solana Launcher',
+  compare_col_cli: 'CLI Minting',
+  compare_col_generic: 'Generic Tools',
+  compare_col_pump: 'Pump-style',
+  homepage_compareFeatures: [
+    'Guided launch wizard',
+    'IPFS + Metaplex metadata',
+    'Authority revocation',
+    'Token burning',
+    'Post-launch dashboard',
+    'Multi-DEX trading',
+    'Transparent pricing',
+    'No coding required',
+  ],
 
   // Footer
   footer_desc: 'Create and manage Solana SPL tokens. Non-custodial, transparent, and simple.',

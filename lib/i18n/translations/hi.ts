@@ -23,12 +23,17 @@ const hi: TranslationDictionary = {
     'कस्टम ब्रांडिंग, IPFS मेटाडेटा और ऑन-चेन सत्यापन के साथ SPL टोकन बनाएं। कोई कोडिंग आवश्यक नहीं। 0.1 SOL से शुरू।',
   hero_cta_launch: 'टोकन लॉन्च करें',
   hero_cta_view: 'विशेषताएं देखें',
+  hero_cta_demo: 'Devnet पर आज़माएं',
+  hero_cta_docs: 'दस्तावेज़ पढ़ें',
   hero_pill_wallet: 'नॉन-कस्टोडियल',
   hero_pill_tiers: 'IPFS + Metaplex',
   hero_pill_whiteLabel: 'Devnet और Mainnet',
   hero_pill_partners: 'कोई कोड आवश्यक नहीं',
   hero_pill_postLaunch: '0.1 SOL से',
   hero_pill_hardened: 'तुरंत ऑन-चेन',
+
+  // Trust strip
+  trust_builtOn: 'इस पर निर्मित',
 
   // Section titles
   section_directResponse: 'सीधा जवाब',
@@ -86,6 +91,26 @@ const hi: TranslationDictionary = {
   pricing_networkFee: 'अनुमानित नेटवर्क / किराया शुल्क',
   pricing_total: 'अनुमानित कुल',
   pricing_devnetNote: 'Devnet लॉन्च टेस्ट SOL का उपयोग करते हैं और मुफ़्त हैं। जब तैयार हों तो Mainnet पर स्विच करें।',
+  pricing_viewAll: 'सभी स्तर देखें \u2192',
+
+  // Comparison
+  section_compare_title: 'Solana Launcher क्यों',
+  section_compare_subtitle: 'देखें कि Solana टोकन बनाने के अन्य तरीकों की तुलना में हम कैसे हैं।',
+  compare_col_feature: 'विशेषता',
+  compare_col_us: 'Solana Launcher',
+  compare_col_cli: 'CLI मिंटिंग',
+  compare_col_generic: 'सामान्य टूल',
+  compare_col_pump: 'Pump-शैली',
+  homepage_compareFeatures: [
+    'गाइडेड लॉन्च विज़ार्ड',
+    'IPFS + Metaplex मेटाडेटा',
+    'अधिकार रद्दीकरण',
+    'टोकन बर्निंग',
+    'लॉन्च के बाद डैशबोर्ड',
+    'मल्टी-DEX ट्रेडिंग',
+    'पारदर्शी मूल्य निर्धारण',
+    'कोई कोडिंग आवश्यक नहीं',
+  ],
 
   // Footer
   footer_desc: 'Solana SPL टोकन बनाएं और प्रबंधित करें। नॉन-कस्टोडियल, पारदर्शी और सरल।',
