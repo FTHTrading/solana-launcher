@@ -169,7 +169,7 @@ const en: TranslationDictionary = {
   homepage_hardening: [
     { metric: 'TypeScript', value: '0 errors', detail: 'Strict mode — no type-level shortcuts' },
     { metric: 'Test Suite', value: '32 passing', detail: '4 suites: env, utils, api-response, rate-limit' },
-    { metric: 'Build', value: 'Exit 0', detail: '18 routes compiled, 0 warnings' },
+    { metric: 'Build', value: 'Exit 0', detail: '20 routes compiled, 0 warnings' },
     { metric: 'Env Validation', value: 'Schema-based', detail: 'Placeholder detection, mainnet safety checks' },
     { metric: 'Rate Limiting', value: 'Distributed', detail: 'Upstash Redis with in-memory fallback' },
     { metric: 'Logging', value: 'Structured', detail: 'JSON prod / human dev, async timing' },
@@ -260,7 +260,7 @@ const en: TranslationDictionary = {
   section_proof_subtitle: 'This is not a pitch deck. Every capability described on this page has a live link, a source file, or a verification command behind it.',
   homepage_proofCards: [
     { title: 'Live App', desc: 'The full platform is live and testable on Devnet right now. Connect a wallet and try the complete flow.', linkLabel: 'Try It Live →' },
-    { title: 'Source Code', desc: 'Complete repository — 81+ files, 18 routes, TypeScript strict mode, zero errors.', linkLabel: 'View Repository →' },
+    { title: 'Source Code', desc: 'Complete repository — 125+ files, 20 routes, TypeScript strict mode, zero errors.', linkLabel: 'View Repository →' },
     { title: 'Verification Command', desc: 'One command runs TypeScript checks, 32 tests, and a full Next.js production build.', linkLabel: 'npm run verify' },
     { title: 'Setup Guide', desc: 'Clone, install, configure, and run the full platform locally in under 5 minutes.', linkLabel: 'Read Setup →' },
     { title: 'Architecture Docs', desc: 'System design, tech stack, file structure, and deployment architecture — all documented.', linkLabel: 'Read Docs →' },

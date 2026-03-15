@@ -169,7 +169,7 @@ const fr: TranslationDictionary = {
   homepage_hardening: [
     { metric: 'TypeScript', value: '0 erreurs', detail: 'Mode strict — aucun raccourci au niveau des types' },
     { metric: 'Suite de Tests', value: '32 réussis', detail: '4 suites : env, utils, api-response, rate-limit' },
-    { metric: 'Build', value: 'Exit 0', detail: '18 routes compilées, 0 avertissements' },
+    { metric: 'Build', value: 'Exit 0', detail: '20 routes compilées, 0 avertissements' },
     { metric: 'Validation Env', value: 'Basée sur schéma', detail: 'Détection de placeholders, vérifications de sécurité mainnet' },
     { metric: 'Limitation de Débit', value: 'Distribué', detail: 'Upstash Redis avec repli en mémoire' },
     { metric: 'Journalisation', value: 'Structurée', detail: 'JSON prod / humain dev, chronométrage asynchrone' },
@@ -209,7 +209,7 @@ const fr: TranslationDictionary = {
     'PWA optimisée mobile',
   ],
   homepage_whyDifferent: [
-    { title: 'Déjà Construit — Pas Seulement Proposé', desc: '81+ fichiers de production, 18 routes, chaque écran fonctionnel. Vous pouvez l\'exécuter localement aujourd\'hui.' },
+    { title: 'Déjà Construit — Pas Seulement Proposé', desc: '125+ fichiers de production, 20 routes, chaque écran fonctionnel. Vous pouvez l\'exécuter localement aujourd\'hui.' },
     { title: 'Testé & Vérifié', desc: '32 tests unitaires, mode strict TypeScript, pipeline de vérification CI. Pas « ça marche sur ma machine ».' },
     { title: 'Langage de Statut Honnête', desc: 'L\'UI de liquidité dit « Intégration en attente » — pas « Bientôt disponible ». Chaque libellé reflète l\'état réel d\'implémentation.' },
     { title: 'La Documentation Correspond au Code', desc: 'README, SETUP, BID_PROPOSAL et docs architecture sont tous alignés sur ce qui est réellement construit.' },
@@ -260,7 +260,7 @@ const fr: TranslationDictionary = {
   section_proof_subtitle: 'Ceci n\'est pas un pitch deck. Chaque capacité décrite sur cette page a un lien live, un fichier source ou une commande de vérification derrière elle.',
   homepage_proofCards: [
     { title: 'App en direct', desc: 'La plateforme complète est en ligne et testable sur Devnet maintenant. Connectez un wallet et testez le flux complet.', linkLabel: 'Essayer en direct →' },
-    { title: 'Code source', desc: 'Dépôt complet — 81+ fichiers, 18 routes, TypeScript strict mode, zéro erreur.', linkLabel: 'Voir le dépôt →' },
+    { title: 'Code source', desc: 'Dépôt complet — 125+ fichiers, 20 routes, TypeScript strict mode, zéro erreur.', linkLabel: 'Voir le dépôt →' },
     { title: 'Commande de vérification', desc: 'Une seule commande lance les vérifications TypeScript, 32 tests et un build de production Next.js complet.', linkLabel: 'npm run verify' },
     { title: 'Guide d\'installation', desc: 'Clonez, installez, configurez et lancez la plateforme localement en moins de 5 minutes.', linkLabel: 'Lire le guide →' },
     { title: 'Docs d\'architecture', desc: 'Conception du système, stack technique, structure des fichiers et architecture de déploiement — tout documenté.', linkLabel: 'Lire les docs →' },

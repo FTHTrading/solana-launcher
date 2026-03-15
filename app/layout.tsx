@@ -25,7 +25,8 @@ export const metadata: Metadata = {
   keywords: ['Solana', 'SPL Token', 'Token Launcher', 'Meme Coin', 'Web3', 'Crypto', 'Token Creator'],
   manifest: '/manifest.json',
   icons: [
-    { rel: 'icon', url: '/images/brand/logo-mark.png', type: 'image/png' },
+    { rel: 'icon', url: '/favicon.png', type: 'image/png', sizes: '192x192' },
+    { rel: 'icon', url: '/images/brand/logo-mark.png', type: 'image/png', sizes: '512x512' },
     { rel: 'apple-touch-icon', url: '/images/brand/logo-primary.png' },
   ],
   appleWebApp: {

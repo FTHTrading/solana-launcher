@@ -433,7 +433,7 @@ This gives the operator real-time visibility into platform utilization.
 | `/api/upload` | POST | IPFS image upload |
 | `/api/metadata` | POST | IPFS metadata upload |
 
-**Total: 18 routes (11 app pages + 4 marketing pages + 3 API endpoints)**
+**Total: 20 routes (12 app pages + 5 marketing pages + 3 API endpoints)**
 
 ---
 
@@ -531,5 +531,5 @@ The underlying wallet adapter infrastructure remains fully intact. Wallet connec
 
 *Last updated: March 2026*
 *Commit: 9d004aa — docs: add professional system architecture write-up*
-*Verify: tsc ✓ · lint ✓ · 32 tests ✓ · 18 routes ✓ · 0 errors*
+*Verify: tsc ✓ · lint ✓ · 32 tests ✓ · 20 routes ✓ · 0 errors*
 *Doc inventory: 15 markdown files + 8 audit reports + 2 scripts*

@@ -138,7 +138,7 @@ npm run verify
 This runs:
 1. `tsc --noEmit` — TypeScript type checking (0 errors expected)
 2. `vitest run` — Unit tests (32 tests across 4 suites)
-3. `next build` — Production build (18 routes)
+3. `next build` — Production build (20 routes)
 
 You can also run each step individually:
 
