@@ -5,6 +5,7 @@ const fr: TranslationDictionary = {
   nav_features: 'Fonctionnalités',
   nav_howItWorks: 'Comment ça marche',
   nav_faq: 'FAQ',
+  nav_pricing: 'Tarifs',
   nav_dashboard: 'Tableau de bord',
   nav_launch: 'Lancer',
   nav_trade: 'Échanger',
@@ -16,33 +17,33 @@ const fr: TranslationDictionary = {
   // Hero
   hero_badge_devnet: '🔧 En cours sur Devnet',
   hero_badge_mainnet: '🚀 En direct sur Mainnet',
-  hero_title: 'Plateforme de lancement',
-  hero_titleAccent: 'de jetons Solana SPL',
+  hero_title: 'Lancez votre jeton sur',
+  hero_titleAccent: 'Solana',
   hero_subtitle:
-    "Une plateforme de lancement de jetons non-custodiale de qualité production avec plus de 23 fonctionnalités couvrant le lancement, la gestion, les intégrations d'écosystème et la monétisation. Prête pour la marque blanche. Plus de 15 intégrations partenaires Solana. Déjà construite. Déjà vérifiée.",
+    'Créez des jetons SPL avec un branding personnalisé, des métadonnées IPFS et une vérification on-chain. Aucun code requis. À partir de 0.1 SOL.',
   hero_cta_launch: 'Lancer un jeton',
-  hero_cta_view: 'Voir ce qui est construit',
-  hero_pill_wallet: 'Flux de lancement par portefeuille',
-  hero_pill_tiers: 'Niveaux premium et parrainages',
-  hero_pill_whiteLabel: 'Prêt pour la marque blanche',
-  hero_pill_partners: "15+ partenaires d'écosystème",
-  hero_pill_postLaunch: 'Automatisation post-lancement',
-  hero_pill_hardened: 'Renforcé pour la production',
+  hero_cta_view: 'Voir les fonctionnalités',
+  hero_pill_wallet: 'Non-custodial',
+  hero_pill_tiers: 'IPFS + Metaplex',
+  hero_pill_whiteLabel: 'Devnet & Mainnet',
+  hero_pill_partners: 'Aucun code requis',
+  hero_pill_postLaunch: 'À partir de 0.1 SOL',
+  hero_pill_hardened: 'Instantané on-chain',
 
   // Section titles
   section_directResponse: 'Réponse directe',
   section_directResponse_title: 'Votre demande, traduite en un vrai système',
   section_directResponse_subtitle:
     "Chaque point du cahier des charges original est traité ci-dessous. Ce n'est pas une promesse — c'est construit.",
-  section_whatsBuilt: 'Ce qui est déjà construit',
+  section_whatsBuilt: 'Tout ce dont vous avez besoin',
   section_whatsBuilt_subtitle:
-    "23 fonctionnalités couvrant le lancement, la gestion, la monétisation, l'écosystème et l'infrastructure. Chacune est implémentée, pas planifiée.",
+    'Lancez, gérez et développez votre jeton SPL avec des outils professionnels.',
   section_hardening: 'Qualité production',
   section_hardening_title: "Ce n'est pas une maquette. C'est de l'ingénierie.",
   section_hardening_subtitle: 'Des métriques réelles du code source. Pas de chiffres inventés.',
   section_howItWorks: 'Comment ça marche',
   section_howItWorks_subtitle:
-    "Quatre étapes de zéro à un jeton SPL en direct sur Solana. Chaque étape est guidée et validée.",
+    'De la connexion du portefeuille au jeton en direct en moins de deux minutes.',
   section_phases_title: 'Plateforme complète — Construite en trois phases',
   section_phases_subtitle:
     "La Phase 1 a livré le MVP. De nombreuses fonctionnalités de la Phase 2 sont déjà construites — niveaux premium, marque blanche, intégrations d'écosystème et système de parrainage. Le travail restant concerne principalement l'exécution de liquidité on-chain et le travail de protocole personnalisé, défini séparément.",
@@ -53,9 +54,9 @@ const fr: TranslationDictionary = {
   section_pricing: 'Tarification simple et transparente',
   section_pricing_subtitle: 'Un forfait unique. Pas de coûts cachés. Vous voyez le montant exact avant de signer.',
   section_faq: 'Questions fréquemment posées',
-  section_cta_title: 'Construisez le lanceur correctement dès le premier jour',
+  section_cta_title: 'Prêt à lancer votre jeton ?',
   section_cta_subtitle:
-    "Une plateforme de lancement de jetons Solana SPL prête pour la production avec un flux utilisateur propre, une architecture honnête et de la place pour grandir. Déjà construite. Déjà vérifiée. Prête à déployer.",
+    'Connectez votre portefeuille et créez votre premier jeton SPL. Testez gratuitement sur Devnet ou passez en direct sur Mainnet.',
 
   // Steps
   step1_title: 'Connectez votre portefeuille',
@@ -95,7 +96,7 @@ const fr: TranslationDictionary = {
   pricing_devnetNote: "Les lancements Devnet utilisent du SOL de test et sont gratuits. Passez au Mainnet quand vous êtes prêt.",
 
   // Footer
-  footer_desc: 'Un outil simple et transparent pour créer des jetons Solana SPL. Aucune connaissance technique requise.',
+  footer_desc: 'Créez et gérez des jetons Solana SPL. Non-custodial, transparent et simple.',
   footer_network: 'Réseau',
   footer_product: 'Produit',
   footer_legal: 'Juridique',
@@ -121,7 +122,7 @@ const fr: TranslationDictionary = {
   common_startNow: 'Commencer — Gratuit sur Devnet',
   common_viewDashboard: 'Voir le tableau de bord',
   common_notAffiliated: 'Non affilié à la Fondation Solana.',
-  common_contactCta: 'Questions sur la Phase 2, les exigences personnalisées ou le déploiement ?',
+  common_contactCta: 'Des questions ? Nous sommes là pour vous aider.',
 
   // Language
   language_label: 'Langue',
@@ -142,29 +143,12 @@ const fr: TranslationDictionary = {
     { asked: 'Conseils sur la faisabilité, la complexité, le coût et les meilleures pratiques', built: "Architecture de production, pipeline de vérification, documentation, feuille de route et cette page — le tout structuré pour un acheteur non technique." },
   ],
   homepage_capabilities: [
-    { name: 'UX Portefeuille', desc: 'Adaptateur Phantom + Solflare, bannière réseau, vérifications de solde' },
-    { name: 'Assistant de Lancement', desc: 'Flux en 4 étapes : Détails → Branding → Offre → Vérification' },
-    { name: 'Flux Métadonnées', desc: 'Upload IPFS via Pinata, métadonnées Metaplex on-chain' },
-    { name: 'Architecture Trésorerie / Frais', desc: 'Application atomique des frais, tableau de bord revenus admin' },
-    { name: 'Flux de Destruction', desc: 'Destruction de jetons avec confirmation et vérification on-chain' },
-    { name: 'Révocation d\'Autorité', desc: "Révocation de l'autorité de frappe + gel avec affichage du score de confiance" },
-    { name: 'Tableau de Bord Portfolio', desc: 'Soldes de jetons en direct on-chain avec images depuis RPC' },
-    { name: 'Recherche de Pools', desc: 'Raydium V3 API + recherche de pools Meteora DLMM' },
-    { name: 'Conscience Réseau', desc: 'Bannière Devnet/mainnet + alertes SOL bas partout' },
-    { name: 'Couche de Validation', desc: 'Schémas Zod, 12 codes d\'erreur typés, calcul BigInt sûr' },
-    { name: 'Limitation de Débit', desc: 'Upstash Redis distribué, repli en mémoire' },
-    { name: 'Pipeline de Vérification', desc: 'TypeScript + vitest + build en une commande' },
-    { name: 'Couverture de Tests', desc: '32 tests réussis sur 4 suites' },
-    { name: 'Juridique & Conformité', desc: 'Conditions, confidentialité, divulgation des risques, bannière de conformité' },
-    { name: 'Documentation', desc: 'README, SETUP, BID_PROPOSAL, docs architecture — alignés sur la réalité' },
-    { name: 'Niveaux de Lancement Premium', desc: '3 niveaux : Standard, Premium, Vedette — avec contrôle de fonctionnalités' },
-    { name: 'Système White-Label', desc: 'Branding multi-tenant, partage de frais, routage de domaine, drapeaux de fonctionnalités' },
-    { name: 'Parrainage & Affiliation', desc: 'Codes de parrainage, suivi des commissions, cumul de remises' },
-    { name: 'Générateur de Page Jeton', desc: 'Pages /token/[mint] dynamiques avec score de confiance et données on-chain' },
-    { name: 'Hub Écosystème', desc: '15+ partenaires Solana : Jupiter, Raydium, Birdeye, Jito, Pyth, et plus' },
-    { name: 'Checklist Post-Lancement', desc: 'Checklist guidée en 13 étapes de la sécurité à la croissance' },
-    { name: 'Helius Webhooks', desc: 'Notifications en temps réel pour transferts, baleines, pools et échanges' },
-    { name: 'Routage 4-DEX', desc: 'Routage de liens profonds Jupiter, Raydium, Meteora, Orca' },
+    { name: 'Assistant de création', desc: 'Assistant guidé en 4 étapes avec validation, presets et aperçu en direct. Nommez-le, brandissez-le, lancez-le.' },
+    { name: 'Métadonnées on-chain', desc: 'Images et métadonnées épinglées sur IPFS via Pinata. Attachement on-chain standard Metaplex — permanent et vérifiable.' },
+    { name: 'Contrôle des autorités', desc: "Révoquez l'autorité de frappe et de gel pour prouver la fiabilité de votre jeton. Irréversible et vérifiable on-chain." },
+    { name: 'Brûlage de jetons', desc: 'Retirez définitivement des jetons de la circulation. Sélectionnez le montant, confirmez et brûlez — enregistré on-chain.' },
+    { name: 'Tableau de bord', desc: 'Consultez tous vos jetons avec soldes en direct, images et outils de gestion depuis un seul tableau de bord.' },
+    { name: 'Trading multi-DEX', desc: 'Routez les échanges via Jupiter, Raydium, Meteora et Orca. Trouvez des pools de liquidité et suivez votre jeton.' },
   ],
   homepage_hardening: [
     { metric: 'TypeScript', value: '0 erreurs', detail: 'Mode strict — aucun raccourci au niveau des types' },
@@ -266,10 +250,10 @@ const fr: TranslationDictionary = {
     { title: 'Docs d\'architecture', desc: 'Conception du système, stack technique, structure des fichiers et architecture de déploiement — tout documenté.', linkLabel: 'Lire les docs →' },
     { title: 'Proposition & périmètre', desc: 'Détail complet du périmètre : phases, tarification, calendrier et livrables.', linkLabel: 'Lire la proposition →' },
   ],
-  footer_proof: 'Preuves',
-  footer_liveApp: 'App en direct',
+  footer_proof: 'Ressources',
+  footer_liveApp: 'Documentation',
   footer_sourceCode: 'Code source',
-  footer_setupGuide: 'Guide d\'installation',
+  footer_setupGuide: 'Statut API',
   footer_architecture: 'Architecture',
   footer_verification: 'Vérification',
 
@@ -306,7 +290,7 @@ const fr: TranslationDictionary = {
   ],
 
   // Legal deliverable proof
-  legal_deliverableProof: 'Les pages légales et les flux de divulgation sont déjà inclus et peuvent être personnalisés pour votre juridiction de déploiement.',
+  legal_deliverableProof: 'Pages légales et mentions de risques incluses. Consultez un avocat qualifié pour la conformité juridictionnelle.',
 
   section_customize: 'Votre version',
   section_customize_title: 'Ce que je personnaliserais pour vous',

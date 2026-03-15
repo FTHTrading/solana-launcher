@@ -30,6 +30,7 @@ export interface TranslationDictionary {
   nav_features: string;
   nav_howItWorks: string;
   nav_faq: string;
+  nav_pricing: string;
   nav_dashboard: string;
   nav_launch: string;
   nav_trade: string;

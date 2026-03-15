@@ -5,6 +5,7 @@ const en: TranslationDictionary = {
   nav_features: 'Features',
   nav_howItWorks: 'How It Works',
   nav_faq: 'FAQ',
+  nav_pricing: 'Pricing',
   nav_dashboard: 'Dashboard',
   nav_launch: 'Launch',
   nav_trade: 'Trade',
@@ -16,33 +17,33 @@ const en: TranslationDictionary = {
   // Hero
   hero_badge_devnet: '🔧 Running on Devnet',
   hero_badge_mainnet: '🚀 Live on Mainnet',
-  hero_title: 'Solana SPL Token',
-  hero_titleAccent: 'Launch Platform',
+  hero_title: 'Launch Your Token on',
+  hero_titleAccent: 'Solana',
   hero_subtitle:
-    'A production-grade, non-custodial token launcher with 23+ capabilities across launch, management, ecosystem integrations, and monetization. White-label ready. 15+ Solana partner integrations. Already built. Already verified.',
+    'Create SPL tokens with custom branding, IPFS metadata, and on-chain verification. No coding required. From 0.1 SOL.',
   hero_cta_launch: 'Launch Token',
-  hero_cta_view: "View What's Built",
-  hero_pill_wallet: 'Wallet-based launch flow',
-  hero_pill_tiers: 'Premium tiers & referrals',
-  hero_pill_whiteLabel: 'White-label ready',
-  hero_pill_partners: '15+ ecosystem partners',
-  hero_pill_postLaunch: 'Post-launch automation',
-  hero_pill_hardened: 'Production hardened',
+  hero_cta_view: 'See Features',
+  hero_pill_wallet: 'Non-custodial',
+  hero_pill_tiers: 'IPFS + Metaplex',
+  hero_pill_whiteLabel: 'Devnet & Mainnet',
+  hero_pill_partners: 'No code required',
+  hero_pill_postLaunch: 'From 0.1 SOL',
+  hero_pill_hardened: 'Instant on-chain',
 
   // Section titles
   section_directResponse: 'Direct Response',
   section_directResponse_title: 'Your Request, Translated Into a Real System',
   section_directResponse_subtitle:
     'Every item from the original brief is addressed below. This is not a promise — it is built.',
-  section_whatsBuilt: "What's Already Built",
+  section_whatsBuilt: 'Everything You Need',
   section_whatsBuilt_subtitle:
-    '23 capabilities across launch, management, monetization, ecosystem, and infrastructure. Each one is implemented, not planned.',
+    'Launch, manage, and grow your SPL token with professional-grade tools.',
   section_hardening: 'Production-Grade',
   section_hardening_title: 'This Is Not a Mockup. This Is Engineered.',
   section_hardening_subtitle: 'Real metrics from the codebase. No invented numbers.',
   section_howItWorks: 'How It Works',
   section_howItWorks_subtitle:
-    'Four steps from zero to a live SPL token on Solana. Every step is guided and validated.',
+    'From wallet connection to live token in under two minutes.',
   section_phases_title: 'Full Platform — Built Across Three Phases',
   section_phases_subtitle:
     'Phase 1 delivered the MVP. Many Phase 2 platform features are already built — premium tiers, white-label, ecosystem integrations, and referral system. The remaining work is mainly on-chain liquidity execution and deeper custom protocol work, scoped separately.',
@@ -53,9 +54,9 @@ const en: TranslationDictionary = {
   section_pricing: 'Simple, Transparent Pricing',
   section_pricing_subtitle: 'One flat fee. No hidden costs. You see the exact amount before signing.',
   section_faq: 'Frequently Asked Questions',
-  section_cta_title: 'Build the Launcher Correctly From Day One',
+  section_cta_title: 'Ready to Launch Your Token?',
   section_cta_subtitle:
-    'A production-minded Solana SPL token launch platform with a clean user flow, honest architecture, and room to grow. Already built. Already verified. Ready to deploy.',
+    'Connect your wallet and create your first SPL token. Test free on Devnet or go live on Mainnet.',
 
   // Steps
   step1_title: 'Connect Your Wallet',
@@ -95,7 +96,7 @@ const en: TranslationDictionary = {
   pricing_devnetNote: 'Devnet launches use test SOL and are free. Switch to Mainnet when you are ready.',
 
   // Footer
-  footer_desc: 'A simple, transparent tool for creating Solana SPL tokens. No technical knowledge required.',
+  footer_desc: 'Create and manage Solana SPL tokens. Non-custodial, transparent, and simple.',
   footer_network: 'Network',
   footer_product: 'Product',
   footer_legal: 'Legal',
@@ -121,7 +122,7 @@ const en: TranslationDictionary = {
   common_startNow: 'Start Now — Free on Devnet',
   common_viewDashboard: 'View Dashboard',
   common_notAffiliated: 'Not affiliated with Solana Foundation.',
-  common_contactCta: 'Questions about Phase 2, custom requirements, or deployment?',
+  common_contactCta: 'Questions? We are here to help.',
 
   // Language
   language_label: 'Language',
@@ -142,29 +143,12 @@ const en: TranslationDictionary = {
     { asked: 'Guidance on feasibility, complexity, cost, and best practices', built: 'Production architecture, verification pipeline, documentation, roadmap, and this front page — all structured for a non-technical buyer.' },
   ],
   homepage_capabilities: [
-    { name: 'Wallet UX', desc: 'Phantom + Solflare adapter, network banner, balance checks' },
-    { name: 'Launch Wizard', desc: '4-step flow: Details → Branding → Supply → Review' },
-    { name: 'Token Metadata Flow', desc: 'IPFS upload via Pinata, Metaplex on-chain metadata' },
-    { name: 'Treasury / Fee Architecture', desc: 'Atomic fee enforcement, admin revenue dashboard' },
-    { name: 'Burn Flow', desc: 'Token burn with confirmation and on-chain verification' },
-    { name: 'Authority Revocation', desc: 'Revoke mint + freeze authority with trust score display' },
-    { name: 'Portfolio Dashboard', desc: 'Live on-chain token balances with images from RPC' },
-    { name: 'Liquidity Pool Finder', desc: 'Raydium V3 API + Meteora DLMM pool lookup' },
-    { name: 'Network Awareness', desc: 'Devnet/mainnet banner + low-SOL warnings everywhere' },
-    { name: 'Validation Layer', desc: 'Zod schemas, 12 typed error codes, BigInt-safe math' },
-    { name: 'Rate Limiting', desc: 'Upstash Redis distributed, in-memory fallback' },
-    { name: 'Verification Pipeline', desc: 'TypeScript + vitest + build in one command' },
-    { name: 'Test Coverage', desc: '32 passing tests across 4 suites' },
-    { name: 'Legal & Compliance', desc: 'Terms, privacy, risk disclosure, compliance banner' },
-    { name: 'Documentation', desc: 'README, SETUP, BID_PROPOSAL, architecture docs — all truth-aligned' },
-    { name: 'Premium Launch Tiers', desc: '3 tiers: Standard, Premium, Featured — with feature gating' },
-    { name: 'White-Label System', desc: 'Multi-tenant branding, fee splits, domain routing, feature flags' },
-    { name: 'Referral & Affiliate', desc: 'Referral codes, commission tracking, discount stacking' },
-    { name: 'Token Page Generator', desc: 'Dynamic /token/[mint] pages with trust score and on-chain data' },
-    { name: 'Ecosystem Hub', desc: '15+ Solana partners: Jupiter, Raydium, Birdeye, Jito, Pyth, more' },
-    { name: 'Post-Launch Checklist', desc: '13-step guided checklist from security to growth' },
-    { name: 'Helius Webhooks', desc: 'Real-time transfer, whale, pool, and swap notifications' },
-    { name: '4-DEX Swap Routing', desc: 'Jupiter, Raydium, Meteora, Orca deep-link routing' },
+    { name: 'Token Creation Wizard', desc: 'Guided 4-step wizard with form validation, token presets, and live preview. Name it, brand it, launch it.' },
+    { name: 'On-Chain Metadata', desc: 'Images and metadata pinned to IPFS via Pinata. Metaplex-standard on-chain attachment — permanent and verifiable.' },
+    { name: 'Authority Control', desc: 'Revoke mint and freeze authority to prove your token is trustworthy. Irreversible and verifiable on-chain.' },
+    { name: 'Token Burning', desc: 'Permanently remove tokens from circulation. Select the amount, confirm, and burn — recorded on-chain.' },
+    { name: 'Portfolio Dashboard', desc: 'View all your tokens with live balances, images, and management tools from a single dashboard.' },
+    { name: 'Multi-DEX Trading', desc: 'Route trades across Jupiter, Raydium, Meteora, and Orca. Find liquidity pools and track your token.' },
   ],
   homepage_hardening: [
     { metric: 'TypeScript', value: '0 errors', detail: 'Strict mode — no type-level shortcuts' },
@@ -266,10 +250,10 @@ const en: TranslationDictionary = {
     { title: 'Architecture Docs', desc: 'System design, tech stack, file structure, and deployment architecture — all documented.', linkLabel: 'Read Docs →' },
     { title: 'Proposal & Scope Map', desc: 'Full scope breakdown: phases, pricing, timeline, and deliverables — written before the first line of code.', linkLabel: 'Read Proposal →' },
   ],
-  footer_proof: 'Proof',
-  footer_liveApp: 'Live App',
+  footer_proof: 'Resources',
+  footer_liveApp: 'Documentation',
   footer_sourceCode: 'Source Code',
-  footer_setupGuide: 'Setup Guide',
+  footer_setupGuide: 'API Status',
   footer_architecture: 'Architecture',
   footer_verification: 'Verification',
 
@@ -306,7 +290,7 @@ const en: TranslationDictionary = {
   ],
 
   // Legal deliverable proof
-  legal_deliverableProof: 'Legal pages and disclosure flows are already included and can be customized for your deployment jurisdiction.',
+  legal_deliverableProof: 'Legal pages and risk disclosures are included. Consult a qualified attorney for jurisdiction-specific compliance.',
 
   section_customize: 'Your Version',
   section_customize_title: 'What I Would Customize For You',
