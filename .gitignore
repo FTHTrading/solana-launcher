@@ -1,4 +1,4 @@
-﻿# Dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.js
@@ -16,7 +16,6 @@
 
 # Misc
 .DS_Store
-*.pem
 Thumbs.db
 
 # Debug
@@ -24,10 +23,19 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment Variables â€” NEVER COMMIT THESE
-.env*.local
+# Environment Variables - NEVER COMMIT THESE
 .env
-.env.production
+.env.*
+.env*.local
+!.env.example
+
+# Wallet / Key Files - NEVER COMMIT PRIVATE KEYS
+*.pem
+*.key
+*-keypair.json
+*-wallet.json
+*secret*.json
+id.json
 
 # Vercel
 .vercel
@@ -44,14 +52,9 @@ build-output.txt
 lint-output.txt
 tsc-errors.txt
 tsc-output.txt
-
-# Debug output files
-build-output.txt
-tsc-errors.txt
-tsc-output.txt
-lint-output.txt
 all-source-dump.txt
 
 # Devnet launch script secrets / output
+scripts/.devnet-keypair.json
 scripts/payer-keypair.json
 scripts/sample-token-data.json
