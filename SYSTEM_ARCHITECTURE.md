@@ -433,7 +433,7 @@ This gives the operator real-time visibility into platform utilization.
 | `/api/upload` | POST | IPFS image upload |
 | `/api/metadata` | POST | IPFS metadata upload |
 
-**Total: 20 routes (12 app pages + 5 marketing pages + 3 API endpoints)**
+**Total: 20 routes (11 app pages + 5 marketing pages + 3 API endpoints + /_not-found)**
 
 ---
 

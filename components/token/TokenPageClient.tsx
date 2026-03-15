@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   Copy,
   ExternalLink,
+  Eye,
   Flame,
   Globe,
   Loader2,
@@ -87,6 +88,7 @@ export function TokenPageClient({ mintAddress }: TokenPageClientProps) {
   const [metadata, setMetadata] = useState<MetaplexMetadata | null>(null);
   const [pools, setPools] = useState<PoolInfo[]>([]);
   const [copied, setCopied] = useState(false);
+  const [isPreview, setIsPreview] = useState(false);
 
   const fetchTokenData = useCallback(async () => {
     setLoading(true);
@@ -115,6 +117,7 @@ export function TokenPageClient({ mintAddress }: TokenPageClientProps) {
         if (demo) {
           setTokenInfo(demo.info);
           setMetadata(demo.meta);
+          setIsPreview(true);
           setLoading(false);
           return;
         }
@@ -196,6 +199,7 @@ export function TokenPageClient({ mintAddress }: TokenPageClientProps) {
       if (demo) {
         setTokenInfo(demo.info);
         setMetadata(demo.meta);
+        setIsPreview(true);
       } else {
         setError('Failed to fetch token data. Please try again.');
       }
@@ -274,6 +278,22 @@ export function TokenPageClient({ mintAddress }: TokenPageClientProps) {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
+      {/* Preview mode banner */}
+      {isPreview && (
+        <div className="rounded-lg border border-amber-500/30 bg-amber-50 dark:bg-amber-950/20 px-4 py-3 flex items-start gap-3">
+          <Eye className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
+          <div className="space-y-1">
+            <p className="text-sm font-medium text-amber-800 dark:text-amber-300">
+              UI Preview
+            </p>
+            <p className="text-xs text-amber-700/80 dark:text-amber-400/70">
+              This page shows sample data to demonstrate the token detail layout.
+              Launch a token on devnet to see real on-chain data here.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start gap-4">
         {metadata?.image && (

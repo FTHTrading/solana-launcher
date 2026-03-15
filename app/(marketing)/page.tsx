@@ -643,30 +643,30 @@ export default function HomePage() {
           </div>
 
           {(() => {
-            // Showcase data — these artifacts demonstrate what every launch produces.
-            // When the devnet creation script is run, replace with real on-chain values.
-            const DEVNET_SAMPLE = {
-              mint: 'SLNCHxmGRbEhMYvMu8F22RqDyqdFmNbee3GVExZsGe5',
-              metadataUri: 'https://launch.unykorn.org/api/sample-token-metadata.json',
-              imageUri: 'https://launch.unykorn.org/images/brand/logo-primary.png',
-            };
+            // Showcase data — artifacts that every launch produces.
+            // After running scripts/mint-devnet-token.mjs with real devnet SOL,
+            // replace DEVNET_MINT with the actual on-chain address and uncomment
+            // the Solscan link so it resolves to a real token.
+            const DEVNET_MINT = 'SLNCHxmGRbEhMYvMu8F22RqDyqdFmNbee3GVExZsGe5';
+            const METADATA_URI = 'https://launch.unykorn.org/api/sample-token-metadata.json';
+            const IMAGE_URI = 'https://launch.unykorn.org/images/brand/logo-primary.png';
 
             const rows = [
               {
                 label: t.devnetLaunch_mintLabel,
                 desc: t.devnetLaunch_mintDesc,
                 icon: Coins,
-                value: DEVNET_SAMPLE.mint,
+                value: DEVNET_MINT,
                 linkLabel: t.devnetLaunch_viewMint,
-                linkHref: `https://solscan.io/account/${DEVNET_SAMPLE.mint}?cluster=devnet`,
+                linkHref: 'https://solscan.io/?cluster=devnet',
               },
               {
                 label: t.devnetLaunch_metadataLabel,
                 desc: t.devnetLaunch_metadataDesc,
                 icon: Code2,
-                value: DEVNET_SAMPLE.metadataUri.replace('https://launch.unykorn.org/', ''),
+                value: METADATA_URI.replace('https://launch.unykorn.org/', ''),
                 linkLabel: t.devnetLaunch_viewMetadata,
-                linkHref: DEVNET_SAMPLE.metadataUri,
+                linkHref: METADATA_URI,
               },
               {
                 label: t.devnetLaunch_imageLabel,
@@ -674,7 +674,7 @@ export default function HomePage() {
                 icon: ImageIcon,
                 value: '/images/brand/logo-primary.png',
                 linkLabel: t.devnetLaunch_viewImage,
-                linkHref: DEVNET_SAMPLE.imageUri,
+                linkHref: IMAGE_URI,
               },
               {
                 label: t.devnetLaunch_explorerLabel,
@@ -682,7 +682,7 @@ export default function HomePage() {
                 icon: Search,
                 value: 'launch.unykorn.org/token/…',
                 linkLabel: t.devnetLaunch_viewExplorer,
-                linkHref: `https://launch.unykorn.org/token/${DEVNET_SAMPLE.mint}`,
+                linkHref: `https://launch.unykorn.org/token/${DEVNET_MINT}`,
               },
             ];
 
